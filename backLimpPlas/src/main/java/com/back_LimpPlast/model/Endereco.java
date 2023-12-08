@@ -1,7 +1,10 @@
 package com.back_LimpPlast.model;
 
+import org.hibernate.annotations.ManyToAny;
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,7 +19,8 @@ public class Endereco {
     private int cep;
     private String bairro;
     
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name="id_cliente")
     private Clientes cliente;
 
 	public Integer getId() {

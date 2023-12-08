@@ -1,10 +1,14 @@
 package com.back_LimpPlast.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,6 +25,16 @@ public class Itens_Pedido {
 	
 	@Column(name="quantidade")
 	private int quantidade;
+	
+
+	@ManyToOne
+	@JoinColumn(name="id_produto")
+	private  Produtos produto;
+	
+	@ManyToOne
+	@JoinColumn(name="num_Pedido")
+	@JsonIgnoreProperties("itens")
+	private Pedido pedido;
 	
 	
 	public Integer getId() {
