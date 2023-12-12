@@ -20,10 +20,10 @@ public class Itens_Pedido {
 	@Column(name="id_itenspedido")
 	private Integer id;
 	
-	@Column(name="valor_unitario")
+	@Column(name="valor_unitario",nullable = false)
 	private double valor_unitario;
 	
-	@Column(name="quantidade")
+	@Column(name="quantidade" , nullable = false)
 	private int quantidade;
 	
 

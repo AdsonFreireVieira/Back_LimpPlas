@@ -25,7 +25,7 @@ public class Clientes {
 	@Column(name="telefone")
     private  int telefone;
 	
-	@Column(name="cnpj")
+	@Column(name="cnpj",length = 14)
     private String cnpj;
 	
 	

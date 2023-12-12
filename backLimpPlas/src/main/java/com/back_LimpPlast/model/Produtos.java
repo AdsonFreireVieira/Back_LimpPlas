@@ -16,31 +16,31 @@ public class Produtos {
  @Column(name="id_produto")
  private  Integer id;
  
- @Column(name="nome_produto")
+ @Column(name="nome_produto",length = 100 ,nullable = false)
  private String nome;
  
- @Column(name="peso")
+ @Column(name="peso",nullable = false)
  private double peso;
  
- @Column(name="unidade")
+ @Column(name="unidade",nullable =  false)
  private  int unidades;
  
- @Column(name="cor")
+ @Column(name="cor", length = 15,nullable =  false)
  private String cor;
  
- @Column(name="litros")
+ @Column(nullable = false)
  private int litros;
  
- @Column(name="medida")
+ @Column(name="medida",nullable = false)
  private String medida;
  
- @Column(name="valor")
+ @Column(name="valor",nullable = false)
  private double valor;
 
- @Column(name="quantidade")
+ @Column(name="quantidade",nullable = false)
  private int quantidade;
  
- @Column(name="classificacao")
+ @Column(name="classificacao", nullable = false)
  private String classificacao;
  
  

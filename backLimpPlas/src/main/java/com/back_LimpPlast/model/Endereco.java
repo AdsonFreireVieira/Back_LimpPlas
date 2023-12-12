@@ -1,27 +1,44 @@
 package com.back_LimpPlast.model;
 
-import org.hibernate.annotations.ManyToAny;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="tbl_endereco")
+@Table(name = "tbl_endereco")
 public class Endereco {
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JoinColumn(name = "id_endereco")
 	private Integer id;
-	private String  rua;
-    private int  numero;
-    private String estado;
-    private String cidade;
-    private int cep;
-    private String bairro;
-    
-    @ManyToOne
-    @JoinColumn(name="id_cliente")
-    private Clientes cliente;
+
+	@Column(name = "nome_rua", length = 45)
+	private String rua;
+
+	@Column(name = "numero_endereco")
+	private int numero;
+
+	@Column(name = "estado")
+	private String estado;
+
+	@Column(name = "cidade")
+	private String cidade;
+
+	@Column(name = "cep")
+	private int cep;
+
+	@Column(name = "bairro")
+	private String bairro;
+
+	@ManyToOne
+	@JoinColumn(name = "id_cliente")
+	private Clientes cliente;
 
 	public Integer getId() {
 		return id;
@@ -86,5 +103,5 @@ public class Endereco {
 	public void setCliente(Clientes cliente) {
 		this.cliente = cliente;
 	}
-    
-    }
+
+}

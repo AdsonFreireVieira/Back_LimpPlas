@@ -26,7 +26,7 @@ public class Pedido {
 	@Column(name="id_pedido")
 	private String id;
 	
-	@Column(name="data_pedido")
+	@Column(name="data_pedido",nullable = false)
 	private Date data;
 	
 	@Column(name="quantidade")
@@ -35,7 +35,7 @@ public class Pedido {
 	@Column(name="desconto")
 	private double desconto;
 	
-	@Column(name="status")
+	@Column(name="status", nullable = false)
 	private String status;
 
 	@OneToMany(mappedBy = "pesdido", cascade = CascadeType.ALL)
