@@ -6,4 +6,6 @@ import com.back_LimpPlast.model.Clientes;
 
 public interface ClientesDao extends JpaRepository<Clientes, Integer> {
 
+	
+	public Clientes findByname(String nome);
 }
