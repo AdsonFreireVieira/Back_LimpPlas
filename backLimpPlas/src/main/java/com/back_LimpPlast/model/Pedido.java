@@ -1,7 +1,5 @@
 package com.back_LimpPlast.model;
 
-
-
 import java.util.Date;
 import java.util.List;
 
