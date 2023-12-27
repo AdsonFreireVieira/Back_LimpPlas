@@ -14,6 +14,8 @@ public interface IClienteService {
 	
 	public Clientes buscarporNome(String nome);
 	
+	public  void deletarPorId(int id);
 	
-
+	public Clientes buscarPorId(int id);
+ 
 }

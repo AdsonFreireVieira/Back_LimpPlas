@@ -38,4 +38,17 @@ public class ServiceClienteImpl implements IClienteService {
 		return dao.findByname(nome);
 	}
 
+	@Override
+	public void deletarPorId(int id) {
+		
+		dao.deleteById(id);
+		
+	}
+
+	@Override
+	public Clientes buscarPorId(int id) {
+	
+		return dao.findById(id).orElse(null);
+	}
+
 }
