@@ -17,7 +17,7 @@ public interface IProdutoService {
     
      public Produtos BuscarPorId(Integer id);
      
-     public List<Produtos> BuscarPorClassificacao(String classificacao);
+     public List<Produtos> BuscarPorClassificacao(Produtos prod);
      
      
 

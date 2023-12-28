@@ -9,5 +9,5 @@ import com.back_LimpPlast.model.Produtos;
 public interface ProdutoDao extends JpaRepository<Produtos, Integer> {
 
 	
-	 List<Produtos> findAllByclassificacao(String classificacao);
+	 List<Produtos> findAllByclassificacao( Produtos prod);
 }
