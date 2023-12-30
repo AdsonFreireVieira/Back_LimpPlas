@@ -56,7 +56,7 @@ public class enderecoController {
 	}
 	
 	@GetMapping("/{num}")
-	public ResponseEntity<Endereco> buscarPorNumero(@PathVariable int num){
+	public ResponseEntity<Endereco> buscarPorNumero(@PathVariable int num ){
 		
 		return ResponseEntity.ok(service.buscarPorNumero(num));
 	}

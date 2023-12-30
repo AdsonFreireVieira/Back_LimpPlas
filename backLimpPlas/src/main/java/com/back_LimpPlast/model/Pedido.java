@@ -22,7 +22,7 @@ public class Pedido {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_pedido")
-	private String id;
+	private Integer id;
 	
 	@Column(name="data_pedido",nullable = false)
 	private Date data;
@@ -41,11 +41,11 @@ public class Pedido {
 	private List<Itens_Pedido> itens;
 	
 	
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

@@ -13,8 +13,6 @@ public interface IServicePedido {
 	
 	public List<Pedido>  listarPedido();
 	
-	public void deletarPedido(int id);
-	
 	public Pedido buscarPorId(int id);
 	
 	public List<Pedido> BuscarPorData(Date date);

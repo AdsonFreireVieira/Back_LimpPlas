@@ -33,12 +33,7 @@ public class pedidoServiceImpl implements IServicePedido {
 		return dao.findAll();
 	}
 
-	@Override
-	public void deletarPedido(int id) {
-
-		dao.deleteById(null);
-
-	}
+	
 
 	@Override
 	public Pedido buscarPorId(int id) {
@@ -51,4 +46,6 @@ public class pedidoServiceImpl implements IServicePedido {
 
 		return dao.findByDataRegistroAfter(date);
 	}
+
+	
 }
