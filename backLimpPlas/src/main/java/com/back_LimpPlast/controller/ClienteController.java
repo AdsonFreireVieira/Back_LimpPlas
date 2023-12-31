@@ -86,7 +86,7 @@ public class ClienteController {
 
 	@GetMapping("/{txt}")
 
-	public ResponseEntity<Clientes> buscarPorNome(@PathVariable String txt) {
+	public ResponseEntity<Clientes> buscarNome(@PathVariable String txt) {
 
 		Clientes cliente = service.buscarporNome(txt);
 

@@ -44,7 +44,7 @@ public class pedidoServiceImpl implements IServicePedido {
 	@Override
 	public List<Pedido> BuscarPorData(Date date) {
 
-		return dao.findByDataRegistroAfter(date);
+		return dao.findByData(date);
 	}
 
 	

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.back_LimpPlast.dao.ClientesDao;
 import com.back_LimpPlast.model.Clientes;
@@ -35,7 +36,7 @@ public class ServiceClienteImpl implements IClienteService {
 	@Override
 	public Clientes buscarporNome(String nome) {
 		
-		return dao.findByname(nome);
+		return dao.findByNome(nome);
 	}
 
 	@Override

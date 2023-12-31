@@ -34,7 +34,7 @@ public class ServiceEnderecoImpl implements IServiceEndereco {
 	@Override
 	public Endereco buscarPorNumero(int numero) {
 		// TODO Auto-generated method stub
-		return dao.findByNumber(numero);
+		return dao.findByNumero(numero);
 	}
 
 	@Override

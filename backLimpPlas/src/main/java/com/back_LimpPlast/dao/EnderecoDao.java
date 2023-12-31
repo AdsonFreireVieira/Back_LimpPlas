@@ -6,6 +6,6 @@ import com.back_LimpPlast.model.Endereco;
 
 public interface EnderecoDao extends JpaRepository<Endereco, Integer> {
 	
-	public Endereco findByNumber(int number);
+	public Endereco findByNumero(int number);
 
 }

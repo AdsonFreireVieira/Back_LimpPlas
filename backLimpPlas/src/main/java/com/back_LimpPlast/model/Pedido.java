@@ -36,7 +36,7 @@ public class Pedido {
 	@Column(name="status", nullable = false)
 	private String status;
 
-	@OneToMany(mappedBy = "pesdido", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("pedido")
 	private List<Itens_Pedido> itens;
 	

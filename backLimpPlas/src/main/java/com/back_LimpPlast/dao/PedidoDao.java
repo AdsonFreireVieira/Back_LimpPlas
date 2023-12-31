@@ -9,5 +9,5 @@ import com.back_LimpPlast.model.Pedido;
 
 public interface PedidoDao extends JpaRepository<Pedido, Integer> {
 
-	List<Pedido> findByDataRegistroAfter(Date data);
+	List<Pedido> findByData(Date data);
 }
