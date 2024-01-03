@@ -2,20 +2,20 @@ package com.back_LimpPlast.service.cliente;
 
 import java.util.List;
 
-import com.back_LimpPlast.model.Clientes;
+import com.back_LimpPlast.model.clientes;
 
 public interface IClienteService {
 	
-	public Clientes cadastrarNovo(Clientes cliente);
+	public clientes cadastrarNovo(clientes cliente);
 	
-	public Clientes alterarDados(Clientes alterar);
+	public clientes alterarDados(clientes alterar);
 	
-	public List<Clientes> ListarTodos();
+	public List<clientes> ListarTodos();
 	
-	public Clientes buscarporNome(String nome);
+	public clientes buscarporNome(String nome);
 	
 	public  void deletarPorId(int id);
 	
-	public Clientes buscarPorId(int id);
+	public clientes buscarPorId(int id);
  
 }

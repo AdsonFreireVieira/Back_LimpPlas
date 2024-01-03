@@ -1,15 +1,18 @@
 package com.back_LimpPlast.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="tbl_cliente")
-public class Clientes {
+@Table(name="tbl_Clientes")
+public class clientes {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -25,8 +28,8 @@ public class Clientes {
 	@Column(name="telefone")
     private  int telefone;
 	
-	@Column(name="cnpj",length = 14)
-    private String cnpj;
+	@Column(name="documento",length = 14)
+    private int  documento;
 	
 	
 	public Integer getId_Cliente() {
@@ -53,12 +56,13 @@ public class Clientes {
 	public void setTelefone(int telefone) {
 		this.telefone = telefone;
 	}
-	public String getCnpj() {
-		return cnpj;
+	public int getDocumento() {
+		return documento;
 	}
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
+	public void setDocumento( int documento) {
+		this.documento = documento;
 	}
+	
     
     
     

@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.back_LimpPlast.model.Produtos;
+import com.back_LimpPlast.model.produtos;
 
-public interface ProdutoDao extends JpaRepository<Produtos, Integer> {
+public interface ProdutoDao extends JpaRepository<produtos, Integer> {
 
 	
-	 List<Produtos> findAllByclassificacao( Produtos prod);
+	 List<produtos> findAllByclassificacao( produtos prod);
 }

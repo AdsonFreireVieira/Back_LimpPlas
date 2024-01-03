@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.back_LimpPlast.dao.ClientesDao;
-import com.back_LimpPlast.model.Clientes;
+import com.back_LimpPlast.model.clientes;
 
 @Component
 public class ServiceClienteImpl implements IClienteService {
@@ -16,25 +16,25 @@ public class ServiceClienteImpl implements IClienteService {
 	private ClientesDao dao;
 	 
 	@Override
-	public Clientes cadastrarNovo(Clientes cliente) {
+	public clientes cadastrarNovo(clientes cliente) {
 		
 		return dao.save(cliente);
 	}
 
 	@Override
-	public Clientes alterarDados(Clientes alterar) {
+	public clientes alterarDados(clientes alterar) {
 		 
 		return dao.save(alterar);
 	}
 
 	@Override
-	public List<Clientes> ListarTodos() {
+	public List<clientes> ListarTodos() {
 		
 		return dao.findAll();
 	}
 
 	@Override
-	public Clientes buscarporNome(String nome) {
+	public clientes buscarporNome(String nome) {
 		
 		return dao.findByNome(nome);
 	}
@@ -47,7 +47,7 @@ public class ServiceClienteImpl implements IClienteService {
 	}
 
 	@Override
-	public Clientes buscarPorId(int id) {
+	public clientes buscarPorId(int id) {
 	
 		return dao.findById(id).orElse(null);
 	}

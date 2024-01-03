@@ -10,8 +10,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tbl_endereco")
-public class Endereco {
+@Table(name = "tbl_Enderecos")
+public class endereco {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +38,7 @@ public class Endereco {
 
 	@ManyToOne
 	@JoinColumn(name = "id_cliente")
-	private Clientes cliente;
+	private clientes cliente;
 
 	public Integer getId() {
 		return id;
@@ -96,11 +96,11 @@ public class Endereco {
 		this.bairro = bairro;
 	}
 
-	public Clientes getCliente() {
+	public clientes getCliente() {
 		return cliente;
 	}
 
-	public void setCliente(Clientes cliente) {
+	public void setCliente(clientes cliente) {
 		this.cliente = cliente;
 	}
 

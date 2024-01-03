@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.back_LimpPlast.model.Endereco;
+import com.back_LimpPlast.model.endereco;
 import com.back_LimpPlast.service.endereco.IServiceEndereco;
 
 @RestController
@@ -24,9 +24,9 @@ public class enderecoController {
 	private IServiceEndereco service;
 
 	@PostMapping
-	public ResponseEntity<Endereco> cadastrarNovo(@RequestBody Endereco endereco) {
+	public ResponseEntity<endereco> cadastrarNovo(@RequestBody endereco endereco) {
 
-		Endereco ender = service.cadastrarNovo(endereco);
+		endereco ender = service.cadastrarNovo(endereco);
 
 		if (ender != null) {
 			ResponseEntity.ok().body(ender);
@@ -37,10 +37,10 @@ public class enderecoController {
 
 	@PutMapping("/{id}")
 
-	public ResponseEntity<Endereco> alterarEndereco(@RequestBody Endereco endereco, @PathVariable int id) {
+	public ResponseEntity<endereco> alterarEndereco(@RequestBody endereco endereco, @PathVariable int id) {
 
 		endereco.setId(id);
-		Endereco end = service.alterarEndereco(endereco);
+		endereco end = service.alterarEndereco(endereco);
 		
 		if(end != null) {
 			return ResponseEntity.ok(end);
@@ -50,13 +50,13 @@ public class enderecoController {
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<Endereco>> listarEndereco(){
+	public ResponseEntity<List<endereco>> listarEndereco(){
 		
 		return ResponseEntity.ok().body(service.listarEndereco());
 	}
 	
 	@GetMapping("/{num}")
-	public ResponseEntity<Endereco> buscarPorNumero(@PathVariable int num ){
+	public ResponseEntity<endereco> buscarPorNumero(@PathVariable int num ){
 		
 		return ResponseEntity.ok(service.buscarPorNumero(num));
 	}

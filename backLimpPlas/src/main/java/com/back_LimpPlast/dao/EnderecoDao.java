@@ -2,10 +2,10 @@ package com.back_LimpPlast.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.back_LimpPlast.model.Endereco;
+import com.back_LimpPlast.model.endereco;
 
-public interface EnderecoDao extends JpaRepository<Endereco, Integer> {
+public interface EnderecoDao extends JpaRepository<endereco, Integer> {
 	
-	public Endereco findByNumero(int number);
+	public endereco findByNumero(int number);
 
 }

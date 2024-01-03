@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.back_LimpPlast.dao.ProdutoDao;
-import com.back_LimpPlast.model.Produtos;
+import com.back_LimpPlast.model.produtos;
 
 @Component
 public class ProdutoServiceImpl implements IProdutoService {
@@ -16,13 +16,13 @@ public class ProdutoServiceImpl implements IProdutoService {
 	private ProdutoDao dao;
 	
 	@Override
-	public Produtos cadastrarNovo(Produtos novo) {
+	public produtos cadastrarNovo(produtos novo) {
 		
 		return dao.save(novo);
 	}
 
 	@Override
-	public Produtos alterarProoduto(Produtos alterar) {
+	public produtos alterarProoduto(produtos alterar) {
 		return dao.save(alterar);
 	}
 
@@ -33,19 +33,19 @@ public class ProdutoServiceImpl implements IProdutoService {
 	}
 
 	@Override
-	public List<Produtos> listarProdutos() {
+	public List<produtos> listarProdutos() {
 		
 		return dao.findAll();
 	}
 
 	@Override
-	public Produtos BuscarPorId(Integer id) {
+	public produtos BuscarPorId(Integer id) {
 		
 		return dao.findById(id).orElse(null);
 	}
 
 	@Override
-	public List<Produtos> BuscarPorClassificacao( Produtos prod) {
+	public List<produtos> BuscarPorClassificacao( produtos prod) {
 		
 		return dao.findAllByclassificacao(prod);
 	}

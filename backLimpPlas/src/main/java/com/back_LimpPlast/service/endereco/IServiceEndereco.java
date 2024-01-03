@@ -2,17 +2,17 @@ package com.back_LimpPlast.service.endereco;
 
 import java.util.List;
 
-import com.back_LimpPlast.model.Endereco;
+import com.back_LimpPlast.model.endereco;
 
 public interface IServiceEndereco {
 	
-	public Endereco cadastrarNovo(Endereco endereco);
+	public endereco cadastrarNovo(endereco endereco);
 	
-	public Endereco alterarEndereco(Endereco alterar);
+	public endereco alterarEndereco(endereco alterar);
 	
-	public List<Endereco> listarEndereco();
+	public List<endereco> listarEndereco();
 	
-	public  Endereco buscarPorNumero(int numero);
+	public  endereco buscarPorNumero(int numero);
 	
 	public void DeletarEndereco(Integer id);
 	

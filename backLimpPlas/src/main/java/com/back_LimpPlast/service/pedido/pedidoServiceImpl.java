@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.back_LimpPlast.dao.PedidoDao;
-import com.back_LimpPlast.model.Pedido;
+import com.back_LimpPlast.model.pedido;
 
 @Component
 public class pedidoServiceImpl implements IServicePedido {
@@ -16,19 +16,19 @@ public class pedidoServiceImpl implements IServicePedido {
 	private PedidoDao dao;
 
 	@Override
-	public Pedido cadastrarNovo(Pedido pedido) {
+	public pedido cadastrarNovo(pedido pedido) {
 
 		return dao.save(pedido);
 	}
 
 	@Override
-	public Pedido alterarPedido(Pedido alterar) {
+	public pedido alterarPedido(pedido alterar) {
 
 		return dao.save(alterar);
 	}
 
 	@Override
-	public List<Pedido> listarPedido() {
+	public List<pedido> listarPedido() {
 		// TODO Auto-generated method stub
 		return dao.findAll();
 	}
@@ -36,13 +36,13 @@ public class pedidoServiceImpl implements IServicePedido {
 	
 
 	@Override
-	public Pedido buscarPorId(int id) {
+	public pedido buscarPorId(int id) {
 
 		return dao.findById(id).orElse(null);
 	}
 
 	@Override
-	public List<Pedido> BuscarPorData(Date date) {
+	public List<pedido> BuscarPorData(Date date) {
 
 		return dao.findByData(date);
 	}

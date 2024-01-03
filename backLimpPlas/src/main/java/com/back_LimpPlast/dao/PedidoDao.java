@@ -5,9 +5,9 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.back_LimpPlast.model.Pedido;
+import com.back_LimpPlast.model.pedido;
 
-public interface PedidoDao extends JpaRepository<Pedido, Integer> {
+public interface PedidoDao extends JpaRepository<pedido, Integer> {
 
-	List<Pedido> findByData(Date data);
+	List<pedido> findByData(Date data);
 }

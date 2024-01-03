@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.back_LimpPlast.dao.EnderecoDao;
-import com.back_LimpPlast.model.Endereco;
+import com.back_LimpPlast.model.endereco;
 
 @Component
 public class ServiceEnderecoImpl implements IServiceEndereco {
@@ -14,26 +14,26 @@ public class ServiceEnderecoImpl implements IServiceEndereco {
 	@Autowired
 	 private EnderecoDao dao;
 
-	public Endereco cadastrarNovo(Endereco endereco) {
+	public endereco cadastrarNovo(endereco endereco) {
 		
 		return dao.save(endereco);
 	}
 
 	@Override
-	public Endereco alterarEndereco(Endereco alterar) {
+	public endereco alterarEndereco(endereco alterar) {
 		
 		return dao.save(alterar);
 	}
 
 	@Override
-	public List<Endereco> listarEndereco() {
+	public List<endereco> listarEndereco() {
 		
 		return dao.findAll();
 	}
 
 	@Override
-	public Endereco buscarPorNumero(int numero) {
-		// TODO Auto-generated method stub
+	public endereco buscarPorNumero(int numero) {
+		
 		return dao.findByNumero(numero);
 	}
 

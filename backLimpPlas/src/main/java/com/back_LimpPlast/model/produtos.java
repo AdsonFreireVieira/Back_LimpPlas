@@ -8,8 +8,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="tbl_produtos")
-public class Produtos {
+@Table(name="tbl_Produtos")
+public class produtos {
 	
  @Id
  @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -28,7 +28,7 @@ public class Produtos {
  @Column(name="cor", length = 15,nullable =  false)
  private String cor;
  
- @Column(nullable = false)
+ @Column(name="litros",nullable = false)
  private int litros;
  
  @Column(name="medida",nullable = false)

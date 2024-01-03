@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.back_LimpPlast.model.Produtos;
+import com.back_LimpPlast.model.produtos;
 import com.back_LimpPlast.service.produto.IProdutoService;
 
 @Controller
@@ -24,9 +24,9 @@ public class produtosController {
 	private IProdutoService service;
 
 	@PostMapping
-	public ResponseEntity<Produtos> cadastrarProduto(@RequestBody Produtos produto) {
+	public ResponseEntity<produtos> cadastrarProduto(@RequestBody produtos produto) {
 
-		Produtos prod = service.cadastrarNovo(produto);
+		produtos prod = service.cadastrarNovo(produto);
 
 		if (prod != null) {
 
@@ -37,10 +37,10 @@ public class produtosController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Produtos> alterarProduto(@RequestBody Produtos produto, @PathVariable int id) {
+	public ResponseEntity<produtos> alterarProduto(@RequestBody produtos produto, @PathVariable int id) {
 
 		produto.setId(id);
-		Produtos prod = service.alterarProoduto(produto);
+		produtos prod = service.alterarProoduto(produto);
 
 		if (prod != null) {
 
@@ -50,7 +50,7 @@ public class produtosController {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<Produtos>> listarTodos() {
+	public ResponseEntity<List<produtos>> listarTodos() {
 
 		return ResponseEntity.ok(service.listarProdutos());
 	}
@@ -65,9 +65,9 @@ public class produtosController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Produtos> buscarPorId(@PathVariable int id) {
+	public ResponseEntity<produtos> buscarPorId(@PathVariable int id) {
 
-		Produtos prod = service.BuscarPorId(id);
+		produtos prod = service.BuscarPorId(id);
 
 		if (prod != null) {
 
@@ -78,12 +78,12 @@ public class produtosController {
 	}
 
 	@GetMapping("/{txt}")
-	public ResponseEntity<List<Produtos>> buscarPorClassificacao(@RequestBody Produtos produto,
+	public ResponseEntity<List<produtos>> buscarPorClassificacao(@RequestBody produtos produto,
 			@PathVariable String txt) {
 
 		produto.setClassificacao(txt);
 
-		List<Produtos> produt = service.BuscarPorClassificacao(produto);
+		List<produtos> produt = service.BuscarPorClassificacao(produto);
 
 		if (produt != null) {
 

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.service.annotation.DeleteExchange;
 
-import com.back_LimpPlast.model.Clientes;
+import com.back_LimpPlast.model.clientes;
 import com.back_LimpPlast.service.cliente.IClienteService;
 
 import jakarta.annotation.security.PermitAll;
@@ -27,9 +27,9 @@ public class ClienteController {
 	private IClienteService service;
 
 	@PostMapping
-	public ResponseEntity<Clientes> cadastrarNovo(@RequestBody Clientes cliente) {
+	public ResponseEntity<clientes> cadastrarNovo(@RequestBody clientes cliente) {
 
-		Clientes clientes = service.cadastrarNovo(cliente);
+		clientes clientes = service.cadastrarNovo(cliente);
 
 		if (clientes != null) {
 			return ResponseEntity.ok(service.cadastrarNovo(cliente));
@@ -39,11 +39,11 @@ public class ClienteController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Clientes> alterar(@RequestBody  Clientes clientes , @PathVariable  int id) {
+	public ResponseEntity<clientes> alterar(@RequestBody  clientes clientes , @PathVariable  int id) {
         
 		 clientes.setId_Cliente(id);
 	 
-		Clientes cliente = service.alterarDados(clientes);
+		clientes cliente = service.alterarDados(clientes);
 
 		if (cliente != null) {
 
@@ -55,7 +55,7 @@ public class ClienteController {
 
 	@GetMapping
 
-	public ResponseEntity<List<Clientes>> listarTodos() {
+	public ResponseEntity<List<clientes>> listarTodos() {
 
 		return ResponseEntity.ok(service.ListarTodos());
 
@@ -63,9 +63,9 @@ public class ClienteController {
 
 	@GetMapping("/{id}")
 
-	public ResponseEntity<Clientes> buscarPorid(@PathVariable int id) {
+	public ResponseEntity<clientes> buscarPorid(@PathVariable int id) {
 
-		Clientes cliente = service.buscarPorId(id);
+		clientes cliente = service.buscarPorId(id);
 
 		if (cliente != null) {
 
@@ -84,11 +84,12 @@ public class ClienteController {
 
 	}
 
-	@GetMapping("/{txt}")
+	@GetMapping("/nome/{txt}")
 
-	public ResponseEntity<Clientes> buscarNome(@PathVariable String txt) {
 
-		Clientes cliente = service.buscarporNome(txt);
+	public ResponseEntity<clientes> buscarNome(@PathVariable String txt) {
+
+		clientes cliente = service.buscarporNome(txt);
 
 		if (cliente != null) {
 			return ResponseEntity.ok(cliente);

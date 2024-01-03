@@ -3,21 +3,21 @@ package com.back_LimpPlast.service.produto;
 import java.util.List;
 import java.util.Optional;
 
-import com.back_LimpPlast.model.Produtos;
+import com.back_LimpPlast.model.produtos;
 
 public interface IProdutoService {
 	
-	public Produtos cadastrarNovo(Produtos novo);
+	public produtos cadastrarNovo(produtos novo);
 	
-	public Produtos alterarProoduto(Produtos alterar);
+	public produtos alterarProoduto(produtos alterar);
 	
     public  void deletarProduto(Integer id);
     
-    public List<Produtos> listarProdutos();
+    public List<produtos> listarProdutos();
     
-     public Produtos BuscarPorId(Integer id);
+     public produtos BuscarPorId(Integer id);
      
-     public List<Produtos> BuscarPorClassificacao(Produtos prod);
+     public List<produtos> BuscarPorClassificacao(produtos prod);
      
      
 

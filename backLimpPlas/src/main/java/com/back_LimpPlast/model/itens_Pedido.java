@@ -12,8 +12,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="tbl_itenspedido")
-public class Itens_Pedido {
+@Table(name="tbl_ItensPedido")
+public class itens_Pedido {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -29,12 +29,12 @@ public class Itens_Pedido {
 
 	@ManyToOne
 	@JoinColumn(name="id_produto")
-	private  Produtos produto;
+	private  produtos produto;
 	
 	@ManyToOne
 	@JoinColumn(name="num_Pedido")
 	@JsonIgnoreProperties("itens")
-	private Pedido pedido;
+	private pedido pedido;
 	
 	
 	public Integer getId() {
