@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.back_LimpPlast.dto.ClientesDTO;
 import com.back_LimpPlast.model.clientes;
 import com.back_LimpPlast.service.cliente.IClienteService;
 
@@ -37,44 +36,34 @@ public class ClienteController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<ClientesDTO> alterar(@RequestBody  clientes clientes , @PathVariable  int id) {
+	public ResponseEntity<clientes> alterar(@RequestBody  clientes clientes , @PathVariable  int id) {
         
 		 clientes.setId_Cliente(id);
-	 
-		clientes cliente = service.alterarDados(clientes);
-		
-	      ClientesDTO cDTO  = new ClientesDTO();
 	      
-	      cDTO.alterarClienteDTO(cliente);
+	     
 	
-		return ResponseEntity.ok().body(cDTO);
+		return ResponseEntity.ok().body( service.alterarDados(clientes));
 	}
 	@GetMapping
 
-	public ResponseEntity<ClientesDTO> listarTodos() {
+	public ResponseEntity<List<clientes>> listarTodos() {
 
-		  ClientesDTO cDTO = null;
-		  
-		  List<clientes> client;
-		  
-		  client = service.ListarTodos();
-		  cDTO.clienteListDTO(client);
-		  
-		return ResponseEntity.ok(cDTO);
+		 
+				  
+		return ResponseEntity.ok(service.ListarTodos());
 	}
 
 	@GetMapping("/{id}")
 
-	public ResponseEntity<ClientesDTO> buscarPorid(@PathVariable int id) {
+	public ResponseEntity<clientes> buscarPorid(@PathVariable int id) {
          
-		ClientesDTO cd = null;
+		
 		clientes cliente = service.buscarPorId(id);
      
 		
+
 		
-		cd.alterarClienteDTO(cliente);
-		
-		return ResponseEntity.ok(cd);
+		return ResponseEntity.ok(cliente);
 	}
 
 	@DeleteMapping("/{id}")
@@ -88,16 +77,11 @@ public class ClienteController {
 
 	@GetMapping("/nome/{txt}")
 
-
-	public ResponseEntity<ClientesDTO> buscarNome(@PathVariable String txt) {
+	public ResponseEntity<clientes> buscarNome(@PathVariable String txt) {
 
 		clientes cliente = service.buscarporNome(txt);
-
-		 ClientesDTO cd = new ClientesDTO();
 		 
-		 cd.alterarClienteDTO(cliente);
-		 
-		 return ResponseEntity.ok(cd);
+		 return ResponseEntity.ok(cliente);
 	}
 
 }
