@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.back_LimpPlast.controller.entradaDTO.eClienteDTO;
 import com.back_LimpPlast.model.clientes;
 import com.back_LimpPlast.service.cliente.IClienteService;
 
@@ -24,45 +25,49 @@ public class ClienteController {
 	private IClienteService service;
 
 	@PostMapping
-	public ResponseEntity<clientes> cadastrarNovo(@RequestBody clientes cliente) {
+	public ResponseEntity<eClienteDTO> cadastrarNovo(@RequestBody eClienteDTO eDTO) {
 
-		clientes clientes = service.cadastrarNovo(cliente);
+		eClienteDTO dto = new eClienteDTO();
+		clientes cliente = dto.convertCliente(dto);
 
-		if (clientes != null) {
-			return ResponseEntity.ok(service.cadastrarNovo(cliente));
+		clientes cl =service.cadastrarNovo(cliente);
+ 
+		 dto = dto.convertDTO(cliente);
+		if (cliente != null) {
+			return ResponseEntity.ok(dto);
 
 		}
 		return ResponseEntity.badRequest().build();
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<clientes> alterar(@RequestBody  clientes clientes , @PathVariable  int id) {
+	public ResponseEntity<eClienteDTO> alterar(@RequestBody eClienteDTO eDTO, @PathVariable int id) {
         
-		 clientes.setId_Cliente(id);
-	      
-	     
-	
-		return ResponseEntity.ok().body( service.alterarDados(clientes));
+		clientes cl = new  clientes();
+		eClienteDTO dto = new eClienteDTO();
+		
+		cl = eDTO.convertCliente(eDTO);
+		
+		cl = service.alterarDados(cl);
+		
+		dto = eDTO.convertDTO(cl);
+
+		return ResponseEntity.ok().body(dto);
 	}
+
 	@GetMapping
 
 	public ResponseEntity<List<clientes>> listarTodos() {
 
-		 
-				  
 		return ResponseEntity.ok(service.ListarTodos());
 	}
 
 	@GetMapping("/{id}")
 
 	public ResponseEntity<clientes> buscarPorid(@PathVariable int id) {
-         
-		
-		clientes cliente = service.buscarPorId(id);
-     
-		
 
-		
+		clientes cliente = service.buscarPorId(id);
+
 		return ResponseEntity.ok(cliente);
 	}
 
@@ -80,8 +85,8 @@ public class ClienteController {
 	public ResponseEntity<clientes> buscarNome(@PathVariable String txt) {
 
 		clientes cliente = service.buscarporNome(txt);
-		 
-		 return ResponseEntity.ok(cliente);
+
+		return ResponseEntity.ok(cliente);
 	}
 
 }
