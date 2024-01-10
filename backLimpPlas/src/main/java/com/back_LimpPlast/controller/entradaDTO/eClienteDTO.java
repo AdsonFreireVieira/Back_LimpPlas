@@ -50,18 +50,7 @@ public class eClienteDTO {
 		this.documento = documento;
 	}
 
-	public eClienteDTO convertDTO(clientes cliente) {
-
-		eClienteDTO eDTO = new eClienteDTO();
-
-		eDTO.setId(cliente.getId_Cliente());
-		eDTO.setNome(cliente.getNome());
-		eDTO.setDocumento(cliente.getDocumento());
-		eDTO.setEmail(cliente.getEmail());
-		eDTO.setTelefone(cliente.getTelefone());
-
-		return eDTO;
-	}
+	
 	
 	
 	

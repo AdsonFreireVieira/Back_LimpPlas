@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.back_LimpPlast.controller.dto.saidaDTO.sClienteDTO;
 import com.back_LimpPlast.controller.entradaDTO.eClienteDTO;
 import com.back_LimpPlast.model.clientes;
 import com.back_LimpPlast.service.cliente.IClienteService;
@@ -25,34 +26,39 @@ public class ClienteController {
 	private IClienteService service;
 
 	@PostMapping
-	public ResponseEntity<eClienteDTO> cadastrarNovo(@RequestBody eClienteDTO eDTO) {
+	public ResponseEntity<sClienteDTO> cadastrarNovo(@RequestBody eClienteDTO eDTO) {
 
 		eClienteDTO dto = new eClienteDTO();
-		clientes cliente = dto.convertCliente(dto);
-
+		sClienteDTO sdto = new sClienteDTO();
+		
+		
+		
+		clientes cliente = dto.convertCliente(eDTO);
 		clientes cl =service.cadastrarNovo(cliente);
  
-		 dto = dto.convertDTO(cliente);
-		if (cliente != null) {
-			return ResponseEntity.ok(dto);
+		 sdto = sdto.sConvertDTO(cl);
+		
+		 if (cliente != null) {
+			return ResponseEntity.ok(sdto);
 
 		}
 		return ResponseEntity.badRequest().build();
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<eClienteDTO> alterar(@RequestBody eClienteDTO eDTO, @PathVariable int id) {
+	public ResponseEntity<sClienteDTO> alterar(@RequestBody eClienteDTO eDTO, @PathVariable int id) {
         
 		clientes cl = new  clientes();
 		eClienteDTO dto = new eClienteDTO();
+		sClienteDTO sdto = new sClienteDTO();
 		
 		cl = eDTO.convertCliente(eDTO);
 		
 		cl = service.alterarDados(cl);
 		
-		dto = eDTO.convertDTO(cl);
+		sdto = sdto.sConvertDTO(cl);
 
-		return ResponseEntity.ok().body(dto);
+		return ResponseEntity.ok().body(sdto);
 	}
 
 	@GetMapping
