@@ -1,5 +1,6 @@
 package com.back_LimpPlast.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,9 +64,15 @@ public class ClienteController {
 
 	@GetMapping
 
-	public ResponseEntity<List<clientes>> listarTodos() {
+	public ResponseEntity<List<sClienteDTO>> listarTodos() {
+		
+		sClienteDTO sDTO = new sClienteDTO();
+		List<clientes> cli = new ArrayList<>();
+		
+		cli = service.ListarTodos();
+		
 
-		return ResponseEntity.ok(service.ListarTodos());
+		return ResponseEntity.ok(sDTO.sConvertListDTO(cli));
 	}
 
 	@GetMapping("/{id}")

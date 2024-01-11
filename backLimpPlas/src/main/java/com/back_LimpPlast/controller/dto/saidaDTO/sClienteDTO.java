@@ -1,5 +1,11 @@
 package com.back_LimpPlast.controller.dto.saidaDTO;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.BeanUtils;
+
+import com.back_LimpPlast.controller.entradaDTO.eClienteDTO;
 import com.back_LimpPlast.model.clientes;
 
 public class sClienteDTO {
@@ -42,5 +48,19 @@ public class sClienteDTO {
 
 		return sdto;
 	}
+	
+	public List<sClienteDTO> sConvertListDTO(List<clientes> cl){
+		
+		List<sClienteDTO> sDTO = new ArrayList<>();
+		
+	BeanUtils.copyProperties(sDTO,cl);
+	
+	return sDTO;
+	}
 
 }
+
+
+
+
+
