@@ -77,11 +77,15 @@ public class ClienteController {
 
 	@GetMapping("/{id}")
 
-	public ResponseEntity<clientes> buscarPorid(@PathVariable int id) {
+	public ResponseEntity<sClienteDTO> buscarPorid(@PathVariable int id) {
+		
+		sClienteDTO sDTO = new sClienteDTO();
 
 		clientes cliente = service.buscarPorId(id);
-
-		return ResponseEntity.ok(cliente);
+ 
+		  
+		 
+		return ResponseEntity.ok(sDTO.sConvertDTO(cliente));
 	}
 
 	@DeleteMapping("/{id}")
@@ -95,11 +99,15 @@ public class ClienteController {
 
 	@GetMapping("/nome/{txt}")
 
-	public ResponseEntity<clientes> buscarNome(@PathVariable String txt) {
+	public ResponseEntity<sClienteDTO> buscarNome(@PathVariable String txt) {
 
+		sClienteDTO sDTO = new sClienteDTO();
+		 
 		clientes cliente = service.buscarporNome(txt);
+		
+		
 
-		return ResponseEntity.ok(cliente);
+		return ResponseEntity.ok(sDTO.sConvertDTO(cliente));
 	}
 
 }
