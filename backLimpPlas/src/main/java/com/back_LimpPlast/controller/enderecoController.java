@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.back_LimpPlast.controller.dto.saidaDTO.sEnderecoDTO;
+import com.back_LimpPlast.controller.entradaDTO.eEnderecoDTO;
 import com.back_LimpPlast.model.endereco;
 import com.back_LimpPlast.service.endereco.IServiceEndereco;
 
@@ -24,26 +26,45 @@ public class enderecoController {
 	private IServiceEndereco service;
 
 	@PostMapping
-	public ResponseEntity<endereco> cadastrarNovo(@RequestBody endereco endereco) {
-
-		endereco ender = service.cadastrarNovo(endereco);
-
-		if (ender != null) {
-			ResponseEntity.ok().body(ender);
+	public ResponseEntity<sEnderecoDTO> cadastrarNovo(@RequestBody  eEnderecoDTO eEDTO) {
+         
+		eEnderecoDTO edto = new eEnderecoDTO();
+		endereco ender = new endereco();
+		sEnderecoDTO sDTO = new sEnderecoDTO();
+		
+		ender = edto.converEndereco(eEDTO);
+		
+		ender = service.cadastrarNovo(ender);
+		
+		sDTO = sDTO.enderecoTOsEnderecoDTO(ender);
+		
+		if(sDTO != null) {
+			ResponseEntity.ok().body(sDTO);
 		}
 
+		
+		
 		return ResponseEntity.badRequest().build();
 	}
 
 	@PutMapping("/{id}")
 
-	public ResponseEntity<endereco> alterarEndereco(@RequestBody endereco endereco, @PathVariable int id) {
-
-		endereco.setId(id);
-		endereco end = service.alterarEndereco(endereco);
+	public ResponseEntity<sEnderecoDTO> alterarEndereco(@RequestBody eEnderecoDTO entDTO, @PathVariable int id) {
+	
+		eEnderecoDTO edto = new eEnderecoDTO();
+		endereco ender = new endereco();
+		sEnderecoDTO sDTO = new sEnderecoDTO();
 		
-		if(end != null) {
-			return ResponseEntity.ok(end);
+		entDTO.setId(id);
+		
+		ender = edto.converEndereco(entDTO);
+		
+		  sDTO = sDTO.enderecoTOsEnderecoDTO(ender);
+		
+		
+		
+		if(sDTO != null) {
+			return ResponseEntity.ok(sDTO);
 		}
 		return ResponseEntity.badRequest().build();
 
@@ -56,9 +77,12 @@ public class enderecoController {
 	}
 	
 	@GetMapping("/{num}")
-	public ResponseEntity<endereco> buscarPorNumero(@PathVariable int num ){
+	public ResponseEntity<sEnderecoDTO> buscarPorNumero(@PathVariable int num ){
 		
-		return ResponseEntity.ok(service.buscarPorNumero(num));
+		endereco ender = service.buscarPorNumero(num);
+		sEnderecoDTO sDTO = new sEnderecoDTO();
+		
+		return ResponseEntity.ok(sDTO.enderecoTOsEnderecoDTO(ender));
 	}
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deletarEndereco(@PathVariable int num){
