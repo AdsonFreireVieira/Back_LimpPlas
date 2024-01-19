@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.back_LimpPlast.controller.entradaDTO.eProdutoDTO;
 import com.back_LimpPlast.model.produtos;
 import com.back_LimpPlast.service.produto.IProdutoService;
 
@@ -24,9 +25,17 @@ public class produtosController {
 	private IProdutoService service;
 
 	@PostMapping
-	public ResponseEntity<produtos> cadastrarProduto(@RequestBody produtos produto) {
-
-		produtos prod = service.cadastrarNovo(produto);
+	public ResponseEntity<eProdutoDTO> cadastrarProduto(@RequestBody eProdutoDTO eProdutoDTO) {
+     
+		produtos prod = new produtos();
+		
+		eProdutoDTO eprodDTO = new eProdutoDTO();
+		
+		prod = eprodDTO.convertToProduto(eProdutoDTO);
+		
+		
+		
+		           prod = service.cadastrarNovo(produto);
 
 		if (prod != null) {
 

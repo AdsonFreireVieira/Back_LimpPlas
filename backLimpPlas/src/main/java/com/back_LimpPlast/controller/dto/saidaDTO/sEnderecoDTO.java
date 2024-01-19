@@ -1,5 +1,11 @@
 package com.back_LimpPlast.controller.dto.saidaDTO;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.BeanUtils;
+
+import com.back_LimpPlast.controller.entradaDTO.eEnderecoDTO;
 import com.back_LimpPlast.model.endereco;
 
 public class sEnderecoDTO {
@@ -62,6 +68,16 @@ public class sEnderecoDTO {
 	    sDTO.setEstado(endere.getEstado());
 	
 	    return sDTO;
+	}
+	
+	public List<sEnderecoDTO> listConvertDTO( List<eEnderecoDTO> ender){
+		
+		List<sEnderecoDTO> sDTO = new ArrayList<>();
+		
+		BeanUtils.copyProperties(sDTO, ender);
+		
+		return sDTO;
+		
 	}
 	
 	
