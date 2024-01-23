@@ -1,5 +1,6 @@
 package com.back_LimpPlast.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,54 +14,67 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.back_LimpPlast.controller.dto.saidaDTO.sProdutoDTO;
 import com.back_LimpPlast.controller.entradaDTO.eProdutoDTO;
 import com.back_LimpPlast.model.produtos;
 import com.back_LimpPlast.service.produto.IProdutoService;
 
 @Controller
-@RequestMapping("produto")
+@RequestMapping("/produto")
 public class produtosController {
 
 	@Autowired
 	private IProdutoService service;
 
 	@PostMapping
-	public ResponseEntity<eProdutoDTO> cadastrarProduto(@RequestBody eProdutoDTO eProdutoDTO) {
-     
+	public ResponseEntity<sProdutoDTO> cadastrarProduto(@RequestBody eProdutoDTO eProdutoDTO) {
+
 		produtos prod = new produtos();
-		
+
 		eProdutoDTO eprodDTO = new eProdutoDTO();
-		
+		sProdutoDTO sPDTO = new sProdutoDTO();
+
 		prod = eprodDTO.convertToProduto(eProdutoDTO);
-		
-		
-		
-		           prod = service.cadastrarNovo(produto);
 
-		if (prod != null) {
+		prod = service.cadastrarNovo(prod);
 
-			return ResponseEntity.ok().body(prod);
+		sPDTO = sPDTO.sConvertProdutoDTO(prod);
+
+		if (sPDTO != null) {
+
+			return ResponseEntity.ok().body(sPDTO);
 		}
 
 		return ResponseEntity.badRequest().build();
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<produtos> alterarProduto(@RequestBody produtos produto, @PathVariable int id) {
+	public ResponseEntity<sProdutoDTO> alterarProduto(@RequestBody eProdutoDTO eProduto, @PathVariable int id) {
 
-		produto.setId(id);
-		produtos prod = service.alterarProoduto(produto);
+		produtos produto = new produtos();
+		sProdutoDTO spDTO = new sProdutoDTO();
+		eProduto.setId(id);
 
-		if (prod != null) {
+		eProdutoDTO epDTO = new eProdutoDTO();
 
-			return ResponseEntity.ok(prod);
+		produto = epDTO.convertToProduto(eProduto);
+
+		produto = service.alterarProoduto(produto);
+
+		spDTO = spDTO.sConvertProdutoDTO(produto);
+
+		if (spDTO != null) {
+
+			return ResponseEntity.ok(spDTO);
 		}
 		return ResponseEntity.badRequest().build();
 	}
 
 	@GetMapping
 	public ResponseEntity<List<produtos>> listarTodos() {
-
+          
+		
+		
 		return ResponseEntity.ok(service.listarProdutos());
 	}
 
@@ -74,25 +88,36 @@ public class produtosController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<produtos> buscarPorId(@PathVariable int id) {
+	public ResponseEntity<sProdutoDTO> buscarPorId(@RequestBody eProdutoDTO epDTO ,@PathVariable int id) {
 
+		 sProdutoDTO spDTO = new sProdutoDTO();
+		 
+		 
+		 
+		 epDTO.setId(id);
+		
 		produtos prod = service.BuscarPorId(id);
 
 		if (prod != null) {
 
-			return ResponseEntity.ok(prod);
+			return ResponseEntity.ok(spDTO.sConvertProdutoDTO(prod));
 		}
 
 		return ResponseEntity.badRequest().build();
 	}
 
 	@GetMapping("/{txt}")
-	public ResponseEntity<List<produtos>> buscarPorClassificacao(@RequestBody produtos produto,
+	public ResponseEntity<List<produtos>> buscarPorClassificacao(@RequestBody eProdutoDTO epDTO,
 			@PathVariable String txt) {
+     
+      eProdutoDTO epdt = new eProdutoDTO();
+		List <produtos> produto = new  ArrayList<>();
+		sProdutoDTO spDTO = new sProdutoDTO();
+		
+		      produto = epdt.convertToProduto(epdt);
+		               spDTO =spDTO. service.BuscarPorClassificacao(produto);
 
-		produto.setClassificacao(txt);
-
-		List<produtos> produt = service.BuscarPorClassificacao(produto);
+		
 
 		if (produt != null) {
 
