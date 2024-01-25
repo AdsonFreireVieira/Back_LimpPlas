@@ -27,45 +27,38 @@ public class produtosController {
 	private IProdutoService service;
 
 	@PostMapping
-	public ResponseEntity<sProdutoDTO> cadastrarProduto(@RequestBody eProdutoDTO eProdutoDTO) {
+	public ResponseEntity<produtos> cadastrarProduto(@RequestBody produtos eProduto) {
 
-		produtos prod = new produtos();
+		
 
-		eProdutoDTO eprodDTO = new eProdutoDTO();
-		sProdutoDTO sPDTO = new sProdutoDTO();
 
-		prod = eprodDTO.convertToProduto(eProdutoDTO);
+		produtos prod  = service.cadastrarNovo(eProduto);
 
-		prod = service.cadastrarNovo(prod);
 
-		sPDTO = sPDTO.sConvertProdutoDTO(prod);
 
-		if (sPDTO != null) {
 
-			return ResponseEntity.ok().body(sPDTO);
+		if (prod != null) {
+
+			return ResponseEntity.ok().body(prod);
 		}
 
 		return ResponseEntity.badRequest().build();
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<sProdutoDTO> alterarProduto(@RequestBody eProdutoDTO eProduto, @PathVariable int id) {
+	public ResponseEntity<produtos> alterarProduto(@RequestBody produtos eProduto, @PathVariable int id) {
 
-		produtos produto = new produtos();
-		sProdutoDTO spDTO = new sProdutoDTO();
+		
 		eProduto.setId(id);
 
-		eProdutoDTO epDTO = new eProdutoDTO();
+		
 
-		produto = epDTO.convertToProduto(eProduto);
+		produtos pds = service.alterarProoduto(eProduto);
 
-		produto = service.alterarProoduto(produto);
+		
+		if (pds != null) {
 
-		spDTO = spDTO.sConvertProdutoDTO(produto);
-
-		if (spDTO != null) {
-
-			return ResponseEntity.ok(spDTO);
+			return ResponseEntity.ok(pds);
 		}
 		return ResponseEntity.badRequest().build();
 	}
@@ -88,9 +81,9 @@ public class produtosController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<sProdutoDTO> buscarPorId(@RequestBody eProdutoDTO epDTO ,@PathVariable int id) {
+	public ResponseEntity<produtos> buscarPorId(@RequestBody produtos epDTO ,@PathVariable int id) {
 
-		 sProdutoDTO spDTO = new sProdutoDTO();
+		 
 		 
 		 
 		 
@@ -100,29 +93,16 @@ public class produtosController {
 
 		if (prod != null) {
 
-			return ResponseEntity.ok(spDTO.sConvertProdutoDTO(prod));
+			return ResponseEntity.ok(prod);
 		}
 
 		return ResponseEntity.badRequest().build();
 	}
 
 	@GetMapping("/{txt}")
-	public ResponseEntity<List<produtos>> buscarPorClassificacao(@RequestBody eProdutoDTO epDTO,
-			@PathVariable String txt) {
+	public ResponseEntity<List<produtos>> buscarPorClassificacao() {
      
-      eProdutoDTO epdt = new eProdutoDTO();
-		List <produtos> produto = new  ArrayList<>();
-		sProdutoDTO spDTO = new sProdutoDTO();
-		
-		      produto = epdt.convertToProduto(epdt);
-		               spDTO =spDTO. service.BuscarPorClassificacao(produto);
-
-		
-
-		if (produt != null) {
-
-			return ResponseEntity.ok(produt);
-		}
+      
 		return ResponseEntity.badRequest().build();
 
 	}

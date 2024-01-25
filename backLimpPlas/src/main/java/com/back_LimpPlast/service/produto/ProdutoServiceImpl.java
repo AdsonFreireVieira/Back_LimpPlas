@@ -44,10 +44,5 @@ public class ProdutoServiceImpl implements IProdutoService {
 		return dao.findById(id).orElse(null);
 	}
 
-	@Override
-	public List<produtos> BuscarPorClassificacao( produtos prod) {
-		
-		return dao.findAllByclassificacao(prod);
-	}
-
+	
 }

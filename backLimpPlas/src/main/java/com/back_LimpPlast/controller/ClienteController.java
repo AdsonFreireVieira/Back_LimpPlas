@@ -27,65 +27,43 @@ public class ClienteController {
 	private IClienteService service;
 
 	@PostMapping
-	public ResponseEntity<sClienteDTO> cadastrarNovo(@RequestBody eClienteDTO eDTO) {
+	public ResponseEntity<clientes> cadastrarNovo(@RequestBody clientes cl) {
 
-		eClienteDTO dto = new eClienteDTO();
-		sClienteDTO sdto = new sClienteDTO();
-		
-		
-		
-		clientes cliente = dto.convertCliente(eDTO);
-		clientes cl =service.cadastrarNovo(cliente);
- 
-		 sdto = sdto.sConvertDTO(cl);
-		
-		 if (cliente != null) {
-			return ResponseEntity.ok(sdto);
+		clientes clien = service.cadastrarNovo(cl);
+
+		if (clien != null) {
+			return ResponseEntity.ok(clien);
 
 		}
 		return ResponseEntity.badRequest().build();
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<sClienteDTO> alterar(@RequestBody eClienteDTO eDTO, @PathVariable int id) {
-        
-		clientes cl = new  clientes();
-		eClienteDTO dto = new eClienteDTO();
-		sClienteDTO sdto = new sClienteDTO();
-		
-		cl = eDTO.convertCliente(eDTO);
-		
-		cl = service.alterarDados(cl);
-		
-		sdto = sdto.sConvertDTO(cl);
+	public ResponseEntity<clientes> alterar(@RequestBody clientes cli, @PathVariable int id) {
 
-		return ResponseEntity.ok().body(sdto);
+		clientes cliente = service.alterarDados(cli);
+
+		return ResponseEntity.ok().body(cliente);
 	}
 
 	@GetMapping
 
-	public ResponseEntity<List<sClienteDTO>> listarTodos() {
-		
-		sClienteDTO sDTO = new sClienteDTO();
-		List<clientes> cli = new ArrayList<>();
-		
-		cli = service.ListarTodos();
-		
+	public ResponseEntity<List<clientes>> listarTodos() {
 
-		return ResponseEntity.ok(sDTO.sConvertListDTO(cli));
+		;
+
+		return ResponseEntity.ok(service.ListarTodos());
 	}
 
 	@GetMapping("/{id}")
 
-	public ResponseEntity<sClienteDTO> buscarPorid(@PathVariable int id) {
+	public ResponseEntity<clientes> buscarPorid(@PathVariable int id) {
+
 		
-		sClienteDTO sDTO = new sClienteDTO();
 
 		clientes cliente = service.buscarPorId(id);
- 
-		  
-		 
-		return ResponseEntity.ok(sDTO.sConvertDTO(cliente));
+
+		return ResponseEntity.ok(cliente);
 	}
 
 	@DeleteMapping("/{id}")
@@ -99,15 +77,12 @@ public class ClienteController {
 
 	@GetMapping("/nome/{txt}")
 
-	public ResponseEntity<sClienteDTO> buscarNome(@PathVariable String txt) {
+	public ResponseEntity<clientes> buscarNome(@PathVariable String txt) {
 
-		sClienteDTO sDTO = new sClienteDTO();
-		 
+	
 		clientes cliente = service.buscarporNome(txt);
-		
-		
 
-		return ResponseEntity.ok(sDTO.sConvertDTO(cliente));
+		return ResponseEntity.ok(cliente);
 	}
 
 }

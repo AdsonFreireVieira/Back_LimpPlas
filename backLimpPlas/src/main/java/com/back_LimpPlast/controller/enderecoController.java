@@ -26,20 +26,18 @@ public class enderecoController {
 	private IServiceEndereco service;
 
 	@PostMapping
-	public ResponseEntity<sEnderecoDTO> cadastrarNovo(@RequestBody  eEnderecoDTO eEDTO) {
+	public ResponseEntity<endereco> cadastrarNovo(@RequestBody  endereco end) {
          
-		eEnderecoDTO edto = new eEnderecoDTO();
-		endereco ender = new endereco();
-		sEnderecoDTO sDTO = new sEnderecoDTO();
 		
-		ender = edto.converEndereco(eEDTO);
 		
-		ender = service.cadastrarNovo(ender);
+	
 		
-		sDTO = sDTO.enderecoTOsEnderecoDTO(ender);
+		endereco endere= service.cadastrarNovo(end);
 		
-		if(sDTO != null) {
-			ResponseEntity.ok().body(sDTO);
+	
+		
+		if(endere != null) {
+			ResponseEntity.ok().body(endere);
 		}
 
 		
@@ -49,22 +47,17 @@ public class enderecoController {
 
 	@PutMapping("/{id}")
 
-	public ResponseEntity<sEnderecoDTO> alterarEndereco(@RequestBody eEnderecoDTO entDTO, @PathVariable int id) {
+	public ResponseEntity<endereco> alterarEndereco(@RequestBody endereco end, @PathVariable int id) {
 	
-		eEnderecoDTO edto = new eEnderecoDTO();
-		endereco ender = new endereco();
-		sEnderecoDTO sDTO = new sEnderecoDTO();
 		
-		entDTO.setId(id);
-		
-		ender = edto.converEndereco(entDTO);
-		
-		  sDTO = sDTO.enderecoTOsEnderecoDTO(ender);
+		end.setId(id);
 		
 		
+		endereco ender = service.alterarEndereco(end);
 		
-		if(sDTO != null) {
-			return ResponseEntity.ok(sDTO);
+		
+		if(ender != null) {
+			return ResponseEntity.ok(end);
 		}
 		return ResponseEntity.badRequest().build();
 
@@ -77,12 +70,12 @@ public class enderecoController {
 	}
 	
 	@GetMapping("/{num}")
-	public ResponseEntity<sEnderecoDTO> buscarPorNumero(@PathVariable int num ){
+	public ResponseEntity<endereco> buscarPorNumero(@PathVariable int num ){
 		
 		endereco ender = service.buscarPorNumero(num);
-		sEnderecoDTO sDTO = new sEnderecoDTO();
+
 		
-		return ResponseEntity.ok(sDTO.enderecoTOsEnderecoDTO(ender));
+		return ResponseEntity.ok(ender);
 	}
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deletarEndereco(@PathVariable int num){
