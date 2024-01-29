@@ -76,10 +76,7 @@ public class clienteDTO {
 	
 	public static List<clienteDTO> listClienteDTO(List<clientes> listcliente){
 		
-			
-		return listcliente.stream().map(entidade -> 
-		       new clienteDTO(entidade.getDocumento(),entidade.getEmail(),entidade.getNome(),entidade.getTelefone(),entidade.getDocumento()))
-			.collect(Collectors.toList());
+		return listcliente.stream().map(clienteDTO:: new ).collect(Collectors.toList());
 	}
 	
 }
