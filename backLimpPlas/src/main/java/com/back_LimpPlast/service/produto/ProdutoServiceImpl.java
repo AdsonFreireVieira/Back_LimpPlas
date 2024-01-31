@@ -1,13 +1,12 @@
 package com.back_LimpPlast.service.produto;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.back_LimpPlast.dao.ProdutoDao;
-import com.back_LimpPlast.model.produtos;
+import com.back_LimpPlast.model.Produtos;
 
 @Component
 public class ProdutoServiceImpl implements IProdutoService {
@@ -16,13 +15,13 @@ public class ProdutoServiceImpl implements IProdutoService {
 	private ProdutoDao dao;
 	
 	@Override
-	public produtos cadastrarNovo(produtos novo) {
+	public Produtos cadastrarNovo(Produtos novo) {
 		
 		return dao.save(novo);
 	}
 
 	@Override
-	public produtos alterarProoduto(produtos alterar) {
+	public Produtos alterarProoduto(Produtos alterar) {
 		return dao.save(alterar);
 	}
 
@@ -33,13 +32,13 @@ public class ProdutoServiceImpl implements IProdutoService {
 	}
 
 	@Override
-	public List<produtos> listarProdutos() {
+	public List<Produtos> listarProdutos() {
 		
 		return dao.findAll();
 	}
 
 	@Override
-	public produtos BuscarPorId(Integer id) {
+	public Produtos BuscarPorId(Integer id) {
 		
 		return dao.findById(id).orElse(null);
 	}

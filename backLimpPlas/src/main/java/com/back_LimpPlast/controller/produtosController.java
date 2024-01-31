@@ -1,6 +1,5 @@
 package com.back_LimpPlast.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.back_LimpPlast.controller.dto.saidaDTO.sProdutoDTO;
-import com.back_LimpPlast.controller.entradaDTO.eProdutoDTO;
-import com.back_LimpPlast.model.produtos;
+import com.back_LimpPlast.dto.produtoDTO;
+import com.back_LimpPlast.model.Produtos;
 import com.back_LimpPlast.service.produto.IProdutoService;
 
 @Controller
@@ -27,12 +25,12 @@ public class produtosController {
 	private IProdutoService service;
 
 	@PostMapping
-	public ResponseEntity<produtos> cadastrarProduto(@RequestBody produtos eProduto) {
+	public ResponseEntity<produtoDTO> cadastrarProduto(@RequestBody produtoDTO eProduto) {
 
-		
+		    produtoDTO pDTO = new produtoDTO();
+		    
 
-
-		produtos prod  = service.cadastrarNovo(eProduto);
+		  produtoDTO prod = new produtoDTO(service.cadastrarNovo(pDTO.ConvertProduto(eProduto)));
 
 
 
