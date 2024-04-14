@@ -10,7 +10,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tbl_Enderecos")
+@Table(name = "tbl_endereco")
 public class endereco {
 
 	@Id
@@ -18,22 +18,22 @@ public class endereco {
 	@JoinColumn(name = "id_endereco")
 	private Integer id;
 
-	@Column(name = "nome_rua", length = 45)
+	@Column(name = "nome_rua",nullable = false)
 	private String rua;
 
-	@Column(name = "numero_endereco")
+	@Column(name = "numero",nullable = false)
 	private int numero;
 
-	@Column(name = "estado")
+	@Column(name = "estado",nullable = false)
 	private String estado;
 
-	@Column(name = "cidade")
+	@Column(name = "cidade",nullable = false)
 	private String cidade;
 
-	@Column(name = "cep")
+	@Column(name = "cep",nullable = false)
 	private int cep;
 
-	@Column(name = "bairro")
+	@Column(name = "bairro",nullable = false)
 	private String bairro;
 
 	@ManyToOne
@@ -42,7 +42,7 @@ public class endereco {
 
 	public Integer getId() {
 		return id;
-	}
+	} 
 
 	public void setId(Integer id) {
 		this.id = id;

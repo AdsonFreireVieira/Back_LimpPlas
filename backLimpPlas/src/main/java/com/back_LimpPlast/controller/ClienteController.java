@@ -13,11 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.back_LimpPlast.controller.dto.saidaDTO.sClienteDTO;
-import com.back_LimpPlast.controller.entradaDTO.eClienteDTO;
 import com.back_LimpPlast.dto.clienteDTO;
-import com.back_LimpPlast.model.clientes;
 import com.back_LimpPlast.service.cliente.IClienteService;
 
 @Controller
@@ -40,6 +36,8 @@ public class ClienteController {
 	@PutMapping("/{id}")
 	public ResponseEntity<clienteDTO> alterar(@RequestBody clienteDTO cli, @PathVariable int id) {
         
+		
+		cli.setId(id);
 		clienteDTO clienteDTO = new clienteDTO();
 		
 		clienteDTO resp = new clienteDTO(service.alterarDados(clienteDTO.convertToClientes(cli)));

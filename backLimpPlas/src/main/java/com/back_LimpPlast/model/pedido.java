@@ -48,7 +48,7 @@ public class pedido {
 	@JsonIgnoreProperties("pedido")
 	private List<itens_Pedido> itens;
 
-	public double getValor_Total() {
+	public double getValor_Total() {	
 		return valor_Total;
 	}
 

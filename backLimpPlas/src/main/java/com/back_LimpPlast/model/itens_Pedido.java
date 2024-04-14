@@ -29,16 +29,28 @@ public class itens_Pedido {
 
 	@ManyToOne
 	@JoinColumn(name="id_produto")
-	private  produtos produto;
+	private  Produtos produto;
 	
 	@ManyToOne
 	@JoinColumn(name="num_Pedido")
 	@JsonIgnoreProperties("itens")
 	private pedido pedido;
-	
+		
 	
 	public Integer getId() {
 		return id;
+	}
+	public Produtos getProduto() {
+		return produto;
+	}
+	public void setProduto(Produtos produto) {
+		this.produto = produto;
+	}
+	public pedido getPedido() {
+		return pedido;
+	}
+	public void setPedido(pedido pedido) {
+		this.pedido = pedido;
 	}
 	public void setId(Integer id) {
 		this.id = id;

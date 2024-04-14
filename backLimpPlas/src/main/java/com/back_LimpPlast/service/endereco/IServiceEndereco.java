@@ -12,7 +12,6 @@ public interface IServiceEndereco {
 	
 	public List<endereco> listarEndereco();
 	
-	public  endereco buscarPorNumero(int numero);
 	
 	public void DeletarEndereco(Integer id);
 	

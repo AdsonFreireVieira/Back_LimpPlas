@@ -1,17 +1,16 @@
 package com.back_LimpPlast.model;
 
-import java.util.List;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="tbl_Clientes")
+@Table(name="tbl_cliente")
 public class clientes {
 	
 	@Id
@@ -19,16 +18,16 @@ public class clientes {
 	@Column(name="id_cliente")
 	private  Integer id_Cliente;
 	
-	@Column(name="nome_cliente",length = 100, nullable = false)
+	@Column(name="nome", nullable = false)
     private String nome;
 	
-	@Column(name="email",length = 100)
+	@Column(name="email",nullable = false)
     private String email;
 	
-	@Column(name="telefone")
+	@Column(name="telefone",nullable = false)
     private  int telefone;
 	
-	@Column(name="documento",length = 14)
+	@Column(name="documento",nullable = false)
     private int  documento;
 	
 	

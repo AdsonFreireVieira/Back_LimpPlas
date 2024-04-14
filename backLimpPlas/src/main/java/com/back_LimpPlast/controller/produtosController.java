@@ -39,34 +39,39 @@ public class produtosController {
 
 			return ResponseEntity.ok().body(prod);
 		}
-
 		return ResponseEntity.badRequest().build();
+
+		
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<produtos> alterarProduto(@RequestBody produtos eProduto, @PathVariable int id) {
+	public ResponseEntity<produtoDTO> alterarProduto(@RequestBody produtoDTO eProduto, @PathVariable int id) {
 
 		
 		eProduto.setId(id);
 
+		 
+		produtoDTO  prDTO = new produtoDTO();
+
+	produtoDTO	prod  = new produtoDTO(service.alterarProoduto(prDTO.ConvertProduto(eProduto)));
+
 		
+		if (prod != null) {
 
-		produtos pds = service.alterarProoduto(eProduto);
-
-		
-		if (pds != null) {
-
-			return ResponseEntity.ok(pds);
+			return ResponseEntity.ok(prod);
 		}
+		
 		return ResponseEntity.badRequest().build();
+		
 	}
 
 	@GetMapping
-	public ResponseEntity<List<produtos>> listarTodos() {
+	public ResponseEntity<List<produtoDTO>> listarTodos() {
           
+		produtoDTO pDTO = new produtoDTO();
 		
 		
-		return ResponseEntity.ok(service.listarProdutos());
+		return ResponseEntity.ok(pDTO.listDTO(service.listarProdutos()));
 	}
 
 	@DeleteMapping("/{id}")
@@ -79,29 +84,23 @@ public class produtosController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<produtos> buscarPorId(@RequestBody produtos epDTO ,@PathVariable int id) {
+	public ResponseEntity<produtoDTO> buscarPorId(@RequestBody produtoDTO epDTO ,@PathVariable int id) {
 
 		 
 		 
-		 
+		     
 		 
 		 epDTO.setId(id);
 		
-		produtos prod = service.BuscarPorId(id);
+		produtoDTO prod = new produtoDTO(service.BuscarPorId(id));
 
 		if (prod != null) {
 
 			return ResponseEntity.ok(prod);
 		}
-
+		
 		return ResponseEntity.badRequest().build();
 	}
 
-	@GetMapping("/{txt}")
-	public ResponseEntity<List<produtos>> buscarPorClassificacao() {
-     
-      
-		return ResponseEntity.badRequest().build();
-
-	}
+	
 }

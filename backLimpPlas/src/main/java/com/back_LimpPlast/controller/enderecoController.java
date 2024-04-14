@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.back_LimpPlast.controller.dto.saidaDTO.sEnderecoDTO;
-import com.back_LimpPlast.controller.entradaDTO.eEnderecoDTO;
 import com.back_LimpPlast.model.endereco;
 import com.back_LimpPlast.service.endereco.IServiceEndereco;
 
@@ -69,14 +66,6 @@ public class enderecoController {
 		return ResponseEntity.ok().body(service.listarEndereco());
 	}
 	
-	@GetMapping("/{num}")
-	public ResponseEntity<endereco> buscarPorNumero(@PathVariable int num ){
-		
-		endereco ender = service.buscarPorNumero(num);
-
-		
-		return ResponseEntity.ok(ender);
-	}
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deletarEndereco(@PathVariable int num){
 		

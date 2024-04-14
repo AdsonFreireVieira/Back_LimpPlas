@@ -31,11 +31,6 @@ public class ServiceEnderecoImpl implements IServiceEndereco {
 		return dao.findAll();
 	}
 
-	@Override
-	public endereco buscarPorNumero(int numero) {
-		
-		return dao.findByNumero(numero);
-	}
 
 	@Override
 	public void DeletarEndereco(Integer id) {

@@ -1,5 +1,8 @@
 package com.back_LimpPlast.dto;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.back_LimpPlast.model.Produtos;
 
 public class produtoDTO {
@@ -23,6 +26,8 @@ public class produtoDTO {
 	 private int quantidade;
 	
 	 private String classificacao;
+	 
+	  
 
 	public Integer getId() {
 		return id;
@@ -104,6 +109,7 @@ public class produtoDTO {
 		this.classificacao = classificacao;
 	}
 	 
+	
 	 public produtoDTO (Produtos produto) {
 
 	 this.id = produto.getId();
@@ -120,7 +126,7 @@ public class produtoDTO {
 	 }
 	 
 	 public produtoDTO() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	 public  Produtos ConvertProduto(produtoDTO pDTO){
 		 
@@ -136,6 +142,12 @@ public class produtoDTO {
 		 prod.setValor(pDTO.getValor());
 		 return prod;
 		 
+	 }
+
+	 
+	 public List<produtoDTO> listDTO(List<Produtos> produtos){
+		 
+		 return produtos.stream().map(produtoDTO::new).collect(Collectors.toList());
 	 }
 
 }
