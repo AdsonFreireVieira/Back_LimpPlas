@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="tbl_Produtos")
+@Table(name="tbl_produto")
 public class Produtos {
 	
  @Id
@@ -22,7 +22,7 @@ public class Produtos {
  @Column(name="peso",nullable = false)
  private double peso;
  
- @Column(name="unidade",nullable =  false)
+ @Column(name="unidades",nullable =  false)
  private  int unidades;
  
  @Column(name="cor", length = 15,nullable =  false)
