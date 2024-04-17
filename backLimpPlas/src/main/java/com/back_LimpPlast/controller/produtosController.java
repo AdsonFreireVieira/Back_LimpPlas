@@ -25,53 +25,39 @@ public class produtosController {
 	private IProdutoService service;
 
 	@PostMapping
-	public ResponseEntity<produtoDTO> cadastrarProduto(@RequestBody produtoDTO eProduto) {
+	public ResponseEntity<Produtos> cadastrarProduto(@RequestBody Produtos eProduto) {
 
-		    produtoDTO pDTO = new produtoDTO();
-		    
+		if (eProduto != null) {
 
-		  produtoDTO prod = new produtoDTO(service.cadastrarNovo(pDTO.ConvertProduto(eProduto)));
-
-
-
-
-		if (prod != null) {
-
-			return ResponseEntity.ok().body(prod);
+			return ResponseEntity.ok().body(service.cadastrarNovo(eProduto));
 		}
 		return ResponseEntity.badRequest().build();
 
-		
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<produtoDTO> alterarProduto(@RequestBody produtoDTO eProduto, @PathVariable int id) {
+	public ResponseEntity<Produtos> alterarProduto(@RequestBody Produtos eProduto, @PathVariable int id) {
 
-		
 		eProduto.setId(id);
 
-		 
-		produtoDTO  prDTO = new produtoDTO();
+		produtoDTO prod = new produtoDTO(service.alterarProoduto(eProduto));
 
-	produtoDTO	prod  = new produtoDTO(service.alterarProoduto(prDTO.ConvertProduto(eProduto)));
-
-		
 		if (prod != null) {
 
-			return ResponseEntity.ok(prod);
+			return ResponseEntity.ok(eProduto);
 		}
+		return ResponseEntity.notFound().build();
+
 		
-		return ResponseEntity.badRequest().build();
-		
+
 	}
 
 	@GetMapping
-	public ResponseEntity<List<produtoDTO>> listarTodos() {
-          
+	public ResponseEntity<List<Produtos>> listarTodos() {
+
 		produtoDTO pDTO = new produtoDTO();
-		
-		
-		return ResponseEntity.ok(pDTO.listDTO(service.listarProdutos()));
+
+		return ResponseEntity.ok(service.listarProdutos());
 	}
 
 	@DeleteMapping("/{id}")
@@ -84,23 +70,19 @@ public class produtosController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<produtoDTO> buscarPorId(@RequestBody produtoDTO epDTO ,@PathVariable int id) {
+	public ResponseEntity<Produtos> buscarPorId( @PathVariable int id) {
 
-		 
-		 
-		     
-		 
-		 epDTO.setId(id);
+		Produtos prod = new Produtos();
 		
-		produtoDTO prod = new produtoDTO(service.BuscarPorId(id));
+		
+		prod=service.BuscarPorId(id);
 
 		if (prod != null) {
 
 			return ResponseEntity.ok(prod);
 		}
-		
+
 		return ResponseEntity.badRequest().build();
 	}
 
-	
 }

@@ -1,6 +1,5 @@
 package com.back_LimpPlast.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.back_LimpPlast.dto.clienteDTO;
+import com.back_LimpPlast.model.clientes;
 import com.back_LimpPlast.service.cliente.IClienteService;
 
 @Controller
@@ -24,42 +23,36 @@ public class ClienteController {
 	private IClienteService service;
 
 	@PostMapping
-	public ResponseEntity<clienteDTO> cadastrarNovo(@RequestBody clienteDTO cl) {
-		
-		clienteDTO cDTO = new clienteDTO();
-		
-		clienteDTO resp  = new clienteDTO(service.cadastrarNovo(cDTO.convertToClientes(cl)));
+	public ResponseEntity<clientes> cadastrarNovo(@RequestBody clientes cl) {
+	
 
-		return ResponseEntity.ok(resp);
+		return ResponseEntity.ok(service.cadastrarNovo(cl));
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<clienteDTO> alterar(@RequestBody clienteDTO cli, @PathVariable int id) {
+	public ResponseEntity<clientes> alterar(@RequestBody clientes cli, @PathVariable int id) {
         
 		
-		cli.setId(id);
-		clienteDTO clienteDTO = new clienteDTO();
+		cli.setId_Cliente(id);
 		
-		clienteDTO resp = new clienteDTO(service.alterarDados(clienteDTO.convertToClientes(cli)));
-
-		return ResponseEntity.ok().body(resp);
+	return ResponseEntity.ok().body(service.alterarDados(cli));
 	}
 
 	@GetMapping
 
-	public ResponseEntity<List<clienteDTO>> listarTodos() {
+	public ResponseEntity<List<clientes>> listarTodos() {
         
 		
-		return ResponseEntity.ok(clienteDTO.listClienteDTO(service.ListarTodos()));
+		return ResponseEntity.ok(service.ListarTodos());
 	}
 
 	@GetMapping("/{id}")
 
-	public ResponseEntity<clienteDTO> buscarPorid(@PathVariable int id) {
+	public ResponseEntity<clientes> buscarPorid(@PathVariable int id) {
 
-		 clienteDTO dto = new clienteDTO(service.buscarPorId(id));	
 
-		return ResponseEntity.ok(dto);
+
+		return ResponseEntity.ok( service.buscarPorId(id));
 	}
 
 	@DeleteMapping("/{id}")
@@ -73,12 +66,10 @@ public class ClienteController {
 
 	@GetMapping("/nome/{txt}")
 
-	public ResponseEntity<clienteDTO> buscarNome(@PathVariable String txt) {
+	public ResponseEntity<clientes> buscarNome(@PathVariable String txt) {
 
-	
-		clienteDTO cliente = new clienteDTO(service.buscarporNome(txt));
 
-		return ResponseEntity.ok(cliente);
+		return ResponseEntity.ok(service.buscarporNome(txt));
 	}
 
 }
