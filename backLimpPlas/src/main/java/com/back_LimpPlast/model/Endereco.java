@@ -1,5 +1,6 @@
 package com.back_LimpPlast.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,42 +8,52 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tbl_endereco")
-public class endereco {
+public class Endereco {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JoinColumn(name = "id_endereco")
+
+	@Column(name = "id_endereco")
 	private Integer id;
 
-	@Column(name = "nome_rua",nullable = false)
+	@Column(name = "nome_rua", nullable = false)
 	private String rua;
 
-	@Column(name = "numero",nullable = false)
+	@Column(name = "numero", nullable = false)
 	private int numero;
 
-	@Column(name = "estado",nullable = false)
+	@Column(name = "estado", nullable = false)
 	private String estado;
 
-	@Column(name = "cidade",nullable = false)
+	@Column(name = "cidade", nullable = false)
 	private String cidade;
 
-	@Column(name = "cep",nullable = false)
+	@Column(name = "cep", nullable = false)
 	private int cep;
 
-	@Column(name = "bairro",nullable = false)
+	@Column(name = "bairro", nullable = false)
 	private String bairro;
 
 	@ManyToOne
-	@JoinColumn(name = "id_cliente")
+	@JoinColumn(name="cliente_id")
 	private clientes cliente;
+
+	public clientes getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(clientes cliente) {
+		this.cliente = cliente;
+	}
 
 	public Integer getId() {
 		return id;
-	} 
+	}
 
 	public void setId(Integer id) {
 		this.id = id;
@@ -94,14 +105,6 @@ public class endereco {
 
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
-	}
-
-	public clientes getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(clientes cliente) {
-		this.cliente = cliente;
 	}
 
 }

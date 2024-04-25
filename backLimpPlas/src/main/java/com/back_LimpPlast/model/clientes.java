@@ -1,12 +1,11 @@
 package com.back_LimpPlast.model;
 
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -31,9 +30,6 @@ public class clientes {
     private int  documento;
 	
 	
-	public Integer getId_Cliente() {
-		return id_Cliente;
-	}
 	public void setId_Cliente(Integer id_Cliente) {
 		this.id_Cliente = id_Cliente;
 	}
@@ -61,6 +57,7 @@ public class clientes {
 	public void setDocumento( int documento) {
 		this.documento = documento;
 	}
+	
 	
     
     

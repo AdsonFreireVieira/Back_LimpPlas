@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.back_LimpPlast.model.endereco;
+
+import com.back_LimpPlast.model.Endereco;
 import com.back_LimpPlast.service.endereco.IServiceEndereco;
 
 @RestController
@@ -23,73 +24,56 @@ public class enderecoController {
 	private IServiceEndereco service;
 
 	@PostMapping
-	public ResponseEntity<endereco> cadastrarNovo(@RequestBody  endereco end) {
-         
-		
-		
-	
-		
-		endereco endere= service.cadastrarNovo(end);
-		
-	
-		
-		if(endere != null) {
+	public ResponseEntity<Endereco> cadastrarNovo(@RequestBody Endereco end) {
+
+		Endereco endere = service.cadastrarNovo(end);
+
+		if (endere != null) {
 			ResponseEntity.ok().body(endere);
 		}
-
-		
-		
 		return ResponseEntity.badRequest().build();
 	}
 
 	@PutMapping("/{id}")
 
-	public ResponseEntity<endereco> alterarEndereco(@RequestBody endereco end, @PathVariable int id) {
-	
-		
+	public ResponseEntity<Endereco> alterarEndereco(@RequestBody Endereco end, @PathVariable int id) {
+
 		end.setId(id);
-		
-		
-		endereco ender = service.alterarEndereco(end);
-		
-		
-		if(ender != null) {
+
+		Endereco ender = service.alterarEndereco(end);
+
+		if (ender != null) {
 			return ResponseEntity.ok(end);
 		}
 		return ResponseEntity.badRequest().build();
 
 	}
-	
+
 	@GetMapping
-	public ResponseEntity<List<endereco>> listarEndereco(){
-		
+	public ResponseEntity<List<Endereco>> listarEndereco() {
+
 		return ResponseEntity.ok().body(service.listarEndereco());
 	}
-	
+
+	@GetMapping("/{id}")
+
+	public ResponseEntity<Endereco> buscarporId(@PathVariable int id) {
+
+		Endereco ender = service.buscarPorId(id);
+
+		if (ender != null) {
+			return ResponseEntity.ok().body(ender);
+		}
+		
+		return ResponseEntity.badRequest().build();
+	}
+
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> deletarEndereco(@PathVariable int num){
-		
+	public ResponseEntity<?> deletarEndereco(@PathVariable int num) {
+
 		service.DeletarEndereco(num);
-		
+
 		return ResponseEntity.ok("Removed");
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
