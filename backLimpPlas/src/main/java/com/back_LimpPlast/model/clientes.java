@@ -27,9 +27,13 @@ public class clientes {
     private  int telefone;
 	
 	@Column(name="documento",nullable = false)
-    private int  documento;
+    private String  documento;
 	
 	
+	
+	public Integer getId_Cliente() {
+		return id_Cliente;
+	}
 	public void setId_Cliente(Integer id_Cliente) {
 		this.id_Cliente = id_Cliente;
 	}
@@ -51,10 +55,10 @@ public class clientes {
 	public void setTelefone(int telefone) {
 		this.telefone = telefone;
 	}
-	public int getDocumento() {
+	public String getDocumento() {
 		return documento;
 	}
-	public void setDocumento( int documento) {
+	public void setDocumento( String documento) {
 		this.documento = documento;
 	}
 	

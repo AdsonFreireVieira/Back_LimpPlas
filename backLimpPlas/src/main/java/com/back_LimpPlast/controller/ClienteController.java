@@ -24,25 +24,22 @@ public class ClienteController {
 
 	@PostMapping
 	public ResponseEntity<clientes> cadastrarNovo(@RequestBody clientes cl) {
-	
 
 		return ResponseEntity.ok(service.cadastrarNovo(cl));
 	}
 
 	@PutMapping("/{id}")
 	public ResponseEntity<clientes> alterar(@RequestBody clientes cli, @PathVariable int id) {
-        
-		
+
 		cli.setId_Cliente(id);
-		
-	return ResponseEntity.ok().body(service.alterarDados(cli));
+
+		return ResponseEntity.ok().body(service.alterarDados(cli));
 	}
 
 	@GetMapping
 
 	public ResponseEntity<List<clientes>> listarTodos() {
-        
-		
+
 		return ResponseEntity.ok(service.ListarTodos());
 	}
 
@@ -50,10 +47,14 @@ public class ClienteController {
 
 	public ResponseEntity<clientes> buscarPorid(@PathVariable int id) {
 
+		clientes cliente = service.buscarPorId(id);
+		if (cliente != null) {
 
-
-		return ResponseEntity.ok( service.buscarPorId(id));
-	}
+			return ResponseEntity.ok(cliente);
+		}
+		
+		return ResponseEntity.badRequest().build();
+				}
 
 	@DeleteMapping("/{id}")
 
@@ -67,7 +68,6 @@ public class ClienteController {
 	@GetMapping("/nome/{txt}")
 
 	public ResponseEntity<clientes> buscarNome(@PathVariable String txt) {
-
 
 		return ResponseEntity.ok(service.buscarporNome(txt));
 	}

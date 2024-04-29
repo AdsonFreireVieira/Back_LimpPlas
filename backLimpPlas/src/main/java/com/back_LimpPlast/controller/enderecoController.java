@@ -26,13 +26,18 @@ public class enderecoController {
 	@PostMapping
 	public ResponseEntity<Endereco> cadastrarNovo(@RequestBody Endereco end) {
 
-		Endereco endere = service.cadastrarNovo(end);
 
-		if (endere != null) {
-			ResponseEntity.ok().body(endere);
+		Endereco ender = service.cadastrarNovo(end);
+		
+		if(ender != null) {
+			
+		return	ResponseEntity.status(201).body(ender);
 		}
 		return ResponseEntity.badRequest().build();
-	}
+		
+	
+	}	
+
 
 	@PutMapping("/{id}")
 
