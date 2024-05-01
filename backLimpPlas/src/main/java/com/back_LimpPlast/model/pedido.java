@@ -1,5 +1,6 @@
 package com.back_LimpPlast.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -25,8 +26,8 @@ public class pedido {
 	@Column(name="id_pedido")
 	private Integer id;
 	
-	@Column(name="data_Pedido",nullable = false)
-	private Date data;
+	@Column(name="data_pedido",nullable = false)
+	private LocalDate data;
 	
 	@Column(name="quantidade")
 	private int quantidade;
@@ -37,11 +38,11 @@ public class pedido {
 	@Column(name="status", nullable = false)
 	private String status;
 	
-	@Column(name="valor_Total")
+	@Column(name="valor_total")
 	private  double valor_Total;
 	
 	@ManyToOne
-	@JoinColumn(name="id_Cliente")
+	@JoinColumn(name="id_cliente")
 	 private clientes cliente;
 	
 	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
@@ -49,7 +50,7 @@ public class pedido {
 	private List<itens_Pedido> itens;
 
 	public double getValor_Total() {	
-		return valor_Total;
+			return valor_Total;
 	}
 
 	public void setValor_Total(double valor_Total) {
@@ -82,11 +83,11 @@ public class pedido {
 		this.id = id;
 	}
 
-	public Date getData() {
+	public LocalDate getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(LocalDate data) {
 		this.data = data;
 	}
 

@@ -1,4 +1,4 @@
-package com.back_LimpPlast.model;
+	package com.back_LimpPlast.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -17,11 +17,11 @@ public class itens_Pedido {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_itenspedido")
+	@Column(name="id_itens")
 	private Integer id;
 	
-	@Column(name="valor_unitario",nullable = false)
-	private double valor_unitario;
+	@Column(name="valor_total",nullable = false)
+	private double valor_total;
 	
 	@Column(name="quantidade" , nullable = false)
 	private int quantidade;
@@ -32,7 +32,7 @@ public class itens_Pedido {
 	private  Produtos produto;
 	
 	@ManyToOne
-	@JoinColumn(name="num_Pedido")
+	@JoinColumn(name="id_Pedido")
 	@JsonIgnoreProperties("itens")
 	private pedido pedido;
 		
@@ -55,12 +55,7 @@ public class itens_Pedido {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public double getValor_unitario() {
-		return valor_unitario;
-	}
-	public void setValor_unitario(double valor_unitario) {
-		this.valor_unitario = valor_unitario;
-	}
+
 	public int getQuantidade() {
 		return quantidade;
 	}
