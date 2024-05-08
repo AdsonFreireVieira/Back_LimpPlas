@@ -15,6 +15,5 @@ public interface IServicePedido {
 	
 	public pedido buscarPorId(int id);
 	
-	public List<pedido> BuscarPorData(Date date);
 
 }

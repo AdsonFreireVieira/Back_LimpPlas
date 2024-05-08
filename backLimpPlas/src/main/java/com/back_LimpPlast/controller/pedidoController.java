@@ -52,12 +52,6 @@ public class pedidoController {
 		return ResponseEntity.badRequest().build();
 	}
 
-	@GetMapping("/{data}")
-	public ResponseEntity<List<pedido>> listarTodos(@PathVariable Date data) {
-
-		return ResponseEntity.ok(service.BuscarPorData(data));
-
-	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<pedido> buscarPorId(@RequestBody pedido pedido, @PathVariable int id) {

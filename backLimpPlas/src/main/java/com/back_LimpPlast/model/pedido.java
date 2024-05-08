@@ -1,12 +1,8 @@
 package com.back_LimpPlast.model;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,10 +11,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 
 @Entity
-@Table(name="tbl_pedido")
 public class pedido {
 	
 	@Id
@@ -26,7 +20,8 @@ public class pedido {
 	@Column(name="id_pedido")
 	private Integer id;
 	
-	@Column(name="data_pedido",nullable = false)
+	
+	@Column(name="data")
 	private LocalDate data;
 	
 	@Column(name="quantidade")
@@ -35,26 +30,27 @@ public class pedido {
 	@Column(name="desconto")
 	private double desconto;
 	
-	@Column(name="status", nullable = false)
+	@Column(name="status")
 	private String status;
 	
 	@Column(name="valor_total")
 	private  double valor_Total;
 	
 	@ManyToOne
-	@JoinColumn(name="id_cliente")
-	 private clientes cliente;
+	@JoinColumn(name="cliente_id")
+	private clientes cliente;
 	
-	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("pedido")
+	@OneToMany
 	private List<itens_Pedido> itens;
-
-	public double getValor_Total() {	
-			return valor_Total;
+	
+	
+	
+	public List<itens_Pedido> getItens() {
+		return itens;
 	}
 
-	public void setValor_Total(double valor_Total) {
-		this.valor_Total = valor_Total;
+	public void setItens(List<itens_Pedido> itens) {
+		this.itens = itens;
 	}
 
 	public clientes getCliente() {
@@ -65,15 +61,13 @@ public class pedido {
 		this.cliente = cliente;
 	}
 
-	public List<itens_Pedido> getItens() {
-		return itens;
+	public double getValor_Total() {	
+			return valor_Total;
 	}
 
-	public void setItens(List<itens_Pedido> itens) {
-		this.itens = itens;
+	public void setValor_Total(double valor_Total) {
+		this.valor_Total = valor_Total;
 	}
-
-	
 	
 	public Integer getId() {
 		return id;

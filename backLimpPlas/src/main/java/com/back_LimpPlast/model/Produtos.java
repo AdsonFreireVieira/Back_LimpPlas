@@ -5,43 +5,41 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="tbl_produto")
+@Table(name="tbl_produtos")
 public class Produtos {
 	
  @Id
  @GeneratedValue(strategy=GenerationType.IDENTITY)
- @Column(name="id_produto")
+  @Column(name="id_produtos")
  private  Integer id;
  
- @Column(name="nome_produto",length = 100 ,nullable = false)
+ @Column(name="nome_produto" , nullable = false)
  private String nome;
  
- @Column(name="peso",nullable = false)
+ @Column(name="peso" , nullable = false)
  private double peso;
  
- @Column(name="unidades",nullable =  false)
+ @Column(name="unidades" , nullable = false)
  private  int unidades;
  
- @Column(name="cor", length = 15,nullable =  false)
+ @Column(name="cor" , nullable = false)
  private String cor;
  
- @Column(name="litros",nullable = false)
+ @Column(name="litros" , nullable = false)
  private int litros;
  
- @Column(name="medida",nullable = false)
+ @Column(name="medida" , nullable = false)
  private String medida;
  
- @Column(name="valor",nullable = false)
+ @Column(name="valor", nullable = false)
  private double valor;
 
  @Column(name="quantidade",nullable = false)
  private int quantidade;
- 
- @Column(name="classificacao", nullable = false)
- private String classificacao;
  
  
 public Integer getId() {
@@ -98,13 +96,6 @@ public int getQuantidade() {
 public void setQuantidade(int quantidade) {
 	this.quantidade = quantidade;
 }
-public String getClassificacao() {
-	return classificacao;
-}
-public void setClassificacao(String classificacao) {
-	this.classificacao = classificacao;
-}
- 
  
 
 }
