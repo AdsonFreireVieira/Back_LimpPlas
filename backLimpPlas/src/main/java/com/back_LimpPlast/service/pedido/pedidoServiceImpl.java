@@ -1,14 +1,13 @@
 package com.back_LimpPlast.service.pedido;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.back_LimpPlast.dao.PedidoDao;
+import com.back_LimpPlast.model.Pedidos;
 import com.back_LimpPlast.model.itens_Pedido;
-import com.back_LimpPlast.model.pedido;
 
 @Component
 public class pedidoServiceImpl implements IServicePedido {
@@ -17,7 +16,7 @@ public class pedidoServiceImpl implements IServicePedido {
 	private PedidoDao dao;
        
 	@Override
-	public pedido cadastrarNovo(pedido pedido) {
+	public Pedidos cadastrarNovo(Pedidos pedido) {
 		
 		for(itens_Pedido item: pedido.getItens() ) {
 			
@@ -28,13 +27,13 @@ public class pedidoServiceImpl implements IServicePedido {
 	}
 
 	@Override
-	public pedido alterarPedido(pedido alterar) {
+	public Pedidos alterarPedido(Pedidos alterar) {
 
 		return dao.save(alterar);
 	}
 
 	@Override
-	public List<pedido> listarPedido() {
+	public List<Pedidos> listarPedido() {
 		// TODO Auto-generated method stub
 		return dao.findAll();
 	}
@@ -42,7 +41,7 @@ public class pedidoServiceImpl implements IServicePedido {
 	
 
 	@Override
-	public pedido buscarPorId(int id) {
+	public Pedidos buscarPorId(int id) {
 
 		return dao.findById(id).orElse(null);
 	}

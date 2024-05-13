@@ -1,19 +1,19 @@
 package com.back_LimpPlast.service.pedido;
 
-import java.util.Date;
 import java.util.List;
 
-import com.back_LimpPlast.model.pedido;
+import com.back_LimpPlast.model.Pedidos;
 
 public interface IServicePedido {
 	
-	public  pedido cadastrarNovo(pedido pedido);
+	public  Pedidos cadastrarNovo(Pedidos pedido);
 	
-	public pedido alterarPedido(pedido alterar);
+	public Pedidos alterarPedido(Pedidos alterar);
 	
-	public List<pedido>  listarPedido();
+	public List<Pedidos>  listarPedido();
 	
-	public pedido buscarPorId(int id);
+	public Pedidos buscarPorId(int id);
+	
 	
 
 }

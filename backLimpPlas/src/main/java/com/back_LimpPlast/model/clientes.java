@@ -9,7 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tbl_cliente")
+@Table(name = "tbl_clientes")
 public class clientes {
 
 	@Id
@@ -26,7 +26,7 @@ public class clientes {
 	private int telefone;
 
 	@Column(name = "documento", nullable = false)
-	private String documento;
+	private  int documento;
 
 	public Integer getId_Cliente() {
 		return id_Cliente;
@@ -60,11 +60,11 @@ public class clientes {
 		this.telefone = telefone;
 	}
 
-	public String getDocumento() {
+	public int getDocumento() {
 		return documento;
 	}
 
-	public void setDocumento(String documento) {
+	public void setDocumento(int documento) {
 		this.documento = documento;
 	}
 

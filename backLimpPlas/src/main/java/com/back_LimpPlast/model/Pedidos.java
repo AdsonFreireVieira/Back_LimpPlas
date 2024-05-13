@@ -11,9 +11,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
-public class pedido {
+@Table(name="tbl_pedidos")
+public class Pedidos {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -21,7 +23,7 @@ public class pedido {
 	private Integer id;
 	
 	
-	@Column(name="data")
+	@Column(name="data_pedido")
 	private LocalDate data;
 	
 	@Column(name="quantidade")

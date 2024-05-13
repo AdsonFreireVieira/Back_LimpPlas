@@ -8,9 +8,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
-
+@Table(name="tbl_itens_pedidos")
 public class itens_Pedido {
 	
 	@Id
@@ -18,8 +19,6 @@ public class itens_Pedido {
 	@Column(name="id_itens")
 	private Integer id;
 	
-	@Column(name="valor_unitario" , nullable = false)
-	private double valor_unitario;
 	
 	@Column(name="quantidade" , nullable = false)
 	private int quantidade;
@@ -30,15 +29,10 @@ public class itens_Pedido {
 	
 	@ManyToOne
 	@JoinColumn(name="pedido_id")
-	private pedido pedidos;
+	private Pedidos pedidos;
+		
 	
 	
-	public double getValor_unitario() {
-		return valor_unitario;
-	}
-	public void setValor_unitario(double valor_unitario) {
-		this.valor_unitario = valor_unitario;
-	}
 	public Integer getId() {
 		return id;
 	}
@@ -48,10 +42,10 @@ public class itens_Pedido {
 	public void setProduto(Produtos produto) {
 		this.produto = produto;
 	}
-	public pedido getPedidos() {
+	public Pedidos getPedidos() {
 		return pedidos;
 	}
-	public void setPedidos(pedido pedidos) {
+	public void setPedidos(Pedidos pedidos) {
 		this.pedidos = pedidos;
 	}
 	public void setId(Integer id) {

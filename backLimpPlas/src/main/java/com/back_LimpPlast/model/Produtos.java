@@ -14,10 +14,10 @@ public class Produtos {
 	
  @Id
  @GeneratedValue(strategy=GenerationType.IDENTITY)
-  @Column(name="id_produtos")
+  @Column(name="id_produto")
  private  Integer id;
  
- @Column(name="nome_produto" , nullable = false)
+ @Column(name="nome" , nullable = false)
  private String nome;
  
  @Column(name="peso" , nullable = false)

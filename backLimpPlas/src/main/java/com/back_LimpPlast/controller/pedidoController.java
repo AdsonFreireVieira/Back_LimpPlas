@@ -1,9 +1,7 @@
 package com.back_LimpPlast.controller;
 
-import java.util.Date;
 import java.util.List;
 
-import org.hibernate.query.NativeQuery.ReturnableResultNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.back_LimpPlast.model.pedido;
+import com.back_LimpPlast.model.Pedidos;
 import com.back_LimpPlast.service.pedido.IServicePedido;
 
 @RestController
@@ -25,9 +23,9 @@ public class pedidoController {
 	private IServicePedido service;
 
 	@PostMapping
-	public ResponseEntity<pedido> cadastrarNovo(@RequestBody pedido pedido) {
+	public ResponseEntity<Pedidos> cadastrarNovo(@RequestBody Pedidos pedido) {
 
-		pedido ped = service.cadastrarNovo(pedido);
+		Pedidos ped = service.cadastrarNovo(pedido);
 
 		if (ped != null) {
 
@@ -36,13 +34,20 @@ public class pedidoController {
 
 		return ResponseEntity.badRequest().build();
 	}
+	
+	@GetMapping
+	public ResponseEntity<List<Pedidos>>listarTodos(){
+		
+		return ResponseEntity.ok(service.listarPedido());
+		
+	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<pedido> alterarPedido(@RequestBody pedido pedido, @PathVariable int id) {
+	public ResponseEntity<Pedidos> alterarPedido(@RequestBody Pedidos pedido, @PathVariable int id) {
 
 		pedido.setId(id);
 
-		pedido ped = service.alterarPedido(pedido);
+		Pedidos ped = service.alterarPedido(pedido);
 
 		if (ped != null) {
 
@@ -54,11 +59,11 @@ public class pedidoController {
 
 
 	@GetMapping("/{id}")
-	public ResponseEntity<pedido> buscarPorId(@RequestBody pedido pedido, @PathVariable int id) {
+	public ResponseEntity<Pedidos> buscarPorId(@RequestBody Pedidos pedido, @PathVariable int id) {
 
 		pedido.setId(id);
 
-		pedido ped = service.buscarPorId(id);
+		Pedidos ped = service.buscarPorId(id);
 		if (ped != null) {
 			return ResponseEntity.ok(ped);
 		}
