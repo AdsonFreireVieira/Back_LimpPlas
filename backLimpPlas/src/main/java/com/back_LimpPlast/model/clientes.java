@@ -1,11 +1,13 @@
 package com.back_LimpPlast.model;
 
+import java.util.List;
+
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 
 @Entity
@@ -15,33 +17,28 @@ public class clientes {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_cliente")
-	private Integer id_Cliente;
+	private Integer id;
 
 	@Column(name = "nome", nullable = false)
 	private String nome;
 
 	@Column(name = "email", nullable = false)
 	private String email;
-	@JoinColumn(name = "telefone", nullable = false)
+	
+	@Column(name = "telefone", nullable = false)
 	private int telefone;
 
 	@Column(name = "documento", nullable = false)
 	private  int documento;
 
-	public Integer getId_Cliente() {
-		return id_Cliente;
+	
+	public Integer getId() {
+		
+		return id;
 	}
 
-	public void setId_Cliente(Integer id_Cliente) {
-		this.id_Cliente = id_Cliente;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getEmail() {
@@ -50,6 +47,22 @@ public class clientes {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Integer getId_Cliente() {
+		return id;
+	}
+
+	public void setId_Cliente(Integer id_Cliente) {
+		this.id = id_Cliente;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public int getTelefone() {
