@@ -14,6 +14,8 @@ public interface IServicePedido {
 	
 	public Pedidos buscarPorId(int id);
 	
+	public void deletarPedido(int id);
+	
 	
 
 }

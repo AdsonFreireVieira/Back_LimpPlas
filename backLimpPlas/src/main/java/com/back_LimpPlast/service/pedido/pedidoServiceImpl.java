@@ -28,10 +28,13 @@ public class pedidoServiceImpl implements IServicePedido {
 
 	@Override
 	public Pedidos alterarPedido(Pedidos alterar) {
-
-		return dao.save(alterar);
+        
+     for(itens_Pedido itens :alterar.getItens()) {
+		
+		itens.setPedidos(alterar);
 	}
-
+             return dao.save(alterar);
+	}
 	@Override
 	public List<Pedidos> listarPedido() {
 		// TODO Auto-generated method stub
@@ -44,6 +47,12 @@ public class pedidoServiceImpl implements IServicePedido {
 	public Pedidos buscarPorId(int id) {
 
 		return dao.findById(id).orElse(null);
+	}
+
+	@Override
+	public void deletarPedido(int id) {
+		dao.deleteById(id);
+		
 	}
 
 	

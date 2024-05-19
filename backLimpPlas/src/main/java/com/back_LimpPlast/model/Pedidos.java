@@ -3,6 +3,9 @@ package com.back_LimpPlast.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -42,7 +45,8 @@ public class Pedidos {
 	@JoinColumn(name="cliente_id")
 	private clientes cliente;
 	
-	@OneToMany
+	@OneToMany(mappedBy ="pedidos",cascade = CascadeType.ALL , orphanRemoval = true)
+	@JsonIgnoreProperties("pedidos")
 	private List<itens_Pedido> itens;
 	
 	
@@ -54,7 +58,7 @@ public class Pedidos {
 	public void setItens(List<itens_Pedido> itens) {
 		this.itens = itens;
 	}
-
+	
 	public clientes getCliente() {
 		return cliente;
 	}

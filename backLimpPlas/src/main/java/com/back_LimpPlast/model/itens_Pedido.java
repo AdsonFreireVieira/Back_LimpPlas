@@ -1,6 +1,9 @@
 	package com.back_LimpPlast.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,8 +30,9 @@ public class itens_Pedido {
 	@JoinColumn(name="produto_id")
 	private Produtos produto;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="pedido_id")
+	@JsonIgnoreProperties("itens")
 	private Pedidos pedidos;
 		
 	

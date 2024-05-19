@@ -39,16 +39,12 @@ public class produtosController {
 
 		prod.setId(id);
 
-
 		return ResponseEntity.ok(prod);
-
-		
 
 	}
 
 	@GetMapping
 	public ResponseEntity<List<Produtos>> listarTodos() {
-
 
 		return ResponseEntity.ok(service.listarProdutos());
 	}
@@ -63,12 +59,11 @@ public class produtosController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Produtos> buscarPorId( @PathVariable int id) {
+	public ResponseEntity<Produtos> buscarPorId(@PathVariable int id) {
 
 		Produtos prod = new Produtos();
-		
-		
-		prod=service.BuscarPorId(id);
+
+		prod = service.BuscarPorId(id);
 
 		if (prod != null) {
 
