@@ -1,5 +1,7 @@
 package com.back_LimpPlast.model;
 
+import java.io.Serializable;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
@@ -13,7 +15,9 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tbl_enderecos")
-public class Endereco {
+public class Endereco implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

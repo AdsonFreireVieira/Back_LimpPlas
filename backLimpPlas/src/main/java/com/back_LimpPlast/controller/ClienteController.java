@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.back_LimpPlast.dto.clienteDTO;
 import com.back_LimpPlast.model.clientes;
 import com.back_LimpPlast.service.cliente.IClienteService;
 
@@ -23,7 +25,7 @@ public class ClienteController {
 	private IClienteService service;
 
 	@PostMapping
-	public ResponseEntity<clientes> cadastrarNovo(@RequestBody clientes cl) {
+	public ResponseEntity<clienteDTO> cadastrarNovo(@RequestBody clienteDTO cl) {
 
 		return ResponseEntity.ok(service.cadastrarNovo(cl));
 	}

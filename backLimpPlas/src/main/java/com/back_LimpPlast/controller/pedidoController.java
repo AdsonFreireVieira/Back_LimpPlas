@@ -65,6 +65,7 @@ public class pedidoController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Pedidos> buscarPorId(@RequestBody Pedidos pedido, @PathVariable int id) {
              
+	
            pedido.setId(id);
 		Pedidos ped = service.buscarPorId(id);
 		if (ped != null) {

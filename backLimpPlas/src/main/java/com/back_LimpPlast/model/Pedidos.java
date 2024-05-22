@@ -1,5 +1,6 @@
 package com.back_LimpPlast.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -18,8 +19,14 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="tbl_pedidos")
-public class Pedidos {
+public class Pedidos implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_pedido")

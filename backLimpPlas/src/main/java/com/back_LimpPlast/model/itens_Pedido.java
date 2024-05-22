@@ -1,6 +1,8 @@
 	package com.back_LimpPlast.model;
 
 
+import java.io.Serializable;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
@@ -15,8 +17,12 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="tbl_itens_pedidos")
-public class itens_Pedido {
+public class itens_Pedido implements Serializable {
 	
+	
+	private static final long serialVersionUID = 1L;
+
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_itens")
