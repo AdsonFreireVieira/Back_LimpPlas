@@ -45,9 +45,11 @@ public class ClienteController {
 
 	@GetMapping
 
-	public ResponseEntity<List<clientes>> listarTodos() {
+	public ResponseEntity<List<clienteDTO>> listarTodos() {
 
-		return ResponseEntity.ok(service.ListarTodos());
+		
+		List<clienteDTO> clienteObj = clienteDTO.convertList(service.ListarTodos());
+		return ResponseEntity.ok(clienteObj);
 	}
 
 	@GetMapping("/{id}")
@@ -57,12 +59,7 @@ public class ClienteController {
 		clientes cliente = service.buscarPorId(id);
 		
 		clienteDTO clienteObj = new clienteDTO(cliente);
-		if (clienteObj != null) {
-
-			return ResponseEntity.ok(clienteObj);
-		}
-		
-		return ResponseEntity.badRequest().build();
+		return ResponseEntity.ok(clienteObj);
 				}
 
 	@DeleteMapping("/{id}")
