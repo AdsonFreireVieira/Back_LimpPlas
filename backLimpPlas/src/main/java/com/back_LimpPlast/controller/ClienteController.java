@@ -3,6 +3,8 @@ package com.back_LimpPlast.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,17 +27,20 @@ public class ClienteController {
 	private IClienteService service;
 
 	@PostMapping
-	public ResponseEntity<clienteDTO> cadastrarNovo(@RequestBody clienteDTO cl) {
-
-		return ResponseEntity.ok(service.cadastrarNovo(cl));
+	public ResponseEntity<clienteDTO> cadastrarNovo(@RequestBody clientes cl) {
+		
+		 clienteDTO clienteObj = new clienteDTO(service.cadastrarNovo(cl));
+		return ResponseEntity.ok(clienteObj);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<clientes> alterar(@RequestBody clientes cli, @PathVariable int id) {
+	public ResponseEntity<clienteDTO> alterar(@RequestBody clientes cli, @PathVariable int id) {
 
 		cli.setId_Cliente(id);
+		
+		clienteDTO clienteObj = new  clienteDTO(service.alterarDados(cli));
 
-		return ResponseEntity.ok().body(service.alterarDados(cli));
+		return ResponseEntity.ok().body(clienteObj);
 	}
 
 	@GetMapping
@@ -47,12 +52,14 @@ public class ClienteController {
 
 	@GetMapping("/{id}")
 
-	public ResponseEntity<clientes> buscarPorid(@PathVariable int id) {
+	public ResponseEntity<clienteDTO> buscarPorid(@PathVariable int id) {
 
 		clientes cliente = service.buscarPorId(id);
-		if (cliente != null) {
+		
+		clienteDTO clienteObj = new clienteDTO(cliente);
+		if (clienteObj != null) {
 
-			return ResponseEntity.ok(cliente);
+			return ResponseEntity.ok(clienteObj);
 		}
 		
 		return ResponseEntity.badRequest().build();
@@ -69,9 +76,10 @@ public class ClienteController {
 
 	@GetMapping("/nome/{txt}")
 
-	public ResponseEntity<clientes> buscarNome(@PathVariable String txt) {
+	public ResponseEntity<clienteDTO> buscarNome(@PathVariable String txt) {
 
-		return ResponseEntity.ok(service.buscarporNome(txt));
+		 clienteDTO clienteObj = new clienteDTO(service.buscarporNome(txt));
+		return ResponseEntity.ok(clienteObj);
 	}
 
 }
