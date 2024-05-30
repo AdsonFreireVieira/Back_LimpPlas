@@ -1,12 +1,17 @@
 package com.back_LimpPlast.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -33,6 +38,15 @@ public class clientes implements Serializable{
 	private  int documento;
 
 	
+	
+	
+	
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	public Integer getId() {
 		
 		return id;
