@@ -1,5 +1,8 @@
 package com.back_LimpPlast.dto;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.back_LimpPlast.model.Endereco;
 
 public class EnderecoDTO {
@@ -29,7 +32,16 @@ public class EnderecoDTO {
     	 return new EnderecoDTO(endereco.getBairro(),endereco.getRua(),endereco.getCidade());
      }
 	
+     
+     public static List<EnderecoDTO> convertListDTO(List<Endereco> endereco){
+    	 
+    	 return endereco.stream().map(EnderecoDTO :: toDTO).collect(Collectors.toList());
+    	 
+     }
 	
+     public EnderecoDTO() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	
 	

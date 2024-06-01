@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.back_LimpPlast.dto.EnderecoDTO;
 import com.back_LimpPlast.model.Endereco;
 import com.back_LimpPlast.service.endereco.IServiceEndereco;
 
@@ -24,14 +25,16 @@ public class enderecoController {
 	private IServiceEndereco service;
 
 	@PostMapping
-	public ResponseEntity<Endereco> cadastrarNovo(@RequestBody Endereco end) {
+	public ResponseEntity<EnderecoDTO> cadastrarNovo(@RequestBody Endereco end) {
 
 
 		Endereco ender = service.cadastrarNovo(end);
 		
 		if(ender != null) {
+		
+			EnderecoDTO endDTO = new EnderecoDTO(ender);
 			
-		return	ResponseEntity.status(201).body(ender);
+		return	ResponseEntity.status(201).body(endDTO);
 		}
 		return ResponseEntity.badRequest().build();
 		
@@ -41,33 +44,38 @@ public class enderecoController {
 
 	@PutMapping("/{id}")
 
-	public ResponseEntity<Endereco> alterarEndereco(@RequestBody Endereco end, @PathVariable int id) {
+	public ResponseEntity<EnderecoDTO> alterarEndereco(@RequestBody Endereco end, @PathVariable int id) {
 
 		end.setId(id);
 
 		Endereco ender = service.alterarEndereco(end);
-
-		if (ender != null) {
-			return ResponseEntity.ok(end);
+		
+		EnderecoDTO endDTO = new EnderecoDTO(ender);
+          
+		if (endDTO != null) {
+			return ResponseEntity.ok(endDTO);
 		}
 		return ResponseEntity.badRequest().build();
 
 	}
 
 	@GetMapping
-	public ResponseEntity<List<Endereco>> listarEndereco() {
-
-		return ResponseEntity.ok().body(service.listarEndereco());
+	public ResponseEntity<List<EnderecoDTO>> listarEndereco() {
+		 
+         
+		return ResponseEntity.ok().body(EnderecoDTO.convertListDTO(service.listarEndereco()));
 	}
 
 	@GetMapping("/{id}")
 
-	public ResponseEntity<Endereco> buscarporId(@PathVariable int id) {
+	public ResponseEntity<EnderecoDTO> buscarporId(@PathVariable int id) {
 
-		Endereco ender = service.buscarPorId(id);
+		EnderecoDTO endDTO = EnderecoDTO.toDTO(service.buscarPorId(id));
+		
+	
 
-		if (ender != null) {
-			return ResponseEntity.ok().body(ender);
+		if (endDTO != null) {
+			return ResponseEntity.ok().body(endDTO);
 		}
 		
 		return ResponseEntity.badRequest().build();
