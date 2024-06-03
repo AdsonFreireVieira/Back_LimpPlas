@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.back_LimpPlast.dto.ProdutoDTO;
 import com.back_LimpPlast.model.Produtos;
 import com.back_LimpPlast.service.produto.IProdutoService;
 
@@ -24,11 +25,13 @@ public class produtosController {
 	private IProdutoService service;
 
 	@PostMapping
-	public ResponseEntity<Produtos> cadastrarProduto(@RequestBody Produtos eProduto) {
+	public ResponseEntity<ProdutoDTO> cadastrarProduto(@RequestBody Produtos eProduto) {
+          
+		 ProdutoDTO prodDTO =ProdutoDTO.toDTO(service.cadastrarNovo(eProduto));
+		
+		if (prodDTO != null) {
 
-		if (eProduto != null) {
-
-			return ResponseEntity.ok().body(service.cadastrarNovo(eProduto));
+			return ResponseEntity.ok().body(prodDTO);
 		}
 		return ResponseEntity.badRequest().build();
 
@@ -38,15 +41,18 @@ public class produtosController {
 	public ResponseEntity<Produtos> alterarProduto(@RequestBody Produtos prod, @PathVariable int id) {
 
 		prod.setId(id);
-
+  
 		return ResponseEntity.ok(prod);
 
 	}
 
 	@GetMapping
-	public ResponseEntity<List<Produtos>> listarTodos() {
+	public ResponseEntity<List<ProdutoDTO>> listarTodos() {
 
-		return ResponseEntity.ok(service.listarProdutos());
+     
+	               		
+		return ResponseEntity.ok(ProdutoDTO.convertList(service.listarProdutos()));	
+				
 	}
 
 	@DeleteMapping("/{id}")
@@ -59,11 +65,11 @@ public class produtosController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Produtos> buscarPorId(@PathVariable int id) {
+	public ResponseEntity<ProdutoDTO> buscarPorId(@PathVariable int id) {
 
-		Produtos prod = new Produtos();
+		ProdutoDTO prod = ProdutoDTO.toDTO(service.BuscarPorId(id));
 
-		prod = service.BuscarPorId(id);
+;
 
 		if (prod != null) {
 
