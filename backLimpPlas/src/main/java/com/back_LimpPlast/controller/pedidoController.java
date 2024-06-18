@@ -37,21 +37,20 @@ public class pedidoController {
 
 		return ResponseEntity.badRequest().build();
 	}
-	
+
 	@GetMapping
-	public ResponseEntity<List<Pedidos>>listarTodos(){
-		
+	public ResponseEntity<List<Pedidos>> listarTodos() {
+
 		return ResponseEntity.ok(service.listarPedido());
-		
+
 	}
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Pedidos> alterarPedido(@RequestBody Pedidos pedido, @PathVariable int id) {
-   
+
 		pedido.setId(id);
-		
+
 		Pedidos ped = service.alterarPedido(pedido);
-		
 
 		if (ped != null) {
 
@@ -61,12 +60,10 @@ public class pedidoController {
 		return ResponseEntity.badRequest().build();
 	}
 
-
 	@GetMapping("/{id}")
 	public ResponseEntity<Pedidos> buscarPorId(@RequestBody Pedidos pedido, @PathVariable int id) {
-             
-	
-           pedido.setId(id);
+
+		pedido.setId(id);
 		Pedidos ped = service.buscarPorId(id);
 		if (ped != null) {
 			return ResponseEntity.ok(ped);
@@ -75,11 +72,12 @@ public class pedidoController {
 		return ResponseEntity.badRequest().build();
 
 	}
+
 	@DeleteMapping("/{id}")
-   public ResponseEntity<?> deletarPedido(@PathVariable int id){
-		
+	public ResponseEntity<?> deletarPedido(@PathVariable int id) {
+
 		service.deletarPedido(id);
-		
+
 		return ResponseEntity.ok("Removed");
 	}
 }

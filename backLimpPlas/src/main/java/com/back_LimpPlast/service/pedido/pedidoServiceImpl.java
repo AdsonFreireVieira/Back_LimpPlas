@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.back_LimpPlast.dao.PedidoDao;
 import com.back_LimpPlast.model.Pedidos;
+import com.back_LimpPlast.model.Produtos;
 import com.back_LimpPlast.model.itens_Pedido;
 
 @Component
@@ -14,12 +15,16 @@ public class pedidoServiceImpl implements IServicePedido {
 
 	@Autowired
 	private PedidoDao dao;
-       
+
 	@Override
 	public Pedidos cadastrarNovo(Pedidos pedido) {
+
+		pedido.setQuantidade(0);
+        
 		
-		for(itens_Pedido item: pedido.getItens() ) {
-			
+        
+		for (itens_Pedido item : pedido.getItens()) {
+			confPedido.calculaItens(pedido);
 			item.setPedidos(pedido);
 		}
 
@@ -28,20 +33,19 @@ public class pedidoServiceImpl implements IServicePedido {
 
 	@Override
 	public Pedidos alterarPedido(Pedidos alterar) {
-        
-     for(itens_Pedido itens :alterar.getItens()) {
-		
-		itens.setPedidos(alterar);
+
+		for (itens_Pedido itens : alterar.getItens()) {
+
+			itens.setPedidos(alterar);
+		}
+		return dao.save(alterar);
 	}
-             return dao.save(alterar);
-	}
+
 	@Override
 	public List<Pedidos> listarPedido() {
 		// TODO Auto-generated method stub
 		return dao.findAll();
 	}
-
-	
 
 	@Override
 	public Pedidos buscarPorId(int id) {
@@ -52,8 +56,7 @@ public class pedidoServiceImpl implements IServicePedido {
 	@Override
 	public void deletarPedido(int id) {
 		dao.deleteById(id);
-		
+
 	}
 
-	
 }
