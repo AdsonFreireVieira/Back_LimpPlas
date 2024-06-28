@@ -2,6 +2,7 @@
 
 
 import java.io.Serializable;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -32,9 +33,9 @@ public class itens_Pedido implements Serializable {
 	@Column(name="quantidade" , nullable = false)
 	private int quantidade;
 	
-	@ManyToOne
+	 @ManyToOne
 	@JoinColumn(name="produto_id")
-	private Produtos produto;
+       private Produtos produto;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="pedido_id")
@@ -46,12 +47,19 @@ public class itens_Pedido implements Serializable {
 	public Integer getId() {
 		return id;
 	}
+ 
 	public Produtos getProduto() {
 		return produto;
 	}
+
 	public void setProduto(Produtos produto) {
 		this.produto = produto;
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	public Pedidos getPedidos() {
 		return pedidos;
 	}
