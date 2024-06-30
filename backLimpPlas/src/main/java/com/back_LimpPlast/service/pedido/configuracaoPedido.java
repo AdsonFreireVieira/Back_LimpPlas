@@ -15,7 +15,7 @@ public class configuracaoPedido {
 	public static void calcularPedido(Pedidos pedido) {
 
 		Double valor = pedido.getItens().stream()
-				.mapToDouble(item -> item.getProduto().getValor() * item.getQuantidade()).sum();
+				.mapToDouble(item -> item.getProduto().getValor()).sum();
 
 		pedido.setValor_Total(valor);
 
@@ -44,5 +44,33 @@ public class configuracaoPedido {
 			pedido.setDesconto(desconto);
 		}
 	}
+	
+	public static Double calcularValorItens(Pedidos pedido){
+		 
+		   return  pedido.getItens().stream().mapToDouble
+				(item ->  item.getProduto().getValor()).sum();
+		  
+		   
+	
+		   
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

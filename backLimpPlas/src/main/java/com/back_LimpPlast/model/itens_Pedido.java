@@ -33,6 +33,9 @@ public class itens_Pedido implements Serializable {
 	@Column(name="quantidade" , nullable = false)
 	private int quantidade;
 	
+	@Column(name="valor_itens")
+	private double valorItens;
+	
 	 @ManyToOne
 	@JoinColumn(name="produto_id")
        private Produtos produto;
@@ -44,6 +47,14 @@ public class itens_Pedido implements Serializable {
 		
 	
 	
+	public double getValorItens() {
+		return valorItens;
+	}
+
+	public void setValorItens(double valorItens) {
+		this.valorItens = valorItens;
+	}
+
 	public Integer getId() {
 		return id;
 	}
