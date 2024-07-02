@@ -24,12 +24,14 @@ public class pedidoServiceImpl implements IServicePedido {
 		
         
 		for (itens_Pedido item : pedido.getItens()) {
-			configuracaoPedido.calculaQuntidadeItens(pedido);
-			pedido.setItens(configuracaoPedido.calcularValorItens(pedido));
-			configuracaoPedido.calcularPedido(pedido);
+			
 			item.setPedidos(pedido);
 		}
-
+            configuracaoPedido.calculaQuntidadeItens(pedido);
+			
+			configuracaoPedido.calcularValorItens(pedido);
+			configuracaoPedido.calcularPedido(pedido);
+			configuracaoPedido.calcularDesconto(pedido);
 		return dao.save(pedido);
 	}
 
