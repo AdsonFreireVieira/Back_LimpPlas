@@ -6,34 +6,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.back_LimpPlast.dao.ClientesDao;
-import com.back_LimpPlast.model.clientes;
+import com.back_LimpPlast.model.User;
 
 @Service
-public class ServiceClienteImpl implements IClienteService {
+public class ServiceUserImpl implements UserService {
 
 	 @Autowired
 	private ClientesDao dao; 
 	 
 	@Override
-	public clientes cadastrarNovo(clientes cliente) {
+	public User cadastrarNovo(User cliente) {
 		
 		return dao.save(cliente);
 	}
 
 	@Override
-	public clientes alterarDados(clientes alterar) {
+	public User alterarDados(User alterar) {
 		 
 		return dao.save(alterar);
 	}
 
 	@Override
-	public List<clientes> ListarTodos() {
+	public List<User> ListarTodos() {
 		
 		return dao.findAll();
 	}
 
 	@Override
-	public clientes buscarporNome(String nome) {
+	public User buscarporNome(String nome) {
 		
 		return dao.findByNome(nome);
 	}
@@ -46,7 +46,7 @@ public class ServiceClienteImpl implements IClienteService {
 	}
 
 	@Override
-	public clientes buscarPorId(int id) {
+	public User buscarPorId(int id) {
 	
 		return dao.findById(id).orElse(null);
 	}

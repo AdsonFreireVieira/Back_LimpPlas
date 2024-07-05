@@ -46,14 +46,14 @@ public class Endereco implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
 
-	private clientes cliente;
+	private User cliente;
 
-	public clientes getCliente() {
+	public User getCliente() {
 		return cliente;
 	}
 	
 
-	public void setCliente(clientes cliente) {
+	public void setCliente(User cliente) {
 		this.cliente = cliente;
 	}
 

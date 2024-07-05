@@ -16,25 +16,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.back_LimpPlast.dto.clienteDTO;
-import com.back_LimpPlast.model.clientes;
-import com.back_LimpPlast.service.cliente.IClienteService;
+import com.back_LimpPlast.model.User;
+import com.back_LimpPlast.service.cliente.UserService;
 
 @Controller
 @RequestMapping("/cliente")
 public class ClienteController {
 
 	@Autowired 
-	private IClienteService service;
+	private UserService service;
 
 	@PostMapping
-	public ResponseEntity<clientes> cadastrarNovo(@RequestBody clientes cl) {
+	public ResponseEntity<User> cadastrarNovo(@RequestBody User cl) {
 		
 		 
 		return ResponseEntity.ok(cl);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<clienteDTO> alterar(@RequestBody clientes cli, @PathVariable int id) {
+	public ResponseEntity<clienteDTO> alterar(@RequestBody User cli, @PathVariable int id) {
 
 		cli.setId_Cliente(id);
 		
@@ -56,7 +56,7 @@ public class ClienteController {
 
 	public ResponseEntity<clienteDTO> buscarPorid(@PathVariable int id) {
 
-		clientes cliente = service.buscarPorId(id);
+		User cliente = service.buscarPorId(id);
 		
 		clienteDTO clienteObj = new clienteDTO(cliente);
 		return ResponseEntity.ok(clienteObj);

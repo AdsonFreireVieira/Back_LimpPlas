@@ -2,10 +2,10 @@ package com.back_LimpPlast.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.back_LimpPlast.model.clientes;
+import com.back_LimpPlast.model.User;
 
-public interface ClientesDao extends JpaRepository<clientes, Integer> {
+public interface ClientesDao extends JpaRepository<User, Integer> {
 
 	
-	public clientes findByNome(String nome);
+	public User findByNome(String nome);
 }

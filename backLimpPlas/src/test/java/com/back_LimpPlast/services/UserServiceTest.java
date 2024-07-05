@@ -13,14 +13,14 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.back_LimpPlast.dao.ClientesDao;
-import com.back_LimpPlast.model.clientes;
-import com.back_LimpPlast.service.cliente.IClienteService;
+import com.back_LimpPlast.model.User;
+import com.back_LimpPlast.service.cliente.UserService;
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
 	
 	@Mock
-	private  IClienteService service;
+	private  UserService service;
 	
 	@InjectMocks
 	private ClientesDao repoDao;
@@ -32,11 +32,11 @@ public class UserServiceTest {
 		@DisplayName("returnUserSucess")
 	  void creatUser() {
 		   
-			var user = new clientes(0, "jose","@gmail", 99999999, 46566666);
+			var user = new User(0, "jose","@gmail", 99999999, 46566666);
 			
 			doReturn(user).when(repoDao).save(any());
 			
-		var input =  new clientes(2,"jose","@Josegmail",9999999, 34567845);
+		var input =  new User(2,"jose","@Josegmail",9999999, 34567845);
 		
 			var output =service.cadastrarNovo(input);
 			

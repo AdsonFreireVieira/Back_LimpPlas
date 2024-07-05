@@ -3,7 +3,7 @@ package com.back_LimpPlast.dto;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.back_LimpPlast.model.clientes;
+import com.back_LimpPlast.model.User;
 
 public class clienteDTO {
 	
@@ -21,7 +21,7 @@ public class clienteDTO {
 	}
 
 	
-	public clienteDTO (clientes cliente) {
+	public clienteDTO (User cliente) {
 		
 	    this.nome = cliente.getNome();
 	    this.email = cliente.getEmail();
@@ -46,13 +46,13 @@ public class clienteDTO {
 		this.email = email;
 	}
 	
-	public static clienteDTO toDTO(clientes cliente) {
+	public static clienteDTO toDTO(User cliente) {
 		
 		return new  clienteDTO(cliente.getNome() , cliente.getEmail());
 	}
 
 	
-	public static  List<clienteDTO>convertList(List<clientes> clientesObj){
+	public static  List<clienteDTO>convertList(List<User> clientesObj){
 		
 		return clientesObj.stream().map(clienteDTO :: toDTO).collect(Collectors.toList());
 	}

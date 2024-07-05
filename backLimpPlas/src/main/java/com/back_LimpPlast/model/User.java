@@ -16,7 +16,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tbl_clientes")
-public class clientes implements Serializable{
+public class User implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
@@ -40,7 +40,7 @@ public class clientes implements Serializable{
 
 
 
-	public clientes(Integer id, String nome, String email, int telefone, int documento) {
+	public User(Integer id, String nome, String email, int telefone, int documento) {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
