@@ -3,17 +3,16 @@ package com.back_LimpPlast.service.cliente;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.back_LimpPlast.dao.ClientesDao;
 import com.back_LimpPlast.model.clientes;
 
-@Component
+@Service
 public class ServiceClienteImpl implements IClienteService {
 
 	 @Autowired
-	private ClientesDao dao;
+	private ClientesDao dao; 
 	 
 	@Override
 	public clientes cadastrarNovo(clientes cliente) {

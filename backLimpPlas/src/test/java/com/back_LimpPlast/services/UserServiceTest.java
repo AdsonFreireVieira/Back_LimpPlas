@@ -1,14 +1,56 @@
 package com.back_LimpPlast.services;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.ActiveProfiles;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doReturn;
 
-@DataJpaTest
-@ActiveProfiles("test")
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import com.back_LimpPlast.dao.ClientesDao;
+import com.back_LimpPlast.model.clientes;
+import com.back_LimpPlast.service.cliente.IClienteService;
+
+@ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
 	
-	@Test
-   void    findUser() {}
+	@Mock
+	private  IClienteService service;
+	
+	@InjectMocks
+	private ClientesDao repoDao;
 
+	@Nested
+	class createUser{
+		
+		@Test
+		@DisplayName("returnUserSucess")
+	  void creatUser() {
+		   
+			var user = new clientes(0, "jose","@gmail", 99999999, 46566666);
+			
+			doReturn(user).when(repoDao).save(any());
+			
+		var input =  new clientes(2,"jose","@Josegmail",9999999, 34567845);
+		
+			var output =service.cadastrarNovo(input);
+			
+			assertNotNull(output);
+	  }
+	
+	}
 }
+
+
+
+
+
+
+
+
+

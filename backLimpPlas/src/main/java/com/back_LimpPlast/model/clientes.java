@@ -37,11 +37,16 @@ public class clientes implements Serializable{
 	@Column(name = "documento", nullable = false)
 	private  int documento;
 
-	
-	
-	
-	
 
+
+
+	public clientes(Integer id, String nome, String email, int telefone, int documento) {
+		this.id = id;
+		this.nome = nome;
+		this.email = email;
+		this.telefone = telefone;
+		this.documento = documento;
+	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -71,7 +76,7 @@ public class clientes implements Serializable{
 	public void setId_Cliente(Integer id_Cliente) {
 		this.id = id_Cliente;
 	}
-
+ 
 	public String getNome() {
 		return nome;
 	}

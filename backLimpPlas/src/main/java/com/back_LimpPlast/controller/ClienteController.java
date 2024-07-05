@@ -23,14 +23,14 @@ import com.back_LimpPlast.service.cliente.IClienteService;
 @RequestMapping("/cliente")
 public class ClienteController {
 
-	@Autowired
+	@Autowired 
 	private IClienteService service;
 
 	@PostMapping
-	public ResponseEntity<clienteDTO> cadastrarNovo(@RequestBody clientes cl) {
+	public ResponseEntity<clientes> cadastrarNovo(@RequestBody clientes cl) {
 		
-		 clienteDTO clienteObj = new clienteDTO(service.cadastrarNovo(cl));
-		return ResponseEntity.ok(clienteObj);
+		 
+		return ResponseEntity.ok(cl);
 	}
 
 	@PutMapping("/{id}")
