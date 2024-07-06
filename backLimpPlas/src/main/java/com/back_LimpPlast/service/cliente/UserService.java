@@ -2,13 +2,14 @@ package com.back_LimpPlast.service.cliente;
 
 import java.util.List;
 
+import com.back_LimpPlast.dto.UserDTO;
 import com.back_LimpPlast.model.User;
 
 public interface UserService {
 	
-	public User cadastrarNovo(User cliente);
+	public UserDTO cadastrarNovo(UserDTO userDTO);
 	
-	public User alterarDados(User alterar);
+	public UserDTO alterarDados(UserDTO userDTO);
 	
 	public List<User> ListarTodos();
 	

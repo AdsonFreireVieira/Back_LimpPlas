@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.back_LimpPlast.dto.clienteDTO;
+import com.back_LimpPlast.dto.UserDTO;
 import com.back_LimpPlast.model.User;
 import com.back_LimpPlast.service.cliente.UserService;
 
@@ -34,31 +34,31 @@ public class ClienteController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<clienteDTO> alterar(@RequestBody User cli, @PathVariable int id) {
+	public ResponseEntity<UserDTO> alterar(@RequestBody User cli, @PathVariable int id) {
 
 		cli.setId_Cliente(id);
 		
-		clienteDTO clienteObj = new  clienteDTO(service.alterarDados(cli));
+		UserDTO clienteObj = new  UserDTO(service.alterarDados(cli));
 
 		return ResponseEntity.ok().body(clienteObj);
 	}
 
 	@GetMapping
 
-	public ResponseEntity<List<clienteDTO>> listarTodos() {
+	public ResponseEntity<List<UserDTO>> listarTodos() {
 
 		
-		List<clienteDTO> clienteObj = clienteDTO.convertList(service.ListarTodos());
+		List<UserDTO> clienteObj = UserDTO.convertList(service.ListarTodos());
 		return ResponseEntity.ok(clienteObj);
 	}
 
 	@GetMapping("/{id}")
 
-	public ResponseEntity<clienteDTO> buscarPorid(@PathVariable int id) {
+	public ResponseEntity<UserDTO> buscarPorid(@PathVariable int id) {
 
 		User cliente = service.buscarPorId(id);
 		
-		clienteDTO clienteObj = new clienteDTO(cliente);
+		UserDTO clienteObj = new UserDTO(cliente);
 		return ResponseEntity.ok(clienteObj);
 				}
 
@@ -73,9 +73,9 @@ public class ClienteController {
 
 	@GetMapping("/nome/{txt}")
 
-	public ResponseEntity<clienteDTO> buscarNome(@PathVariable String txt) {
+	public ResponseEntity<UserDTO> buscarNome(@PathVariable String txt) {
 
-		 clienteDTO clienteObj = new clienteDTO(service.buscarporNome(txt));
+		 UserDTO clienteObj = new UserDTO(service.buscarporNome(txt));
 		return ResponseEntity.ok(clienteObj);
 	}
 
