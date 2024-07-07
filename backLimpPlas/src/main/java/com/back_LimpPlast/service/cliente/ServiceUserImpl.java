@@ -1,6 +1,8 @@
 package com.back_LimpPlast.service.cliente;
 
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,61 +20,33 @@ public class ServiceUserImpl implements UserService {
 	@Override
 	public UserDTO cadastrarNovo(UserDTO userDTO) {
 
-		User newUser = new User();
+		var user = UserDTO.converttoUser(userDTO);
 
-		newUser.setId_Cliente(userDTO.getId());
-		newUser.setEmail(userDTO.getEmail());
-		newUser.setDocumento(userDTO.getDocumento());
-		newUser.setNome(userDTO.getNome());
-		newUser.setTelefone(userDTO.getTelefone());
+		dao.save(user);
 
-		var user = dao.save(newUser);
-
-		UserDTO uDTO = new UserDTO(user);
-
-		uDTO.setDocumento(user.getDocumento());
-		uDTO.setId(user.getId());
-		uDTO.setEmail(user.getEmail());
-		uDTO.setNome(user.getNome());
-		uDTO.setTelefone(user.getTelefone());
-
-		return uDTO;
+		return UserDTO.converttoDTO(user);
 	}
 
 	@Override
 	public UserDTO alterarDados(UserDTO userDTO) {
 
-		User newUser = new User();
+		var user = UserDTO.converttoUser(userDTO);
 
-		newUser.setId_Cliente(userDTO.getId());
-		newUser.setEmail(userDTO.getEmail());
-		newUser.setDocumento(userDTO.getDocumento());
-		newUser.setNome(userDTO.getNome());
-		newUser.setTelefone(userDTO.getTelefone());
+		dao.save(user);
 
-		var user = dao.save(newUser);
-
-		UserDTO uDTO = new UserDTO(user);
-
-		uDTO.setDocumento(user.getDocumento());
-		uDTO.setId(user.getId());
-		uDTO.setEmail(user.getEmail());
-		uDTO.setNome(user.getNome());
-		uDTO.setTelefone(user.getTelefone());
-
-		return uDTO;
+		return UserDTO.converttoDTO(user);
 	}
 
 	@Override
-	public List<User> ListarTodos() {
+	public List<UserDTO> ListarTodos() {
 
-		return dao.findAll();
+		return dao.findAll().stream().map(UserDTO::toDTO).collect(Collectors.toList());
 	}
 
 	@Override
-	public User buscarporNome(String nome) {
+	public UserDTO buscarporNome(String nome) {
 
-		return dao.findByNome(nome);
+		return UserDTO.converttoDTO(dao.findByNome(nome));
 	}
 
 	@Override
@@ -83,9 +57,9 @@ public class ServiceUserImpl implements UserService {
 	}
 
 	@Override
-	public User buscarPorId(int id) {
+	public UserDTO buscarPorId(int id) {
 
-		return dao.findById(id).orElse(null);
+		return UserDTO.converttoDTO(dao.findById(id).orElse(null));
 	}
 
 }

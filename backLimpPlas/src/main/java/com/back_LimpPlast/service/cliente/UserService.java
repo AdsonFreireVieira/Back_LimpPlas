@@ -11,12 +11,12 @@ public interface UserService {
 	
 	public UserDTO alterarDados(UserDTO userDTO);
 	
-	public List<User> ListarTodos();
+	public List<UserDTO> ListarTodos();
 	
-	public User buscarporNome(String nome);
+	public UserDTO buscarporNome(String nome);
 	
 	public  void deletarPorId(int id);
 	
-	public User buscarPorId(int id);
+	public UserDTO buscarPorId(int id);
  
 }

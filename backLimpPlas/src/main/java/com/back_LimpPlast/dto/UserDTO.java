@@ -13,7 +13,7 @@ public class UserDTO {
 	private int documento;
 	private String  email;
 	
-	public UserDTO userDTO(User user){
+	public static UserDTO converttoDTO(User user){
 		
 		UserDTO dto = new UserDTO();
 		
@@ -26,16 +26,22 @@ public class UserDTO {
 		
 	}
 	
+	public static  User converttoUser(UserDTO dto) {
+		User user = new User();
+		
+		user.setId(dto.getId());
+		user.setEmail(dto.getEmail());
+        user.setDocumento(dto.getDocumento());
+        user.setTelefone(dto.getTelefone());
+		
+		return user;
+		
+	}
+	
 	public UserDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	public UserDTO (User cliente) {
-		
-	    this.nome = cliente.getNome();
-	    this.email = cliente.getEmail();
-	}
 		
 	public String getNome() {
 		return nome;
