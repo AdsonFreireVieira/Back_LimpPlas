@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.back_LimpPlast.dto.ProdutoDTO;
-import com.back_LimpPlast.model.Produtos;
 import com.back_LimpPlast.service.produto.IProdutoService;
 
 @Controller
@@ -25,24 +24,18 @@ public class produtosController {
 	private IProdutoService service;
 
 	@PostMapping
-	public ResponseEntity<ProdutoDTO> cadastrarProduto(@RequestBody Produtos eProduto) {
+	public ResponseEntity<ProdutoDTO> cadastrarProduto(@RequestBody ProdutoDTO eProduto) {
           
-		 ProdutoDTO prodDTO =ProdutoDTO.toDTO(service.cadastrarNovo(eProduto));
-		
-		if (prodDTO != null) {
-
-			return ResponseEntity.ok().body(prodDTO);
-		}
-		return ResponseEntity.badRequest().build();
+		return service.cadastrarNovo(eProduto);
 
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Produtos> alterarProduto(@RequestBody Produtos prod, @PathVariable int id) {
+	public ResponseEntity<ProdutoDTO> alterarProduto(@RequestBody ProdutoDTO prod, @PathVariable int id) {
 
-		prod.setId(id);
+		 prod.setId(id);
   
-		return ResponseEntity.ok(prod);
+		return ResponseEntity.ok().body(service.alterarProoduto(prod));
 
 	}
 
@@ -51,7 +44,7 @@ public class produtosController {
 
      
 	               		
-		return ResponseEntity.ok(ProdutoDTO.convertList(service.listarProdutos()));	
+		return ResponseEntity.ok(service.listarProdutos());	
 				
 	}
 
@@ -67,16 +60,7 @@ public class produtosController {
 	@GetMapping("/{id}")
 	public ResponseEntity<ProdutoDTO> buscarPorId(@PathVariable int id) {
 
-		ProdutoDTO prod = ProdutoDTO.toDTO(service.BuscarPorId(id));
-
-;
-
-		if (prod != null) {
-
-			return ResponseEntity.ok(prod);
-		}
-
-		return ResponseEntity.badRequest().build();
+		return ResponseEntity.ok().body(service.BuscarPorId(id));
 	}
 
 }

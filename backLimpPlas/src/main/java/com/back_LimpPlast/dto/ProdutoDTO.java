@@ -7,13 +7,59 @@ import com.back_LimpPlast.model.Produtos;
 
 public class ProdutoDTO {
 	
+	private Integer id;
 	private  String nome;
 	private double peso;
 	private int unidades;
 	private String cor;
+	private int  litros;
 	private int quantidades;
+	private String medida;
+	private double valor;
 	
 	
+	
+	
+	public double getValor() {
+		return valor;
+	}
+
+
+	public void setValor(double valor) {
+		this.valor = valor;
+	}
+
+
+	public String getMedida() {
+		return medida;
+	}
+
+
+	public void setMedida(String medida) {
+		this.medida = medida;
+	}
+
+
+	public int getLitros() {
+		return litros;
+	}
+
+
+	public void setLitros(int litros) {
+		this.litros = litros;
+	}
+
+
+	public Integer getId() {
+		return id;
+	}
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
 	public String getNome() {
 		return nome;
 	}
@@ -74,6 +120,44 @@ public class ProdutoDTO {
 	public void setQuantidades(int quantidades) {
 		this.quantidades = quantidades;
 	}
+	
+	public static Produtos convertToProduto(ProdutoDTO  produtoDTO) {
+		
+		Produtos  produto = new Produtos();
+		
+		produto.setId(produtoDTO.getId());
+		produto.setCor(produtoDTO.getCor());
+		produto.setLitros(produtoDTO.getLitros());
+		produto.setMedida(produtoDTO.getMedida());
+		produto.setNome(produtoDTO.getNome());
+		produto.setQuantidade(produtoDTO.getQuantidades());
+		produto.setUnidades(produtoDTO.getUnidades());
+		produto.setValor(produtoDTO.getValor());
+		
+		return produto;
+		
+	}
+	
+	public static ProdutoDTO convertTOProdutoDTO(Produtos produtos) {
+		
+		ProdutoDTO produtoDTO = new ProdutoDTO();
+		
+		produtoDTO.setId(produtos.getId());
+		produtoDTO.setCor(produtos.getCor());
+		produtoDTO.setLitros(produtos.getLitros());
+		produtoDTO.setMedida(produtos.getMedida());
+		produtoDTO.setNome(produtos.getNome());
+		produtoDTO.setQuantidades(produtos.getQuantidade());
+		produtoDTO.setUnidades(produtos.getUnidades());
+		produtoDTO.setValor(produtos.getValor());
+		
+		return produtoDTO;
+	}
+	
+	
+	
+	
+	
 	
 	
 	

@@ -2,19 +2,22 @@ package com.back_LimpPlast.service.produto;
 
 import java.util.List;
 
-import com.back_LimpPlast.model.Produtos;
+import org.springframework.http.ResponseEntity;
+
+import com.back_LimpPlast.dto.ProdutoDTO;
+
 
 public interface IProdutoService {
 	
-	public Produtos cadastrarNovo(Produtos novo);
+	public ResponseEntity<ProdutoDTO> cadastrarNovo(ProdutoDTO novo);
 	
-	public Produtos alterarProoduto(Produtos alterar);
+	public ProdutoDTO alterarProoduto(ProdutoDTO alterar);
 	
     public  void deletarProduto(Integer id);
     
-    public List<Produtos> listarProdutos();
+    public List<ProdutoDTO> listarProdutos();
     
-     public Produtos BuscarPorId(Integer id);
+     public ProdutoDTO BuscarPorId(Integer id);
      
      
      

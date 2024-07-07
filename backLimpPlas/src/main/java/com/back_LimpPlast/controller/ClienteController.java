@@ -23,44 +23,38 @@ import com.back_LimpPlast.service.cliente.UserService;
 @RequestMapping("/cliente")
 public class ClienteController {
 
-	@Autowired 
+	@Autowired
 	private UserService service;
 
 	@PostMapping
-	public ResponseEntity<User> cadastrarNovo(@RequestBody User cl) {
-		
-		 
+	public ResponseEntity<UserDTO> cadastrarNovo(@RequestBody UserDTO cl) {
+
 		return ResponseEntity.ok(cl);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<UserDTO> alterar(@RequestBody User cli, @PathVariable int id) {
+	public ResponseEntity<UserDTO> alterar(@RequestBody UserDTO cli, @PathVariable int id) {
 
-		cli.setId_Cliente(id);
-		
-		UserDTO clienteObj = new  UserDTO(service.alterarDados(cli));
+		cli.setId(id);
 
-		return ResponseEntity.ok().body(clienteObj);
+		return ResponseEntity.ok().body(service.alterarDados(cli));
 	}
 
 	@GetMapping
 
 	public ResponseEntity<List<UserDTO>> listarTodos() {
 
-		
-		List<UserDTO> clienteObj = UserDTO.convertList(service.ListarTodos());
-		return ResponseEntity.ok(clienteObj);
+;
+		return ResponseEntity.ok(service.ListarTodos());
 	}
 
 	@GetMapping("/{id}")
 
 	public ResponseEntity<UserDTO> buscarPorid(@PathVariable int id) {
 
-		User cliente = service.buscarPorId(id);
 		
-		UserDTO clienteObj = new UserDTO(cliente);
-		return ResponseEntity.ok(clienteObj);
-				}
+		return ResponseEntity.ok(service.buscarPorId(id));
+	}
 
 	@DeleteMapping("/{id}")
 
@@ -75,8 +69,8 @@ public class ClienteController {
 
 	public ResponseEntity<UserDTO> buscarNome(@PathVariable String txt) {
 
-		 UserDTO clienteObj = new UserDTO(service.buscarporNome(txt));
-		return ResponseEntity.ok(clienteObj);
+		
+		return ResponseEntity.ok(service.buscarporNome(txt));
 	}
 
 }
