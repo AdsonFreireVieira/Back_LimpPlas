@@ -69,21 +69,13 @@ public class ProdutoDTO {
 		
 	}
 	
-	public ProdutoDTO(String nome,String cor,int unidades,int quantidade, double peso) {
-		
-		this.cor = cor;
-		this.nome = nome;
-		this.unidades = unidades;
-		this.quantidades = quantidade;
-		this.peso = peso;
-		
-	}
+	
 	
 	
 	public static  ProdutoDTO  toDTO(Produtos produto){
 		
 		
-		return new ProdutoDTO(produto.getNome(),produto.getCor(),produto.getUnidades(),produto.getQuantidade(),produto.getPeso());
+		return new ProdutoDTO();
 	
 		
 	}

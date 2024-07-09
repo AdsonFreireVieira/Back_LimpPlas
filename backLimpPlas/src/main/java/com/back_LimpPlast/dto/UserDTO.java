@@ -89,7 +89,7 @@ public class UserDTO {
 	
 	public static UserDTO toDTO(User cliente) {
 		
-		return new  UserDTO(cliente.getNome() , cliente.getEmail());
+		return new  UserDTO();
 	}
 
 	
