@@ -1,5 +1,10 @@
 package com.back_LimpPlast.dto;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import com.back_LimpPlast.model.itens_Pedido;
+
 public class Itens_Pedido_DTO {
 	
 	private Integer id_Itens;
@@ -8,6 +13,9 @@ public class Itens_Pedido_DTO {
 	
 	private ProdutoDTO produtoDTO;
 	private pedidoDTO pedidoDTO;
+	
+	
+	
 	public Integer getId_Itens() {
 		return id_Itens;
 	}
@@ -37,6 +45,13 @@ public class Itens_Pedido_DTO {
 	}
 	public void setPedidoDTO(pedidoDTO pedidoDTO) {
 		this.pedidoDTO = pedidoDTO;
+	}
+
+
+
+
+	private static <R> R toPedidoDTO(itens_Pedido itens_pedido1) {
+		return null;
 	}
 	
 	
