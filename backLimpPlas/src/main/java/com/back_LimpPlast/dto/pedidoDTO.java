@@ -1,8 +1,8 @@
 package com.back_LimpPlast.dto;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.back_LimpPlast.model.Pedidos;
 
@@ -69,31 +69,51 @@ public class pedidoDTO {
 	}
 	public void setValor_total(double valor_total) {
 		this.valor_total = valor_total;
+	
 	}
 	
-    
-   
-    	
-    public static pedidoDTO(Pedidos pedido) {
-    	
-    	pedidoDTO   DTO = new pedidoDTO();
-    	
-    	 var uDTO =UserDTO.toDTO(pedido.getCliente());
-    	 var listDTO = 
+	public pedidoDTO(int id,LocalDate data, int quantidade, double desconto,String status, double valor_total) {
+		
+		this.id = id;
+		this.data = data;
+		this.quantidade = quantidade;
+		this.desconto = desconto;
+        this.status = status;
+        this.valor_total = valor_total;
+		
+	}
+	
+	
+	public static List<pedidoDTO> toListDTO(List<Pedidos> listPedidos){
+	
+     
+		
+		
+	}
+	
 
-    	DTO.setId(pedido.getId());
-        DTO.setData(pedido.getData());
-        DTO.setQuantidade(pedido.getQuantidade());
-        DTO.setStatus(pedido.getStatus());
-        DTO.setDesconto(pedido.getDesconto());
-        DTO.setValor_total(pedido.getValor_Total());
-        DTO.setUserDTo(uDTO);
-        DTO.setItensDTO();
-        
-        
-        
-        
+    public static pedidoDTO toDTO(Pedidos pedido) {
+    	
+    var pedDTO = new pedidoDTO();
+    
+    var userDTO  =  UserDTO.converttoDTO(pedido.getCliente());
+    
+      pedDTO.setId(pedido.getId());
+      pedDTO.setData(pedido.getData());  
+      pedDTO.setDesconto(pedido.getDesconto());
+      pedDTO.setValor_total(pedido.getValor_Total());
+      pedDTO.setQuantidade(pedido.getQuantidade());
+      pedDTO.setStatus(pedido.getStatus());
+      
+      pedDTO.setUserDTo(userDTO);;
+      
+      return pedDTO;
+      
+      
+      
+    	
     }
+   
 
 }
 

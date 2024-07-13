@@ -48,6 +48,17 @@ public class Pedidos implements Serializable {
 	@Column(name="valor_total")
 	private  double valor_Total;
 	
+public Pedidos(int id,LocalDate data, int quantidade, double desconto,String status, double valor_total) {
+		
+		this.id = id;
+		this.data = data;
+		this.quantidade = quantidade;
+		this.desconto = desconto;
+        this.status = status;
+        this.valor_Total = valor_total;
+		
+	}
+	
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
 	private User cliente;

@@ -1,27 +1,28 @@
 package com.back_LimpPlast.service.pedido;
 
+import com.back_LimpPlast.dto.pedidoDTO;
 import com.back_LimpPlast.model.Pedidos;
 import com.back_LimpPlast.model.itens_Pedido;
 
 public class configuracaoPedido {
 
-	public static void calculaQuntidadeItens(Pedidos pedido) {
+	public static void calculaQuntidadeItens(pedidoDTO pDTO) {
 
 		int totalQuantidade = pedido.getItens().stream().mapToInt(itens_Pedido::getQuantidade).sum();
 
 		pedido.setQuantidade(totalQuantidade);
 	}
 
-	public static void calcularPedido(Pedidos pedido) {
+	public static void calcularPedido(pedidoDTO pDTO) {
 
-		Double valor = pedido.getItens().stream()
+		Double valor = pDTO;.getItens().stream()
 				.mapToDouble(item ->  item.getValorItens()).sum();
 
 		pedido.setValor_Total(valor);
 
 	}
 
-	public static void calcularDesconto(Pedidos pedido) {
+	public static void calcularDesconto(pedidoDTO pDTO) {
           
 		double desconto = 0;
 		double valor = pedido.getValor_Total();
@@ -42,7 +43,7 @@ public class configuracaoPedido {
 		}
 	}
 	
-	public static void calcularValorItens(Pedidos pedido){
+	public static void calcularValorItens(pedidoDTO pDTO){
 		
 		  
 	      

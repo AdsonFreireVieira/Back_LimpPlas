@@ -50,9 +50,7 @@ public class Itens_Pedido_DTO {
 
 
 
-	private static <R> R toPedidoDTO(itens_Pedido itens_pedido1) {
-		return null;
-	}
+
 	
 	
 	
