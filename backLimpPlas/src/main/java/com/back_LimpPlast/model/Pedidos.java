@@ -48,6 +48,10 @@ public class Pedidos implements Serializable {
 	@Column(name="valor_total")
 	private  double valor_Total;
 	
+	public Pedidos() {
+		// TODO Auto-generated constructor stub
+	}
+	
 public Pedidos(int id,LocalDate data, int quantidade, double desconto,String status, double valor_total) {
 		
 		this.id = id;

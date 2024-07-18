@@ -19,27 +19,29 @@ public class pedidoServiceImpl implements IServicePedido {
 
 	@Override
 	public pedidoDTO cadastrarNovo(pedidoDTO pDTO) {
-
-		pedido.setQuantidade(0);
         
 		
         
-		for (itens_Pedido item : pedido.getItens()) {
+		for (itens_Pedido item : pDTO.getItensDTO()) {
 			
-			item.setPedidos(pedido);
+			item.setPedidos(pDTO);
 		}
-            configuracaoPedido.calculaQuntidadeItens(pedido);
+            configuracaoPedido.calculaQuntidadeItens(pDTO);
 			
-			configuracaoPedido.calcularValorItens(pedido);
-			configuracaoPedido.calcularPedido(pedido);
-			configuracaoPedido.calcularDesconto(pedido);
-		return dao.save(pedido);
+			configuracaoPedido.calcularValorItens(pDTO);
+			configuracaoPedido.calcularPedido(pDTO);
+			configuracaoPedido.calcularDesconto(pDTO);
+			
+			
+			var pedidos = pedidoDTO.convertPedidos(pDTO);
+			
+		return dao.save(pedidos);
 	}
 
 	@Override
 	public pedidoDTO alterarPedido(pedidoDTO alterar) {
 
-		for (itens_Pedido itens : alterar.getItens()) {
+		for (itens_Pedido itens : alterar.getItensDTO()) {
 
 			itens.setPedidos(alterar);
 		}

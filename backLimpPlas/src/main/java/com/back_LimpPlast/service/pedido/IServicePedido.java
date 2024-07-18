@@ -7,9 +7,9 @@ import com.back_LimpPlast.model.Pedidos;
 
 public interface IServicePedido {
 	
-	public  pedidoDTO cadastrarNovo(Pedidos pedido);
+	public  pedidoDTO cadastrarNovo(pedidoDTO pedido);
 	
-	public pedidoDTO alterarPedido(Pedidos alterar);
+	public pedidoDTO alterarPedido(pedidoDTO alterar);
 	
 	public List<pedidoDTO>  listarPedido();
 	

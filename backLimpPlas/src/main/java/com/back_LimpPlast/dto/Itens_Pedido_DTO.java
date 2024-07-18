@@ -46,14 +46,34 @@ public class Itens_Pedido_DTO {
 	public void setPedidoDTO(pedidoDTO pedidoDTO) {
 		this.pedidoDTO = pedidoDTO;
 	}
-
-
-
-
-
 	
-	
-	
+	public Itens_Pedido_DTO() {
+		
+	}
 	
 
-}
+	public static  Itens_Pedido_DTO convertToParaItensDTO(itens_Pedido  itens) {
+		
+		var itensDTO = new Itens_Pedido_DTO();
+		
+		new  ProdutoDTO();
+		
+		 
+		
+		itensDTO.setId_Itens(itens.getId());
+		itensDTO.setQuantidade(itens.getQuantidade());
+		itensDTO.setValor_itens(itens.getValorItens());
+		itensDTO.setProdutoDTO(ProdutoDTO.toDTO(itens.getProduto()));
+		itensDTO.setPedidoDTO(itens.getPedidos());
+		;
+	}
+	
+	public static List<Itens_Pedido_DTO> convertToItensDTO(List<itens_Pedido> itens){
+		
+		return itens.stream().map(Itens_Pedido_DTO  :: convertToParaItensDTO).collect(Collectors.toList());
+	}
+	
+	
+	}
+	
+	

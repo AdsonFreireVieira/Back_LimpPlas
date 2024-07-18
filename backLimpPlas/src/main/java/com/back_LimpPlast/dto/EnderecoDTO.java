@@ -28,9 +28,9 @@ public class EnderecoDTO {
 	   
    }
    
-     public static EnderecoDTO toDTO(Endereco endereco) {
-    	 return new EnderecoDTO(endereco.getBairro(),endereco.getRua(),endereco.getCidade());
-     }
+   public static EnderecoDTO toDTO(Endereco endereco) {
+  	 return new EnderecoDTO(endereco.getBairro(),endereco.getRua(),endereco.getCidade());
+   }
 	
      
      public static List<EnderecoDTO> convertListDTO(List<Endereco> endereco){
