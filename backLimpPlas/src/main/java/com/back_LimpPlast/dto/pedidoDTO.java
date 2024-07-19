@@ -90,17 +90,19 @@ public class pedidoDTO {
 	
 	
 	
-	public static Pedidos convertPedidos(pedidoDTO pedidosDTO) {
+	public static Pedidos convertPedidos(pedidoDTO pDTO) {
 		
 		Pedidos pedidos = new Pedidos();
+	
 		
-		pedidos.setId(pedidosDTO.getId());
-		pedidos.setData(pedidosDTO.getData());
-		pedidos.setValor_Total(pedidosDTO.getValor_total());
-		pedidos.setDesconto(pedidosDTO.getDesconto());
-		pedidos.setQuantidade(pedidosDTO.getQuantidade());
-		pedidos.setStatus(pedidosDTO.getStatus());
-		pedidos.setItens(pedidosDTO.);
+		pedidos.setId(pDTO.getId());
+		pedidos.setData(pDTO.getData());
+		pedidos.setValor_Total(pDTO.getValor_total());
+		pedidos.setDesconto(pDTO.getDesconto());
+		pedidos.setQuantidade(pDTO.getQuantidade());
+		pedidos.setStatus(pDTO.getStatus());
+		pedidos.setItens(Itens_Pedido_DTO.convertToItens(pDTO.getItensDTO()));
+		
 		
 		return pedidos;
 	}
@@ -117,7 +119,7 @@ public class pedidoDTO {
 		pedDTO.setValor_total(pedido.getValor_Total());
 		pedDTO.setQuantidade(pedido.getQuantidade());
 		pedDTO.setStatus(pedido.getStatus());
-
+        pedDTO.setItensDTO(Itens_Pedido_DTO.convertToItensDTO(pedido.getItens()));
 		pedDTO.setUserDTo(userDTO);
 		
 

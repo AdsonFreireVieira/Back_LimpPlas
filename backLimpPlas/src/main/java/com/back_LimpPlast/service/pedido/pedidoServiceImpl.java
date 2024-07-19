@@ -2,14 +2,13 @@ package com.back_LimpPlast.service.pedido;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.back_LimpPlast.dao.PedidoDao;
+import com.back_LimpPlast.dto.Itens_Pedido_DTO;
 import com.back_LimpPlast.dto.pedidoDTO;
-import com.back_LimpPlast.model.Pedidos;
-import com.back_LimpPlast.model.Produtos;
-import com.back_LimpPlast.model.itens_Pedido;
 
 @Component
 public class pedidoServiceImpl implements IServicePedido {
@@ -22,9 +21,9 @@ public class pedidoServiceImpl implements IServicePedido {
         
 		
         
-		for (itens_Pedido item : pDTO.getItensDTO()) {
+		for (Itens_Pedido_DTO item : pDTO.getItensDTO()) {
 			
-			item.setPedidos(pDTO);
+			item.setPedidoDTO(pDTO);
 		}
             configuracaoPedido.calculaQuntidadeItens(pDTO);
 			
@@ -35,29 +34,33 @@ public class pedidoServiceImpl implements IServicePedido {
 			
 			var pedidos = pedidoDTO.convertPedidos(pDTO);
 			
-		return dao.save(pedidos);
+			
+		return  pedidoDTO.convertDTO(dao.save(pedidos)) ;
 	}
 
 	@Override
 	public pedidoDTO alterarPedido(pedidoDTO alterar) {
 
-		for (itens_Pedido itens : alterar.getItensDTO()) {
+		for (Itens_Pedido_DTO itens : alterar.getItensDTO()) {
 
-			itens.setPedidos(alterar);
+			itens.setPedidoDTO(alterar);
 		}
-		return dao.save(alterar);
+		
+		var  pedido = pedidoDTO.convertPedidos(alterar);
+		
+		return pedidoDTO.convertDTO(dao.save(pedido));
 	}
 
 	@Override
 	public List<pedidoDTO> listarPedido() {
 		// TODO Auto-generated method stub
-		return dao.findAll();
+		return  pedidoDTO.toListDTO(dao.findAll());
 	}
 
 	@Override
 	public pedidoDTO buscarPorId(int id) {
 
-		return dao.findById(id).orElse(null);
+		return  pedidoDTO.convertDTO(dao.findById(id).orElse(null));
 	}
 
 	@Override

@@ -29,7 +29,7 @@ public class pedidoController {
 	@PostMapping
 	public ResponseEntity<pedidoDTO> cadastrarNovo(@RequestBody pedidoDTO pDTO) {
 
-		Pedidos ped = service.cadastrarNovo(pedido);
+		pedidoDTO ped = service.cadastrarNovo(pDTO);
 
 		if (ped != null) {
 
@@ -49,9 +49,9 @@ public class pedidoController {
 	@PutMapping("/{id}")
 	public ResponseEntity<pedidoDTO> alterarPedido(@RequestBody pedidoDTO pDTO, @PathVariable int id) {
 
-		pedido.setId(id);
+		pDTO.setId(id);
 
-		Pedidos ped = service.alterarPedido(pedido);
+		pedidoDTO ped = service.alterarPedido(pDTO);
 
 		if (ped != null) {
 
@@ -65,7 +65,7 @@ public class pedidoController {
 	public ResponseEntity<pedidoDTO> buscarPorId(@RequestBody Pedidos pedido, @PathVariable int id) {
 
 		pedido.setId(id);
-		Pedidos ped = service.buscarPorId(id);
+		pedidoDTO ped = service.buscarPorId(id);
 		if (ped != null) {
 			return ResponseEntity.ok(ped);
 		}
