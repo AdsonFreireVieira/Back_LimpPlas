@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.back_LimpPlast.dao.ProdutoDao;
 import com.back_LimpPlast.dto.ProdutoDTO;
+import com.back_LimpPlast.model.Produtos;
 
 
 @Component
@@ -18,20 +19,21 @@ public class ProdutoServiceImpl implements IProdutoService {
 
 	@Override
 	public ResponseEntity<ProdutoDTO> cadastrarNovo(ProdutoDTO novo) {
+          
+		
+	     var  produto = ProdutoDTO.convertParaProduto(novo);
+	 
+	       var pDTO =  ProdutoDTO.convertParaProdutoDTO(dao.save(produto));
 
-		var produto = ProdutoDTO.convertToProduto(novo);
-
-		var produtoDTO = ProdutoDTO.convertTOProdutoDTO(dao.save(produto));
-
-		return ResponseEntity.ok().body(produtoDTO);
+		return ResponseEntity.ok().body(pDTO);
 	}
 
 	@Override
 	public ProdutoDTO alterarProoduto(ProdutoDTO alterar) {
 
-		var produto = ProdutoDTO.convertToProduto(alterar);
+		var produto = ProdutoDTO.convertParaProduto(alterar);
 
-		return ProdutoDTO.convertTOProdutoDTO(dao.save(produto));
+		return ProdutoDTO.convertParaProdutoDTO(dao.save(produto));
 	}
 
 	@Override
@@ -43,14 +45,14 @@ public class ProdutoServiceImpl implements IProdutoService {
 	@Override
 	public List<ProdutoDTO> listarProdutos() {
 
-		return ProdutoDTO.convertList(dao.findAll());
+		return ProdutoDTO.convertLisDTO(dao.findAll());
 				
 	}
 
 	@Override
 	public ProdutoDTO BuscarPorId(Integer id) {
 
-		return   ProdutoDTO.convertTOProdutoDTO(dao.findById(id).orElse(null));
+		return   ProdutoDTO.convertParaProdutoDTO(dao.findById(id).orElse(null));
 	}
 
 }

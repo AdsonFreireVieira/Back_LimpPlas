@@ -4,6 +4,7 @@
 import java.io.Serializable;
 import java.util.List;
 
+import com.back_LimpPlast.dto.ProdutoDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
@@ -88,5 +89,11 @@ public class itens_Pedido implements Serializable {
 		this.quantidade = quantidade;
 	}
 	
+public static  ProdutoDTO  toDTO(Produtos produto){
+		
+		
+		return new ProdutoDTO();
 	
+		
+	}
 }

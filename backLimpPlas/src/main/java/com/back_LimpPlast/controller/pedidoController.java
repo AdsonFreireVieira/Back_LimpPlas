@@ -11,12 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.back_LimpPlast.dto.pedidoDTO;
 import com.back_LimpPlast.model.Pedidos;
-import com.back_LimpPlast.model.itens_Pedido;
 import com.back_LimpPlast.service.pedido.IServicePedido;
 
 @RestController
@@ -27,9 +25,9 @@ public class pedidoController {
 	private IServicePedido service;
 
 	@PostMapping
-	public ResponseEntity<pedidoDTO> cadastrarNovo(@RequestBody pedidoDTO pDTO) {
+	public ResponseEntity<Pedidos> cadastrarNovo(@RequestBody Pedidos pDTO) {
 
-		pedidoDTO ped = service.cadastrarNovo(pDTO);
+		Pedidos ped = service.cadastrarNovo(pDTO);
 
 		if (ped != null) {
 

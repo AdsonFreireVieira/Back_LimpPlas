@@ -1,15 +1,14 @@
 package com.back_LimpPlast.service.cliente;
 
 import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.back_LimpPlast.dao.UserDao;
 import com.back_LimpPlast.dto.UserDTO;
-import com.back_LimpPlast.model.User;
+
 
 @Service
 public class ServiceUserImpl implements UserService {
@@ -20,33 +19,33 @@ public class ServiceUserImpl implements UserService {
 	@Override
 	public UserDTO cadastrarNovo(UserDTO userDTO) {
 
-		var user = UserDTO.converttoUser(userDTO);
+		var user = UserDTO.convertToUser(userDTO);
 
 		dao.save(user);
 
-		return UserDTO.converttoDTO(user);
+		return UserDTO.convertToUserDTO(user);
 	}
 
 	@Override
 	public UserDTO alterarDados(UserDTO userDTO) {
 
-		var user = UserDTO.converttoUser(userDTO);
+		var user = UserDTO.convertToUser(userDTO);
 
 		dao.save(user);
 
-		return UserDTO.converttoDTO(user);
+		return UserDTO.convertToUserDTO(user);
 	}
 
 	@Override
 	public List<UserDTO> ListarTodos() {
 
-		return dao.findAll().stream().map(UserDTO::toDTO).collect(Collectors.toList());
+		return UserDTO.convertToListDTO( dao.findAll());
 	}
 
 	@Override
 	public UserDTO buscarporNome(String nome) {
 
-		return UserDTO.converttoDTO(dao.findByNome(nome));
+		return UserDTO.convertToUserDTO(dao.findByNome(nome));
 	}
 
 	@Override
@@ -59,7 +58,7 @@ public class ServiceUserImpl implements UserService {
 	@Override
 	public UserDTO buscarPorId(int id) {
 
-		return UserDTO.converttoDTO(dao.findById(id).orElse(null));
+		return UserDTO.convertToUserDTO(dao.findById(id).orElse(null));
 	}
 
 }

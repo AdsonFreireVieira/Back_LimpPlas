@@ -8,83 +8,44 @@ import com.back_LimpPlast.model.Produtos;
 public class ProdutoDTO {
 	
 	private Integer id;
-	private  String nome;
-	private double peso;
-	private int unidades;
 	private String cor;
-	private int  litros;
-	private int quantidades;
-	private String medida;
-	private double valor;
-	
-	
-	
-	
-	public double getValor() {
-		return valor;
-	}
-
-
-	public void setValor(double valor) {
-		this.valor = valor;
-	}
-
-
-	public String getMedida() {
-		return medida;
-	}
-
-
-	public void setMedida(String medida) {
-		this.medida = medida;
-	}
-
-
-	public int getLitros() {
-		return litros;
-	}
-
-
-	public void setLitros(int litros) {
-		this.litros = litros;
-	}
-
-
+	private int litros;
+    private String medida;
+     private String nome;
+     private double peso;
+     private int quantidade;
+     private int unidades;
+     private double valor;
+     
+     
+     
 	public Integer getId() {
 		return id;
 	}
-
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-
+	public String getCor() {
+		return cor;
+	}
+	public void setCor(String cor) {
+		this.cor = cor;
+	}
+	public int getLitros() {
+		return litros;
+	}
+	public void setLitros(int litros) {
+		this.litros = litros;
+	}
+	public String getMedida() {
+		return medida;
+	}
+	public void setMedida(String medida) {
+		this.medida = medida;
+	}
 	public String getNome() {
 		return nome;
 	}
-	
-	
-	public ProdutoDTO() {
-		
-	}
-	
-	
-	
-	
-	public static  ProdutoDTO  toDTO(Produtos produto){
-		
-		
-		return new ProdutoDTO();
-	
-		
-	}
-	
-	public static List<ProdutoDTO> convertList(List<Produtos> listProdutos){
-		
-		return listProdutos.stream().map(ProdutoDTO :: toDTO).collect(Collectors.toList());
-	}
-	
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
@@ -94,66 +55,86 @@ public class ProdutoDTO {
 	public void setPeso(double peso) {
 		this.peso = peso;
 	}
+	public int getQuantidade() {
+		return quantidade;
+	}
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
 	public int getUnidades() {
 		return unidades;
 	}
 	public void setUnidades(int unidades) {
 		this.unidades = unidades;
 	}
-	public String getCor() {
-		return cor;
+	public double getValor() {
+		return valor;
 	}
-	public void setCor(String cor) {
-		this.cor = cor;
+	public void setValor(double valor) {
+		this.valor = valor;
 	}
-	public int getQuantidades() {
-		return quantidades;
+	public ProdutoDTO() {
+		// TODO Auto-generated constructor stub
 	}
-	public void setQuantidades(int quantidades) {
-		this.quantidades = quantidades;
-	}
-	
-	public static Produtos convertToProduto(ProdutoDTO  produtoDTO) {
+     
+	public ProdutoDTO(Produtos produto) {
 		
-		Produtos  produto = new Produtos();
+		this.id = produto.getId();
+		this.cor = produto.getCor();
+		this.litros = produto.getLitros();
+		this.nome = produto.getNome();
+		this.peso = produto.getPeso();
+		this.quantidade = produto.getQuantidade();
+		this.medida = produto.getMedida();
+		this.unidades = produto.getUnidades();
+		this.valor= produto.getValor();
 		
-		produto.setId(produtoDTO.getId());
-		produto.setCor(produtoDTO.getCor());
-		produto.setLitros(produtoDTO.getLitros());
-		produto.setMedida(produtoDTO.getMedida());
-		produto.setNome(produtoDTO.getNome());
-		produto.setQuantidade(produtoDTO.getQuantidades());
-		produto.setUnidades(produtoDTO.getUnidades());
-		produto.setValor(produtoDTO.getValor());
-		
-		return produto;
 		
 	}
 	
-	public static ProdutoDTO convertTOProdutoDTO(Produtos produtos) {
-		
-		ProdutoDTO produtoDTO = new ProdutoDTO();
-		
-		produtoDTO.setId(produtos.getId());
-		produtoDTO.setCor(produtos.getCor());
-		produtoDTO.setLitros(produtos.getLitros());
-		produtoDTO.setMedida(produtos.getMedida());
-		produtoDTO.setNome(produtos.getNome());
-		produtoDTO.setQuantidades(produtos.getQuantidade());
-		produtoDTO.setUnidades(produtos.getUnidades());
-		produtoDTO.setValor(produtos.getValor());
-		
-		return produtoDTO;
+	public static ProdutoDTO convertParaProdutoDTO(Produtos produto) {
+	   
+		 ProdutoDTO produtoDTO = new ProdutoDTO();
+		 
+		 produtoDTO.setId(produto.getId());
+		 produtoDTO.setCor(produto.getCor());
+		 produtoDTO.setLitros(produto.getLitros());
+		 produtoDTO.setMedida(produto.getMedida());
+		 produtoDTO.setNome(produto.getNome());
+		 produtoDTO.setPeso(produto.getPeso());
+		 produtoDTO.setQuantidade(produto.getQuantidade());
+		 produtoDTO.setUnidades(produto.getUnidades());
+		 produtoDTO.setValor(produto.getValor());
+		 
+		 return  produtoDTO;
+	}
+	
+	public static Produtos convertParaProduto(ProdutoDTO produtoDTO) {
+		   
+		 Produtos produto = new Produtos();
+		 
+		 produto.setId(produtoDTO.getId());
+		 produto.setCor(produtoDTO.getCor());
+		 produto.setLitros(produtoDTO.getLitros());
+		 produto.setMedida(produtoDTO.getMedida());
+		 produto.setNome(produtoDTO.getNome());
+		 produto.setPeso(produtoDTO.getPeso());
+		 produto.setQuantidade(produtoDTO.getQuantidade());
+		 produto.setUnidades(produtoDTO.getUnidades());
+		 produto.setValor(produtoDTO.getValor());
+		 
+		 return  produto;
+
 	}
 	
 	
+	public static  List<ProdutoDTO> convertLisDTO(List<Produtos> listProdutos){
+		
+		return listProdutos.stream().map(ProdutoDTO :: convertParaProdutoDTO).collect(Collectors.toList());
+		
+	}
 	
 	
-	
-	
-	
-	
-	
-	
+     
 
 }

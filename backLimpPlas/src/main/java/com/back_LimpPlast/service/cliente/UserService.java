@@ -3,7 +3,6 @@ package com.back_LimpPlast.service.cliente;
 import java.util.List;
 
 import com.back_LimpPlast.dto.UserDTO;
-import com.back_LimpPlast.model.User;
 
 public interface UserService {
 	
