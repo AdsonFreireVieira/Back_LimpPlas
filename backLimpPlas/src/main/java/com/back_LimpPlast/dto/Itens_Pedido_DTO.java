@@ -66,7 +66,9 @@ public class Itens_Pedido_DTO {
 		itens_DTO.setQuantidade(itens.getQuantidade());
 		itens_DTO.setValorItens(itens.getValorItens());
 		itens_DTO.setProduto_DTO(ProdutoDTO.convertParaProdutoDTO(itens.getProduto()));
-		itens_DTO.setPedidoDTO(itens.getPedidos());
+		itens_DTO.setPedidoDTO(Pedido_DTO.convertToPedidoDTO(itens.getPedidos()));
+		
+		return itens_DTO;
 
 	}
 
@@ -78,7 +80,8 @@ public class Itens_Pedido_DTO {
 		itens_Pedido.setQuantidade(itensDTO.getQuantidade());
 		itens_Pedido.setValorItens(itensDTO.getValorItens());
 		itens_Pedido.setProduto(ProdutoDTO.convertParaProduto(itensDTO.getProduto_DTO()));
-		itens_Pedido.setPedidos(itensDTO.getPedidoDTO());
+		itens_Pedido.setPedidos(Pedido_DTO.convetToPedido(itensDTO.getPedidoDTO()));
+		return itens_Pedido;
 
 	}
 

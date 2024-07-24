@@ -2,6 +2,8 @@ package com.back_LimpPlast.dto;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import com.back_LimpPlast.model.Pedidos;
 
@@ -103,7 +105,7 @@ public class Pedido_DTO {
 	}
 
        
-	public static  Pedidos convetToItensPedido( Pedido_DTO pedidoDTO) {
+	public static  Pedidos convetToPedido( Pedido_DTO pedidoDTO) {
 		
 		var pedido = new Pedidos();
 		
@@ -121,6 +123,11 @@ public class Pedido_DTO {
         
        
 		
+	}
+	
+	public static List<Pedido_DTO> convertListToDTO(List<Pedidos> pedidos){
+		
+		return pedidos.stream().map(Pedido_DTO :: convertToPedidoDTO).collect(Collectors.toList());
 	}
 
 
