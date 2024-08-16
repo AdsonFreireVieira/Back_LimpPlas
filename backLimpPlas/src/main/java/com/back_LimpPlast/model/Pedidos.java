@@ -46,7 +46,7 @@ public class Pedidos implements Serializable {
 	private String status;
 	
 	@Column(name="valor_total")
-	private  double valor_Total;
+	private  double valorTotal;
 	
 	public Pedidos() {
 		// TODO Auto-generated constructor stub
@@ -59,7 +59,7 @@ public Pedidos(int id,LocalDate data, int quantidade, double desconto,String sta
 		this.quantidade = quantidade;
 		this.desconto = desconto;
         this.status = status;
-        this.valor_Total = valor_total;
+        this.valorTotal = valor_total;
 		
 	}
 	
@@ -73,6 +73,10 @@ public Pedidos(int id,LocalDate data, int quantidade, double desconto,String sta
 	
 	
 	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	public List<itens_Pedido> getItens() {
 		return itens;
 	}
@@ -90,11 +94,11 @@ public Pedidos(int id,LocalDate data, int quantidade, double desconto,String sta
 	}
 
 	public double getValor_Total() {	
-			return valor_Total;
+			return valorTotal;
 	}
 
 	public void setValor_Total(double valor_Total) {
-		this.valor_Total = valor_Total;
+		this.valorTotal = valor_Total;
 	}
 	
 	public Integer getId() {

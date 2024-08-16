@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.back_LimpPlast.dto.EnderecoDTO;
 import com.back_LimpPlast.service.endereco.IServiceEndereco;
+
+import dto.EnderecoDTO;
 
 @RestController
 @RequestMapping("/endereco")

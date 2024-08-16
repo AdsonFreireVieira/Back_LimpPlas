@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.back_LimpPlast.dto.Pedido_DTO;
+
 import com.back_LimpPlast.model.Pedidos;
 import com.back_LimpPlast.service.pedido.IServicePedido;
 
@@ -25,9 +25,9 @@ public class pedidoController {
 	private IServicePedido service;
 
 	@PostMapping
-	public ResponseEntity<Pedido_DTO> cadastrarNovo(@RequestBody Pedido_DTO pDTO) {
+	public ResponseEntity<PedidoDTO> cadastrarNovo(@RequestBody PedidoDTO pDTO) {
 
-		Pedido_DTO pedidDTO = service.cadastrarNovo(pDTO);
+		PedidoDTO pedidDTO = service.cadastrarNovo(pDTO);
 
 		if (pedidDTO != null) {
 
@@ -38,18 +38,18 @@ public class pedidoController {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<Pedido_DTO>> listarTodos() {
+	public ResponseEntity<List<PedidoDTO>> listarTodos() {
 
 		return ResponseEntity.ok(service.listarPedido());
 
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Pedido_DTO> alterarPedido(@RequestBody Pedido_DTO pDTO, @PathVariable int id) {
+	public ResponseEntity<PedidoDTO> alterarPedido(@RequestBody PedidoDTO pDTO, @PathVariable int id) {
 
 		pDTO.setId(id);
 
-		Pedido_DTO ped = service.alterarPedido(pDTO);
+		PedidoDTO ped = service.alterarPedido(pDTO);
 
 		if (ped != null) {
 
@@ -60,16 +60,10 @@ public class pedidoController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Pedido_DTO> buscarPorId(@RequestBody Pedidos pedido, @PathVariable int id) {
+	public ResponseEntity<PedidoDTO> buscarPorId(@RequestBody PedidoDTO pedidoDTO, @PathVariable int id) {
 
-		pedido.setId(id);
-		Pedido_DTO ped = service.buscarPorId(id);
-		if (ped != null) {
-			return ResponseEntity.ok(ped);
-		}
-
-		return ResponseEntity.badRequest().build();
-
+		return ResponseEntity.ok(service.buscarPorId(id));
+		
 	}
 
 	@DeleteMapping("/{id}")

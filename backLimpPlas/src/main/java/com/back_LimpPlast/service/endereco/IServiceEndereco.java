@@ -2,8 +2,9 @@ package com.back_LimpPlast.service.endereco;
 
 import java.util.List;
 
-import com.back_LimpPlast.dto.EnderecoDTO;
 import com.back_LimpPlast.model.Endereco;
+
+import dto.EnderecoDTO;
 
 public interface IServiceEndereco {
 	

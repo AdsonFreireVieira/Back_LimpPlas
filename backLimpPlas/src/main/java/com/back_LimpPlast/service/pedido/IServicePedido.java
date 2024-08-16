@@ -2,17 +2,17 @@ package com.back_LimpPlast.service.pedido;
 
 import java.util.List;
 
-import com.back_LimpPlast.dto.Pedido_DTO;
+import com.back_LimpPlast.dto.PedidoDTO;
 
 public interface IServicePedido {
 	
-	public  Pedido_DTO cadastrarNovo(Pedido_DTO pedido);
+	public  PedidoDTO cadastrarNovo(PedidoDTO pedido);
 	
-	public Pedido_DTO alterarPedido(Pedido_DTO alterar);
+	public PedidoDTO alterarPedido(PedidoDTO alterar);
 	
-	public List<Pedido_DTO>  listarPedido();
+	public List<PedidoDTO>  listarPedido();
 	
-	public Pedido_DTO buscarPorId(int id);
+	public PedidoDTO buscarPorId(int id);
 	
 	public void deletarPedido(int id);
 	

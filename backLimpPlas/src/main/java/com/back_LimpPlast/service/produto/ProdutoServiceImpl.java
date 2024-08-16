@@ -7,8 +7,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import com.back_LimpPlast.dao.ProdutoDao;
-import com.back_LimpPlast.dto.ProdutoDTO;
 import com.back_LimpPlast.model.Produtos;
+
+import br.com.Produto.model.Produto;
+import dto.ProdutoDTO;
+import mapper.GenericModelMapper;
 
 
 @Component
@@ -16,24 +19,31 @@ public class ProdutoServiceImpl implements IProdutoService {
 
 	@Autowired
 	private ProdutoDao dao;
-
+   
+	GenericModelMapper<ProdutoDTO, Produtos > mapper = new GenericModelMapper<>(Produtos.class);
+	
+	GenericModelMapper<Produtos, ProdutoDTO > mapperDTO = new GenericModelMapper<>(ProdutoDTO.class);
+	
 	@Override
-	public ResponseEntity<ProdutoDTO> cadastrarNovo(ProdutoDTO novo) {
-          
+	public ProdutoDTO cadastrarNovo(ProdutoDTO novo) {
 		
-	     var  produto = ProdutoDTO.convertParaProduto(novo);
-	 
-	       var pDTO =  ProdutoDTO.convertParaProdutoDTO(dao.save(produto));
-
-		return ResponseEntity.ok().body(pDTO);
+        
+        Produtos prod = mapper.map(novo);
+        dao.save(prod);
+       
+        
+         
+		return mapperDTO.map(prod) ;
 	}
 
 	@Override
 	public ProdutoDTO alterarProoduto(ProdutoDTO alterar) {
-
-		var produto = ProdutoDTO.convertParaProduto(alterar);
-
-		return ProdutoDTO.convertParaProdutoDTO(dao.save(produto));
+        
+		Produtos prod = mapper.map(alterar);
+		
+		dao.save(prod);
+           
+		return mapperDTO.map(prod);
 	}
 
 	@Override
@@ -45,14 +55,12 @@ public class ProdutoServiceImpl implements IProdutoService {
 	@Override
 	public List<ProdutoDTO> listarProdutos() {
 
-		return ProdutoDTO.convertLisDTO(dao.findAll());
-				
+		return mapperDTO.mapList(dao.findAll());
 	}
 
 	@Override
 	public ProdutoDTO BuscarPorId(Integer id) {
 
-		return   ProdutoDTO.convertParaProdutoDTO(dao.findById(id).orElse(null));
+		return mapperDTO.map(dao.findById(id).orElse(null));
 	}
-
 }

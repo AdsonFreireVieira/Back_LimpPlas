@@ -19,10 +19,8 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="tbl_itens_pedidos")
-public class itens_Pedido implements Serializable {
+public class itens_Pedido {
 	
-	
-	private static final long serialVersionUID = 1L;
 
 
 	@Id
@@ -68,18 +66,16 @@ public class itens_Pedido implements Serializable {
 		this.produto = produto;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	public Pedidos getPedidos() {
 		return pedidos;
 	}
-	public void setPedidos(Pedidos pedidos) {
-		this.pedidos = pedidos;
-	}
+	
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public void setPedidos(Pedidos pedidos) {
+		this.pedidos = pedidos;
 	}
 
 	public int getQuantidade() {
@@ -87,13 +83,6 @@ public class itens_Pedido implements Serializable {
 	}
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
-	}
 	
-public static  ProdutoDTO  toDTO(Produtos produto){
-		
-		
-		return new ProdutoDTO();
-	
-		
 	}
 }

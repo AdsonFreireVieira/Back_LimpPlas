@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.back_LimpPlast.dao.PedidoDao;
 import com.back_LimpPlast.dto.Itens_Pedido_DTO;
-import com.back_LimpPlast.dto.Pedido_DTO;
+import com.back_LimpPlast.dto.PedidoDTO;
 import com.back_LimpPlast.model.itens_Pedido;
 
 @Component
@@ -17,13 +17,13 @@ public class pedidoServiceImpl implements IServicePedido {
 	private PedidoDao dao;
 
 	@Override
-	public Pedido_DTO cadastrarNovo(Pedido_DTO pDTO) {
+	public PedidoDTO cadastrarNovo(PedidoDTO pDTO) {
         
 		
         
 		for (Itens_Pedido_DTO item : pDTO.getItens()) {
 			
-			item.setPedidoDTO(pDTO);
+			
 		}
             configuracaoPedido.calculaQuntidadeItens(pDTO);
 			
@@ -32,40 +32,39 @@ public class pedidoServiceImpl implements IServicePedido {
 			configuracaoPedido.calcularDesconto(pDTO);
 			
 			
-			var pedidos = Pedido_DTO.convetToPedido(pDTO);
+			var pedidos = PedidoDTO.convetToPedido(pDTO);
 			
 			
-		return  Pedido_DTO.convertToPedidoDTO(dao.save(pedidos)) ;
+		return  PedidoDTO.convertToPedidoDTO(dao.save(pedidos)) ;
 	}
 
 	@Override
-	public Pedido_DTO alterarPedido(Pedido_DTO alterar) {
+	public PedidoDTO alterarPedido(PedidoDTO alterar) {
     
 		 
 		
 		for ( Itens_Pedido_DTO itensDTO : alterar.getItens()){
          
-		  itensDTO.setPedidoDTO(alterar);
-		
+				
 		   
              
 		}
 		
-		var  pedido = Pedido_DTO.convetToPedido(alterar);
+		var  pedido = PedidoDTO.convetToPedido(alterar);
 		
-		return Pedido_DTO.convertToPedidoDTO(dao.save(pedido));
+		return PedidoDTO.convertToPedidoDTO(dao.save(pedido));
 	}
 
 	@Override
-	public List<Pedido_DTO> listarPedido() {
+	public List<PedidoDTO> listarPedido() {
 		// TODO Auto-generated method stub
-		return  Pedido_DTO.convertListToDTO(dao.findAll());
+		return  PedidoDTO.convertListToDTO(dao.findAll());
 	}
 
 	@Override
-	public Pedido_DTO buscarPorId(int id) {
+	public PedidoDTO buscarPorId(int id) {
 
-		return  Pedido_DTO.convertToPedidoDTO(dao.findById(id).orElse(null));
+		return  PedidoDTO.convertToPedidoDTO(dao.findById(id).orElse(null));
 	}
 
 	@Override

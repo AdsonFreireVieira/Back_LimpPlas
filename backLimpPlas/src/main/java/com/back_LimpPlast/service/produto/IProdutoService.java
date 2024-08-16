@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
-import com.back_LimpPlast.dto.ProdutoDTO;
+import dto.ProdutoDTO;
 
 
 public interface IProdutoService {
 	
-	public ResponseEntity<ProdutoDTO> cadastrarNovo(ProdutoDTO novo);
+	public ProdutoDTO cadastrarNovo(ProdutoDTO novo);
 	
 	public ProdutoDTO alterarProoduto(ProdutoDTO alterar);
 	
