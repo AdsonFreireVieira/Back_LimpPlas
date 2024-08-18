@@ -2,7 +2,9 @@ package com.back_LimpPlast.service.pedido;
 
 import java.util.List;
 
-import com.back_LimpPlast.dto.PedidoDTO;
+import dto.PedidoDTO;
+
+
 
 public interface IServicePedido {
 	

@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-import com.back_LimpPlast.model.Pedidos;
 import com.back_LimpPlast.service.pedido.IServicePedido;
+
+import dto.PedidoDTO;
 
 @RestController
 @RequestMapping("/pedido")
@@ -60,7 +60,7 @@ public class pedidoController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<PedidoDTO> buscarPorId(@RequestBody PedidoDTO pedidoDTO, @PathVariable int id) {
+	public ResponseEntity<PedidoDTO> buscarPorId(@PathVariable int id) {
 
 		return ResponseEntity.ok(service.buscarPorId(id));
 		

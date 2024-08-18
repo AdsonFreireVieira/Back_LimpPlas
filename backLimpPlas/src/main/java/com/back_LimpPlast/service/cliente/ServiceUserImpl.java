@@ -7,45 +7,56 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.back_LimpPlast.dao.UserDao;
-import com.back_LimpPlast.dto.UserDTO;
+import com.back_LimpPlast.model.User;
+
+import dto.UserDTO;
+import mapper.GenericModelMapper;
+
 
 
 @Service
 public class ServiceUserImpl implements UserService {
+	
+	GenericModelMapper<UserDTO , User>  mapperToUser =  new GenericModelMapper<>(User.class);
+	GenericModelMapper<User, UserDTO> mapperToDTO = new GenericModelMapper<>(UserDTO.class);
+	
 
 	@Autowired
 	private UserDao dao;
-
-	@Override
+	
+	
+@Override
 	public UserDTO cadastrarNovo(UserDTO userDTO) {
-
-		var user = UserDTO.convertToUser(userDTO);
-
-		dao.save(user);
-
-		return UserDTO.convertToUserDTO(user);
+         
+	 var  user =  mapperToUser.map(userDTO);
+	
+	return  mapperToDTO.map(dao.save(user));
+		
 	}
 
 	@Override
 	public UserDTO alterarDados(UserDTO userDTO) {
-
-		var user = UserDTO.convertToUser(userDTO);
-
-		dao.save(user);
-
-		return UserDTO.convertToUserDTO(user);
+		
+		var user = mapperToUser.map(userDTO);
+		
+          return mapperToDTO.map(dao.save(user));
+		
 	}
 
 	@Override
 	public List<UserDTO> ListarTodos() {
 
-		return UserDTO.convertToListDTO( dao.findAll());
+		  
+		return mapperToDTO.mapList(dao.findAll());
+		
 	}
 
 	@Override
 	public UserDTO buscarporNome(String nome) {
 
-		return UserDTO.convertToUserDTO(dao.findByNome(nome));
+		
+		return mapperToDTO.map(dao.findByNome(nome));
+		
 	}
 
 	@Override
@@ -58,7 +69,9 @@ public class ServiceUserImpl implements UserService {
 	@Override
 	public UserDTO buscarPorId(int id) {
 
-		return UserDTO.convertToUserDTO(dao.findById(id).orElse(null));
+		
+		return mapperToDTO.map(dao.findById(id).orElse(null));
+		
 	}
 
 }

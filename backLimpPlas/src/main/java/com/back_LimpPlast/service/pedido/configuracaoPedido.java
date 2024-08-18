@@ -1,6 +1,6 @@
 package com.back_LimpPlast.service.pedido;
 
-import com.back_LimpPlast.dto.PedidoDTO;
+import dto.PedidoDTO;
 
 public class configuracaoPedido {
 
@@ -16,26 +16,26 @@ public class configuracaoPedido {
 		Double valor = pDTO.getItens().stream()
 				.mapToDouble(item ->  item.getValorItens()).sum();
 
-		pDTO.setValor_total(valor);
+		pDTO.setValorTotal(valor);
 
 	}
 
 	public static void calcularDesconto(PedidoDTO pDTO) {
           
 		double desconto = 0;
-		double valor = pDTO.getValor_total();
+		double valor = pDTO.getValorTotal();
 		if (valor < 5000) {
 
 			 desconto = valor * 0.05;
 			  pDTO.setDesconto(desconto);
-			pDTO.setValor_total(valor - desconto);
+			pDTO.setValorTotal(valor - desconto);
 
 		}
 		else if(valor>=10000) {
 			
 			desconto = valor *0.10;
 			pDTO.setDesconto(desconto);
-			pDTO.setValor_total(valor - desconto); 
+			pDTO.setValorTotal(valor - desconto); 
 			
 		}
 	}

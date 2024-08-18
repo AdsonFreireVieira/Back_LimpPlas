@@ -1,5 +1,6 @@
 package dto;
 
+import br.com.Produto.dto.ClienteDto;
 import br.com.Produto.model.Cliente;
 
 public class EnderecoDTO {
@@ -10,7 +11,7 @@ public class EnderecoDTO {
 	private String estado;
 	private int numero;
 	private String rua;
-	private Cliente cliente;
+	private  UserDTO cliente;
 	private int cep;
 	public Integer getId() {
 		return id;
@@ -48,18 +49,21 @@ public class EnderecoDTO {
 	public void setRua(String rua) {
 		this.rua = rua;
 	}
-	public Cliente getCliente() {
-		return cliente;
-	}
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
+	
 	public int getCep() {
 		return cep;
 	}
 	public void setCep(int cep) {
 		this.cep = cep;
 	}
+	public UserDTO getCliente() {
+		return cliente;
+	}
+	public void setCliente(UserDTO cliente) {
+		this.cliente = cliente;
+	}
+	
+	
 	
 	
 	

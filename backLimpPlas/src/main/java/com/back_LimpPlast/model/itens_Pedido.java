@@ -1,10 +1,6 @@
 	package com.back_LimpPlast.model;
 
 
-import java.io.Serializable;
-import java.util.List;
-
-import com.back_LimpPlast.dto.ProdutoDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;

@@ -21,9 +21,7 @@ import jakarta.persistence.Table;
 @Table(name="tbl_pedidos")
 public class Pedidos implements Serializable {
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 
 
@@ -48,21 +46,6 @@ public class Pedidos implements Serializable {
 	@Column(name="valor_total")
 	private  double valorTotal;
 	
-	public Pedidos() {
-		// TODO Auto-generated constructor stub
-	}
-	
-public Pedidos(int id,LocalDate data, int quantidade, double desconto,String status, double valor_total) {
-		
-		this.id = id;
-		this.data = data;
-		this.quantidade = quantidade;
-		this.desconto = desconto;
-        this.status = status;
-        this.valorTotal = valor_total;
-		
-	}
-	
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
 	private User cliente;
@@ -72,17 +55,25 @@ public Pedidos(int id,LocalDate data, int quantidade, double desconto,String sta
 	private List<itens_Pedido> itens;
 	
 	
-	
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public Pedidos() {
+		// TODO Auto-generated constructor stub
 	}
-
+	
+	
 	public List<itens_Pedido> getItens() {
 		return itens;
 	}
 
 	public void setItens(List<itens_Pedido> itens) {
 		this.itens = itens;
+	}
+
+	public double getValorTotal() {
+		return valorTotal;
+	}
+
+	public void setValorTotal(double valorTotal) {
+		this.valorTotal = valorTotal;
 	}
 	
 	public User getCliente() {

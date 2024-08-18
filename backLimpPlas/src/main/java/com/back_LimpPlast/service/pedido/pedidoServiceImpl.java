@@ -6,23 +6,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.back_LimpPlast.dao.PedidoDao;
-import com.back_LimpPlast.dto.Itens_Pedido_DTO;
-import com.back_LimpPlast.dto.PedidoDTO;
+import com.back_LimpPlast.model.Pedidos;
 import com.back_LimpPlast.model.itens_Pedido;
+
+
+import dto.ItensPedidoDTO;
+import dto.PedidoDTO;
+import mapper.GenericModelMapper;
+
 
 @Component
 public class pedidoServiceImpl implements IServicePedido {
 
 	@Autowired
 	private PedidoDao dao;
+	
+          GenericModelMapper<PedidoDTO, Pedidos> mapperToPedido = new GenericModelMapper<>(Pedidos.class);
+	GenericModelMapper<Pedidos, PedidoDTO> mapperToPedidoDTO = new GenericModelMapper<>(PedidoDTO.class);
+	
 
 	@Override
 	public PedidoDTO cadastrarNovo(PedidoDTO pDTO) {
         
-		
         
-		for (Itens_Pedido_DTO item : pDTO.getItens()) {
+		for (ItensPedidoDTO items : pDTO.getItens()){
 			
+		  items.setPedido(pDTO);
 			
 		}
             configuracaoPedido.calculaQuntidadeItens(pDTO);
@@ -31,40 +40,47 @@ public class pedidoServiceImpl implements IServicePedido {
 			configuracaoPedido.calcularPedido(pDTO);
 			configuracaoPedido.calcularDesconto(pDTO);
 			
+			Pedidos pd = mapperToPedido.map(pDTO);
+	      
+		  return   mapperToPedidoDTO.map(dao.save(pd));
 			
-			var pedidos = PedidoDTO.convetToPedido(pDTO);
 			
 			
-		return  PedidoDTO.convertToPedidoDTO(dao.save(pedidos)) ;
+	
+		
 	}
 
 	@Override
 	public PedidoDTO alterarPedido(PedidoDTO alterar) {
-    
-		 
+     
 		
-		for ( Itens_Pedido_DTO itensDTO : alterar.getItens()){
+		for ( ItensPedidoDTO itens : alterar.getItens()){
          
 				
-		   
+		   itens.setPedido(alterar);
              
 		}
 		
-		var  pedido = PedidoDTO.convetToPedido(alterar);
+		 
+		Pedidos ped = mapperToPedido.map(alterar);
 		
-		return PedidoDTO.convertToPedidoDTO(dao.save(pedido));
+		 return mapperToPedidoDTO.map(dao.save(ped));
+		 
+  
+		
+		
 	}
 
 	@Override
 	public List<PedidoDTO> listarPedido() {
-		// TODO Auto-generated method stub
-		return  PedidoDTO.convertListToDTO(dao.findAll());
+		
+		return mapperToPedidoDTO.mapList(dao.findAll());
 	}
 
 	@Override
 	public PedidoDTO buscarPorId(int id) {
 
-		return  PedidoDTO.convertToPedidoDTO(dao.findById(id).orElse(null));
+		return  mapperToPedidoDTO.map(dao.findById(id).orElse(null));
 	}
 
 	@Override

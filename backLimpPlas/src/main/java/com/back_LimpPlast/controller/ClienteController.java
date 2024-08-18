@@ -3,8 +3,6 @@ package com.back_LimpPlast.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,9 +13,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.back_LimpPlast.dto.UserDTO;
-import com.back_LimpPlast.model.User;
+
 import com.back_LimpPlast.service.cliente.UserService;
+
+import dto.UserDTO;
 
 @Controller
 @RequestMapping("/cliente")
