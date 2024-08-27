@@ -16,8 +16,6 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="tbl_itens_pedidos")
 public class itens_Pedido {
-	
-
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

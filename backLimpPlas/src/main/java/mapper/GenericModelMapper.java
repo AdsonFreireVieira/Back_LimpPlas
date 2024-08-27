@@ -1,11 +1,9 @@
 package mapper;
 
-import java.lang.reflect.Type;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 
 public class GenericModelMapper<T,D> {
 	
@@ -24,8 +22,6 @@ public class GenericModelMapper<T,D> {
 	}
 	
 	public List<D> mapList(List<T> sourceList){
-		
-		Type listType = new TypeToken<List<D>>() {}.getType();
 		
 		return sourceList.stream().map(source -> modelMapper.map(source, destinationClass)).collect(Collectors.toList());
 	}
