@@ -9,6 +9,9 @@ public class UserDTO {
 	private int documento;
 	
 	
+	public UserDTO() {
+		// TODO Auto-generated constructor stub
+	}
 	public Integer getId() {
 		return id;
 	}

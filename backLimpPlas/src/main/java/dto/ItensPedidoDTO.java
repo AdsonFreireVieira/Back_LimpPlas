@@ -3,11 +3,11 @@ package dto;
 public class ItensPedidoDTO {
 
 	private Integer id;
-	
+	private int quantidade;
+	private Double valorItens;
 	private PedidoDTO  pedido;
     private ProdutoDTO produto;
-    private int quantidade;
-    private Double valorItens;
+   
     
     
 	public Integer getId() {

@@ -22,7 +22,7 @@ public class ServiceUserImpl implements UserService {
 	
 
 	@Autowired
-	private UserDao dao;
+	private UserDao dao; 
 	
 	
 @Override
