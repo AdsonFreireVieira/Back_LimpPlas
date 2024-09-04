@@ -63,11 +63,33 @@ class ClienteTeste {
 		UserDTO userdto = userService.buscarPorId(1);
 		
 		assertNotNull(userdto);
+
 		
-		   
+	
 		
 	}
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

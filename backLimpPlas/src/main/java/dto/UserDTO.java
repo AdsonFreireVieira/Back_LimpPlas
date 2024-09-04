@@ -9,6 +9,15 @@ public class UserDTO {
 	private int documento;
 	
 	
+	
+	public UserDTO(Integer id, String email, String nome, int telefone, int documento) {
+	
+		this.id = id;
+		this.email = email;
+		this.nome = nome;
+		this.telefone = telefone;
+		this.documento = documento;
+	}
 	public UserDTO() {
 		// TODO Auto-generated constructor stub
 	}
