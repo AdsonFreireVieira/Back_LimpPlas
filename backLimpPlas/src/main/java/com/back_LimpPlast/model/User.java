@@ -50,6 +50,7 @@ public User() {
 		this.documento = documento;
 	}
 
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
