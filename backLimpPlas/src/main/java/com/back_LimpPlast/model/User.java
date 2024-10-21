@@ -49,6 +49,13 @@ public User() {
 		this.telefone = telefone;
 		this.documento = documento;
 	}
+	public User( String nome, String email, int telefone, int documento) {
+	
+		this.nome = nome;
+		this.email = email;
+		this.telefone = telefone;
+		this.documento = documento;
+	}
 
 
 	public static long getSerialversionuid() {
