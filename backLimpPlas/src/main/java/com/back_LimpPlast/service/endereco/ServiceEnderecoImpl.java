@@ -8,8 +8,7 @@ import org.springframework.stereotype.Component;
 import com.back_LimpPlast.dao.EnderecoDao;
 import com.back_LimpPlast.model.Endereco;
 
-import dto.EnderecoDTO;
-import mapper.GenericModelMapper;
+
 
 
 @Component
@@ -17,49 +16,35 @@ public class ServiceEnderecoImpl implements IServiceEndereco {
 
 	@Autowired
 	private EnderecoDao dao;
-	
-	GenericModelMapper<Endereco, EnderecoDTO> mapperDTO = new GenericModelMapper<>(EnderecoDTO.class);
-	
-	GenericModelMapper<EnderecoDTO, Endereco> mapper = new GenericModelMapper<>(Endereco.class);
-
-	public EnderecoDTO cadastrarNovo(EnderecoDTO endereco) {
-		
-		var Endereco = mapper.map(endereco);
-		
-		return mapperDTO.map(dao.save(Endereco));
-}
 
 	@Override
-	public EnderecoDTO alterarEndereco(EnderecoDTO alterar) {
-		
-		var Enderecoalterar = mapper.map(alterar);
-		
-		
-		return mapperDTO.map(dao.save(Enderecoalterar));
-
-		
+	public Endereco cadastrarNovo(Endereco endereco) {
+		 
+		return dao.save(endereco);
 	}
 
 	@Override
-	public List<EnderecoDTO> listarEndereco() {
+	public Endereco alterarEndereco(Endereco alterar) {
+		// TODO Auto-generated method stub
+		return dao.save(alterar);
+	}
 
-		return mapperDTO.mapList(dao.findAll());
+	@Override
+	public List<Endereco> listarEndereco() {
+		// TODO Auto-generated method stub
+		return dao.findAll();
+	}
+
+	@Override
+	public Endereco buscarPorId(Integer id) {
+		// TODO Auto-generated method stub
+		return dao.findById(id).orElse(null);
 	}
 
 	@Override
 	public void DeletarEndereco(Integer id) {
-	
 		dao.deleteById(id);
-
+		
 	}
-
-	@Override
-	public EnderecoDTO buscarPorId(Integer id) {
-	   
-		
-
-       return  mapperDTO.map(dao.findById(id).orElse(null));
-		
-		}
-
+	
 }

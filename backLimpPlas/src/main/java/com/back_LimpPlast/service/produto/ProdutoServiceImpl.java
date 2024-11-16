@@ -3,15 +3,11 @@ package com.back_LimpPlast.service.produto;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import com.back_LimpPlast.dao.ProdutoDao;
 import com.back_LimpPlast.model.Produtos;
 
-import br.com.Produto.model.Produto;
-import dto.ProdutoDTO;
-import mapper.GenericModelMapper;
 
 
 @Component
@@ -19,48 +15,37 @@ public class ProdutoServiceImpl implements IProdutoService {
 
 	@Autowired
 	private ProdutoDao dao;
-   
-	GenericModelMapper<ProdutoDTO, Produtos > mapper = new GenericModelMapper<>(Produtos.class);
-	
-	GenericModelMapper<Produtos, ProdutoDTO > mapperDTO = new GenericModelMapper<>(ProdutoDTO.class);
-	
+
 	@Override
-	public ProdutoDTO cadastrarNovo(ProdutoDTO novo) {
-		
-        
-        Produtos prod = mapper.map(novo);
-        dao.save(prod);
-       
-        
-         
-		return mapperDTO.map(prod) ;
+	public Produtos cadastrarNovo(Produtos novo) {
+		// TODO Auto-generated method stub
+		return dao.save(novo);
 	}
 
 	@Override
-	public ProdutoDTO alterarProoduto(ProdutoDTO alterar) {
-        
-		Produtos prod = mapper.map(alterar);
-		
-		dao.save(prod);
-           
-		return mapperDTO.map(prod);
+	public Produtos alterarProoduto(Produtos alterar) {
+		// TODO Auto-generated method stub
+		return dao.save(alterar);
 	}
 
 	@Override
 	public void deletarProduto(Integer id) {
-
+		// TODO Auto-generated method stub
+		
 		dao.deleteById(id);
 	}
 
 	@Override
-	public List<ProdutoDTO> listarProdutos() {
-
-		return mapperDTO.mapList(dao.findAll());
+	public List<Produtos> listarProdutos() {
+		// TODO Auto-generated method stub
+		return dao.findAll();
 	}
 
 	@Override
-	public ProdutoDTO BuscarPorId(Integer id) {
-
-		return mapperDTO.map(dao.findById(id).orElse(null));
+	public Produtos BuscarPorId(Integer id) {
+		// TODO Auto-generated method stub
+		return dao.findById(id).orElse(null);
 	}
+   
+	
 }

@@ -13,9 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.back_LimpPlast.model.Produtos;
 import com.back_LimpPlast.service.produto.IProdutoService;
-
-import dto.ProdutoDTO;
 
 @Controller
 @RequestMapping("/produto")
@@ -25,14 +24,14 @@ public class produtosController {
 	private IProdutoService service;
 
 	@PostMapping
-	public ResponseEntity<ProdutoDTO> cadastrarProduto(@RequestBody ProdutoDTO eProduto) {
+	public ResponseEntity<Produtos> cadastrarProduto(@RequestBody Produtos eProduto) {
           
 		return  ResponseEntity.ok(service.cadastrarNovo(eProduto));
 
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<ProdutoDTO> alterarProduto(@RequestBody ProdutoDTO prod, @PathVariable int id) {
+	public ResponseEntity<Produtos> alterarProduto(@RequestBody Produtos prod, @PathVariable int id) {
 
 		 
   
@@ -41,7 +40,7 @@ public class produtosController {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<ProdutoDTO>> listarTodos() {
+	public ResponseEntity<List<Produtos>> listarTodos() {
 
      
 	               		
@@ -59,7 +58,7 @@ public class produtosController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<ProdutoDTO> buscarPorId(@PathVariable int id) {
+	public ResponseEntity<Produtos> buscarPorId(@PathVariable int id) {
 
 		return ResponseEntity.ok().body(service.BuscarPorId(id));
 	}

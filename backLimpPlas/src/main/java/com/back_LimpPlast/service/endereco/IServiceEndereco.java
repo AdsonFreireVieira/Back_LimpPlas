@@ -4,17 +4,16 @@ import java.util.List;
 
 import com.back_LimpPlast.model.Endereco;
 
-import dto.EnderecoDTO;
 
 public interface IServiceEndereco {
 	
-	public EnderecoDTO cadastrarNovo(EnderecoDTO endereco);
+	public Endereco cadastrarNovo(Endereco endereco);
 	
-	public EnderecoDTO alterarEndereco(EnderecoDTO alterar);
+	public Endereco alterarEndereco(Endereco alterar);
 	
-	public List<EnderecoDTO> listarEndereco();
+	public List<Endereco> listarEndereco();
 	
-	public EnderecoDTO buscarPorId(Integer id);
+	public Endereco buscarPorId(Integer id);
 	
 	
 	public void DeletarEndereco(Integer id);

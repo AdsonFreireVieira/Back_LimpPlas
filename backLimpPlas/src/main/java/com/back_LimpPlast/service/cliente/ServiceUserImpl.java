@@ -8,70 +8,52 @@ import org.springframework.stereotype.Service;
 import com.back_LimpPlast.dao.UserDao;
 import com.back_LimpPlast.model.User;
 
-import dto.UserDTO;
-import mapper.GenericModelMapper;
-
-
 
 @Service
 public class ServiceUserImpl implements UserService {
 	
-	
-	GenericModelMapper<UserDTO , User>  mapperToUser =  new GenericModelMapper<>(User.class);
-	GenericModelMapper<User, UserDTO> mapperToDTO = new GenericModelMapper<>(UserDTO.class);
-	
 
 	@Autowired
-	private UserDao dao; 
-	
-	
-@Override
-	public UserDTO cadastrarNovo(UserDTO userDTO) {
-         
-	 var  user =  mapperToUser.map(userDTO);
-	
-	return  mapperToDTO.map(dao.save(user));
-		
+	private UserDao dao;
+
+	@Override
+	public User cadastrarNovo(User user) {
+		// TODO Auto-generated method stub
+		return dao.save(user);
 	}
 
 	@Override
-	public UserDTO alterarDados(UserDTO userDTO) {
-		
-		var user = mapperToUser.map(userDTO);
-		
-          return mapperToDTO.map(dao.save(user));
-		
+	public User alterarDados(User user) {
+		// TODO Auto-generated method stub
+		return dao.save(user);
 	}
 
 	@Override
-	public List<UserDTO> ListarTodos() {
-
-		  
-		return mapperToDTO.mapList(dao.findAll());
-		
+	public List<User> ListarTodos() {
+		// TODO Auto-generated method stub
+		return dao.findAll();
 	}
 
 	@Override
-	public UserDTO buscarporNome(String nome) {
-
-		
-		return mapperToDTO.map(dao.findByNome(nome));
-		
+	public User buscarporNome(String nome) {
+		// TODO Auto-generated method stub
+		return dao.findByNome(nome);
 	}
 
 	@Override
 	public void deletarPorId(int id) {
-
+		// TODO Auto-generated method stub
+		
 		dao.deleteById(id);
-
+		
 	}
 
 	@Override
-	public UserDTO buscarPorId(int id) {
-
-		
-		return mapperToDTO.map(dao.findById(id).orElse(null));
-		
-	}
+	public User buscarPorId(int id) {
+		// TODO Auto-generated method stub
+		return dao.findById(id).orElse(null);
+	} 
+	
+	
 
 }

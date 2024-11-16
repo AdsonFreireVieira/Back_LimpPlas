@@ -52,6 +52,27 @@ public class Endereco implements Serializable{
 		return cliente;
 	}
 	
+  
+	
+	
+
+
+	public Endereco( String rua, int numero, String estado, String cidade, int cep, String bairro,
+			User cliente) {
+		
+		this.rua = rua;
+		this.numero = numero;
+		this.estado = estado;
+		this.cidade = cidade;
+		this.cep = cep;
+		this.bairro = bairro;
+		this.cliente = cliente;
+	}
+
+
+
+
+
 
 	public void setCliente(User cliente) {
 		this.cliente = cliente;

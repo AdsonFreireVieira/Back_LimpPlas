@@ -13,10 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
+import com.back_LimpPlast.model.User;
 import com.back_LimpPlast.service.cliente.UserService;
-
-import dto.UserDTO;
 
 @Controller
 @RequestMapping("/cliente")
@@ -26,13 +24,13 @@ public class ClienteController {
 	private UserService service;
 
 	@PostMapping
-	public ResponseEntity<UserDTO> cadastrarNovo(@RequestBody UserDTO cl) {
+	public ResponseEntity<User> cadastrarNovo(@RequestBody User cl) {
 
 		return ResponseEntity.ok(cl);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<UserDTO> alterar(@RequestBody UserDTO cli, @PathVariable int id) {
+	public ResponseEntity<User> alterar(@RequestBody User cli, @PathVariable int id) {
 
 		cli.setId(id);
 
@@ -41,7 +39,7 @@ public class ClienteController {
 
 	@GetMapping
 
-	public ResponseEntity<List<UserDTO>> listarTodos() {
+	public ResponseEntity<List<User>> listarTodos() {
 
 ;
 		return ResponseEntity.ok(service.ListarTodos());
@@ -49,7 +47,7 @@ public class ClienteController {
 
 	@GetMapping("/{id}")
 
-	public ResponseEntity<UserDTO> buscarPorid(@PathVariable int id) {
+	public ResponseEntity<User> buscarPorid(@PathVariable int id) {
 
 		
 		return ResponseEntity.ok(service.buscarPorId(id));
@@ -66,7 +64,7 @@ public class ClienteController {
 
 	@GetMapping("/nome/{txt}")
 
-	public ResponseEntity<UserDTO> buscarNome(@PathVariable String txt) {
+	public ResponseEntity<User> buscarNome(@PathVariable String txt) {
 
 		
 		return ResponseEntity.ok(service.buscarporNome(txt));

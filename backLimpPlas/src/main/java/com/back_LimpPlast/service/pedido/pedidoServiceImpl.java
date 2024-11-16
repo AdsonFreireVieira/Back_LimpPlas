@@ -9,78 +9,37 @@ import com.back_LimpPlast.dao.PedidoDao;
 import com.back_LimpPlast.model.Pedidos;
 import com.back_LimpPlast.model.itens_Pedido;
 
-
-import dto.ItensPedidoDTO;
-import dto.PedidoDTO;
-import mapper.GenericModelMapper;
-
-
 @Component
 public class pedidoServiceImpl implements IServicePedido {
-
 	@Autowired
 	private PedidoDao dao;
-	
-          GenericModelMapper<PedidoDTO, Pedidos> mapperToPedido = new GenericModelMapper<>(Pedidos.class);
-	GenericModelMapper<Pedidos, PedidoDTO> mapperToPedidoDTO = new GenericModelMapper<>(PedidoDTO.class);
-	
 
 	@Override
-	public PedidoDTO cadastrarNovo(PedidoDTO pDTO) {
-        
-        
-		for (ItensPedidoDTO items : pDTO.getItens()){
-			
-		  items.setPedido(pDTO);
-			
+	public Pedidos cadastrarNovo(Pedidos pedido) {
+		for (itens_Pedido itens : pedido.getItens()) {
+			itens.setPedidos(pedido);
 		}
-            configuracaoPedido.calculaQuntidadeItens(pDTO);
-			
-			configuracaoPedido.calcularValorItens(pDTO);
-			configuracaoPedido.calcularPedido(pDTO);
-			configuracaoPedido.calcularDesconto(pDTO);
-			
-			Pedidos pd = mapperToPedido.map(pDTO);
-	      
-		  return   mapperToPedidoDTO.map(dao.save(pd));
-			
-			
-			
-	
-		
+		return dao.save(pedido);
 	}
 
 	@Override
-	public PedidoDTO alterarPedido(PedidoDTO alterar) {
-     
-		
-		for ( ItensPedidoDTO itens : alterar.getItens()){
-         
-				
-		   itens.setPedido(alterar);
-             
+	public Pedidos alterarPedido(Pedidos alterar) {
+		for (itens_Pedido itens : alterar.getItens()) {
+			itens.setPedidos(alterar);
 		}
-		
-		 
-		Pedidos ped = mapperToPedido.map(alterar);
-		
-		 return mapperToPedidoDTO.map(dao.save(ped));
-		 
-  
-		
-		
+		return dao.save(alterar);
 	}
 
 	@Override
-	public List<PedidoDTO> listarPedido() {
-		
-		return mapperToPedidoDTO.mapList(dao.findAll());
+	public List<Pedidos> listarPedido() {
+		// TODO Auto-generated method stub
+		return    (List<Pedidos>) dao.findAll();
 	}
 
 	@Override
-	public PedidoDTO buscarPorId(int id) {
-
-		return  mapperToPedidoDTO.map(dao.findById(id).orElse(null));
+	public Pedidos buscarPorId(int id) {
+		// TODO Auto-generated method stub
+		return dao.findById(id).orElse(null);
 	}
 
 	@Override

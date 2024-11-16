@@ -13,19 +13,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.back_LimpPlast.model.Endereco;
 import com.back_LimpPlast.service.endereco.IServiceEndereco;
-
-import dto.EnderecoDTO;
 
 @RestController
 @RequestMapping("/endereco")
 public class enderecoController {
 
-	@Autowired   
+	@Autowired      
 	private IServiceEndereco service;
 
 	@PostMapping
-	public ResponseEntity<EnderecoDTO> cadastrarNovo(@RequestBody EnderecoDTO end) {
+	public ResponseEntity<Endereco> cadastrarNovo(@RequestBody Endereco end) {
 
 
 		var ender = service.cadastrarNovo(end);
@@ -43,7 +42,7 @@ public class enderecoController {
 
 	@PutMapping("/{id}")
 
-	public ResponseEntity<EnderecoDTO> alterarEndereco(@RequestBody EnderecoDTO end, @PathVariable int id) {
+	public ResponseEntity<Endereco> alterarEndereco(@RequestBody Endereco end, @PathVariable int id) {
 
 		end.setId(id);
 
@@ -58,7 +57,7 @@ public class enderecoController {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<EnderecoDTO>> listarEndereco() {
+	public ResponseEntity<List<Endereco>> listarEndereco() {
 		 
          
 		return ResponseEntity.ok().body(service.listarEndereco());
@@ -66,7 +65,7 @@ public class enderecoController {
 
 	@GetMapping("/{id}")
 
-	public ResponseEntity<EnderecoDTO> buscarporId(@PathVariable int id) {
+	public ResponseEntity<Endereco> buscarporId(@PathVariable int id) {
 
 		
 		var end = service.buscarPorId(id);
