@@ -1,11 +1,16 @@
 package com.back_LimpPlast.EnderecoRepositoryTest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.BDDMockito.*;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
+import java.util.List;
 import java.util.Optional;
 
+import org.apache.catalina.startup.ClassLoaderFactory.Repository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -56,10 +61,71 @@ public class EnderecoServiceTest {
 	   assertEquals("palmeiras",ender.getRua());
 	   assertEquals(345,ender.getNumero());
 	   
-	  
 	 
 	 }
-	
+	 @DisplayName("UpdateEnderecoReturnTrue")
+	 @Test
+	 void TestEnderecoReturnTrueUpdateSucess() {
+		 
+		 given(repository.save(endereco)).willReturn(endereco);
+		 
+		 endereco.setCidade("suzano");
+		 endereco.setRua("Rua 15");
+		 
+		 Endereco ender = service.alterarEndereco(endereco);
+		 
+		 assertEquals(ender.getCidade(), endereco.getCidade());
+		 assertEquals(ender.getRua(), endereco.getRua());
+	 } 
+	 
+	 @DisplayName("FindAllEnderecosReturnTrue")
+	 @Test
+	 void TesteFindAllReturnSucess() {
+		 
+		 List<Endereco> listEndereco ;
+		 
+		  Endereco endereco1 = new Endereco("rua 10", 135,"Minas Gerais","Belo Horizinte" ,988043444,"Caucaia",user);
+		  Endereco endereco2= new Endereco("rua 12",123,"Sergipe","Neopolis",994567,"caucaia",user);
+		  
+		  given(repository.findAll()).willReturn(List.of(endereco,endereco1,endereco2));
+		 
+		  List<Endereco> personList = service.listarEndereco();
+		  
+		  System.out.println(personList.size());
+	     assertEquals(3, personList.size());
+		 
+	 }	
+	 @DisplayName("findById return true")
+	 @Test
+	 void findByIdReturnSucess() {
+		 
+		  Endereco ende = new Endereco(15,"rua 10", 135,"Minas Gerais","Belo Horizinte" ,988043444,"Caucaia",user);
+		  
+		 
+		  
+		  given(repository.findById(anyInt())).willReturn(Optional.of(ende));
+		  
+		  Endereco enderecoReturn = service.buscarPorId(15);
+
+		  
+		  assertEquals(15, enderecoReturn.getId());
+		  assertEquals(ende.getCidade(),enderecoReturn.getCidade());
+
+		 
+	 }
+	 @DisplayName("DeleteByID")
+	 @Test
+	 
+	 void deleteByIDReturnTrue() {
+		 
+		  doNothing().when(repository).deleteById(endereco.getId());
+		  
+		  service.DeletarEndereco(endereco.getId());
+		  
+		  verify(repository,times(1)).deleteById(endereco.getId());
+		  
+		 
+	 }
 
 }
 
