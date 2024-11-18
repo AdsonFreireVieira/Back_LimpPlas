@@ -1,4 +1,4 @@
-package com.back_LimpPlast.service.produto;
+package com.back_LimpPlast.service.produtos;
 
 import java.util.List;
 

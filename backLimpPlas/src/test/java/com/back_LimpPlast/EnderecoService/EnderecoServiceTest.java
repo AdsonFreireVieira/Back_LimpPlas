@@ -1,4 +1,4 @@
-package com.back_LimpPlast.EnderecoRepositoryTest;
+	package com.back_LimpPlast.EnderecoService;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -82,7 +82,7 @@ public class EnderecoServiceTest {
 	 @Test
 	 void TesteFindAllReturnSucess() {
 		 
-		 List<Endereco> listEndereco ;
+		
 		 
 		  Endereco endereco1 = new Endereco("rua 10", 135,"Minas Gerais","Belo Horizinte" ,988043444,"Caucaia",user);
 		  Endereco endereco2= new Endereco("rua 12",123,"Sergipe","Neopolis",994567,"caucaia",user);
@@ -91,7 +91,6 @@ public class EnderecoServiceTest {
 		 
 		  List<Endereco> personList = service.listarEndereco();
 		  
-		  System.out.println(personList.size());
 	     assertEquals(3, personList.size());
 		 
 	 }	
@@ -125,6 +124,7 @@ public class EnderecoServiceTest {
 		  verify(repository,times(1)).deleteById(endereco.getId());
 		  
 		 
+	 
 	 }
 
 }

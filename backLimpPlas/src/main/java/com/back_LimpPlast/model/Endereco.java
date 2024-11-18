@@ -1,4 +1,4 @@
-package com.back_LimpPlast.model;
+	package com.back_LimpPlast.model;
 
 import java.io.Serializable;
 
@@ -71,10 +71,6 @@ public class Endereco implements Serializable{
 	}
 
 
-
-
-
-
 	public Endereco( String rua, int numero, String estado, String cidade, int cep, String bairro,
 			User cliente) {
 		
@@ -86,11 +82,6 @@ public class Endereco implements Serializable{
 		this.bairro = bairro;
 		this.cliente = cliente;
 	}
-
-
-
-
-
 
 	public void setCliente(User cliente) {
 		this.cliente = cliente;

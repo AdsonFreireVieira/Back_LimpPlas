@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.back_LimpPlast.model.Produtos;
-import com.back_LimpPlast.service.produto.IProdutoService;
+import com.back_LimpPlast.service.produtos.IProdutoService;
 
 @Controller
 @RequestMapping("/produto")

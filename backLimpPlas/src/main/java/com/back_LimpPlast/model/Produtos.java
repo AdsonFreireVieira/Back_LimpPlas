@@ -46,7 +46,21 @@ public class Produtos implements Serializable{
  @Column(name="quantidade",nullable = false)
  private int quantidade;
  
- 
+
+
+public Produtos(Integer id, String nome, double peso, int unidades, String cor, int litros, String medida, double valor,
+		int quantidade) {
+	
+	this.id = id;
+	this.nome = nome;
+	this.peso = peso;
+	this.unidades = unidades;
+	this.cor = cor;
+	this.litros = litros;
+	this.medida = medida;
+	this.valor = valor;
+	this.quantidade = quantidade;
+}
 public Integer getId() {
 	return id;
 }

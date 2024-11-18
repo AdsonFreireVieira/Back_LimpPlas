@@ -1,4 +1,4 @@
-package com.back_LimpPlast.dao;
+package com.back_LimpPlast.UserService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -13,10 +13,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import com.back_LimpPlast.dao.UserDao;
 import com.back_LimpPlast.model.User;
 
 @DataJpaTest
-class UserDaoTest {
+class UserRepositoryTest {
 
 	@Autowired
 
