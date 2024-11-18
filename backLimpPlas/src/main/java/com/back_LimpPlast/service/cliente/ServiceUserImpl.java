@@ -22,7 +22,7 @@ public class ServiceUserImpl implements UserService {
 		return dao.save(user);
 	}
 
-	@Override
+	@Override 
 	public User alterarDados(User user) {
 		// TODO Auto-generated method stub
 		return dao.save(user);

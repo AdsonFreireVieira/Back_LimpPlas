@@ -54,12 +54,28 @@ public class Pedidos implements Serializable {
 	@JsonIgnoreProperties("pedidos")
 	private List<itens_Pedido> itens;
 	
-	
+	 
 	public Pedidos() {
 		// TODO Auto-generated constructor stub
 	}
 	
+
 	
+	public Pedidos(Integer id, LocalDate data, int quantidade, double desconto, String status, double valorTotal,
+			User cliente, List<itens_Pedido> itens) {
+		this.id = id;
+		this.data = data;
+		this.quantidade = quantidade;
+		this.desconto = desconto;
+		this.status = status;
+		this.valorTotal = valorTotal;
+		this.cliente = cliente;
+		this.itens = itens;
+	}
+
+
+
+
 	public List<itens_Pedido> getItens() {
 		return itens;
 	}
