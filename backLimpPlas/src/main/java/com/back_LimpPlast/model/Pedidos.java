@@ -37,7 +37,7 @@ public class Pedidos implements Serializable {
 	@Column(name="quantidade")
 	private int quantidade;
 	
-	@Column(name="desconto")
+	@Column(name="desconto") 
 	private double desconto;
 	
 	@Column(name="status")
@@ -62,7 +62,7 @@ public class Pedidos implements Serializable {
 
 	
 	public Pedidos(Integer id, LocalDate data, int quantidade, double desconto, String status, double valorTotal,
-			User cliente, List<itens_Pedido> itens) {
+			                User cliente, List<itens_Pedido> itens) {
 		this.id = id;
 		this.data = data;
 		this.quantidade = quantidade;

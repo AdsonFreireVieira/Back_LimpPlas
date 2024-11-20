@@ -26,7 +26,7 @@ public class itens_Pedido {
 	@Column(name="quantidade" , nullable = false)
 	private int quantidade;
 	
-	@Column(name="valor_itens")
+	@Column(name="valor_itens") 
 	private double valorItens;
 	
 	 @ManyToOne
@@ -40,6 +40,15 @@ public class itens_Pedido {
 		
 	
 	
+	public itens_Pedido(Integer id, int quantidade, double valorItens, Produtos produto) {
+	
+		this.id = id;
+		this.quantidade = quantidade;
+		this.valorItens = valorItens;
+		this.produto = produto;
+	
+	}
+
 	public double getValorItens() {
 		return valorItens;
 	}
