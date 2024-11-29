@@ -3,22 +3,20 @@ package com.back_LimpPlast.service.endereco;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.back_LimpPlast.dao.EnderecoDao;
 import com.back_LimpPlast.model.Endereco;
 
 
-
-
-@Component
+@Service
 public class ServiceEnderecoImpl implements IServiceEndereco {
 
 	@Autowired
 	private EnderecoDao dao;
 
 	@Override
-	public Endereco cadastrarNovo(Endereco endereco) {
+	public Endereco cadastrarNovoEndereco(Endereco endereco) {
 		 
 		return dao.save(endereco);
 	}
@@ -32,7 +30,7 @@ public class ServiceEnderecoImpl implements IServiceEndereco {
 	@Override
 	public List<Endereco> listarEndereco() {
 		// TODO Auto-generated method stub
-		return dao.findAll();
+		return (List<Endereco>) dao.findAll();
 	}
 
 	@Override

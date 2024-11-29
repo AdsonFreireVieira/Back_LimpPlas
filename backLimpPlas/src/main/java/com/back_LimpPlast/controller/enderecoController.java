@@ -27,7 +27,7 @@ public class enderecoController {
 	public ResponseEntity<Endereco> cadastrarNovo(@RequestBody Endereco end) {
 
 
-		var ender = service.cadastrarNovo(end);
+		var ender = service.cadastrarNovoEndereco(end);
 		
 		if(ender != null) {
 		

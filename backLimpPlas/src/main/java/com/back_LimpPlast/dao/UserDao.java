@@ -15,11 +15,6 @@ public interface UserDao extends JpaRepository<User, Integer> {
 	
 	Optional <User> findByEmail(String email);
 	
-	@Query("select p from User p where p.nome =?1")
-	 User findbyJPQL(String   nome );
-		 
-	 @Query("select p from User p where p.nome=:nome")
-	 User findByJPQLNamedParameters(@Param("nome")String nome);
-		 
+
 	 
 }

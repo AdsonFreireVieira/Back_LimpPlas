@@ -7,7 +7,7 @@ import com.back_LimpPlast.model.Endereco;
 
 public interface IServiceEndereco {
 	
-	public Endereco cadastrarNovo(Endereco endereco);
+	public Endereco cadastrarNovoEndereco(Endereco endereco);
 	
 	public Endereco alterarEndereco(Endereco alterar);
 	

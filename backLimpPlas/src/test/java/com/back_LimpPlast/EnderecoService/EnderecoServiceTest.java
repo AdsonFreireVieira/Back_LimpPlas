@@ -18,6 +18,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.back_LimpPlast.dao.EnderecoDao;
 import com.back_LimpPlast.model.Endereco;
@@ -53,7 +54,7 @@ public class EnderecoServiceTest {
 		 
 		 given(repository.save(endereco)).willReturn(endereco);
 		 
-	   Endereco ender = service.cadastrarNovo(endereco);
+	   Endereco ender = service.cadastrarNovoEndereco(endereco);
 	   
 	   assertNotNull(ender);
 	   assertNotNull(ender.getCliente());

@@ -37,8 +37,6 @@ public class User implements Serializable{
 	@Column(name = "documento", nullable = false)
 	private  int documento;
 
-
-
 public User() {
 	// TODO Auto-generated constructor stub
 }

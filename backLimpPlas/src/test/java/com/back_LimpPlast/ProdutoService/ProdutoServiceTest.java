@@ -2,7 +2,6 @@ package com.back_LimpPlast.ProdutoService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
@@ -22,7 +21,7 @@ import com.back_LimpPlast.dao.ProdutosRepository;
 import com.back_LimpPlast.model.Produtos;
 import com.back_LimpPlast.service.produtos.ProdutoServiceImpl;
 
-@ExtendWith(MockitoExtension.class)
+@ExtendWith(MockitoExtension.class) 
 public class ProdutoServiceTest {
 
 	@Mock
@@ -35,7 +34,8 @@ public class ProdutoServiceTest {
 
 	@BeforeEach
 	void setup() {
-		produtos = new Produtos(20,"SAco Plastico", 3, 50, "Azul", 100, "90 X 90", 24, 20);
+		
+		produtos = new Produtos(20,"PLastico", 3, 100,"preto", 100,"90X90",45, 5);
 
 	}
 
@@ -58,15 +58,15 @@ public class ProdutoServiceTest {
 		
 		given(repository.save(produtos)).willReturn(produtos);
 		
-		produtos.setCor("Amarelo");
-		produtos.setMedida("100 X 100");
-		produtos.setNome("saco Para Lixo");
+		produtos.setCor("preto");
+		produtos.setMedida("90X90");
+		produtos.setNome("PLastico");
 		
 		Produtos produtosReturn = service.alterarProoduto(produtos);
 		
 		
 		assertNotNull(produtosReturn);
-		assertEquals("Amarelo", produtosReturn.getCor());
+		assertEquals("preto", produtosReturn.getCor());
          assertEquals(20, produtosReturn.getId());		
 	}
 	

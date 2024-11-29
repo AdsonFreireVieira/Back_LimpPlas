@@ -30,7 +30,7 @@ class UserRepositoryTest {
 	@Mock
 	private UserDao repository;
 
-	@InjectMocks
+	@InjectMocks 
 	private ServiceUserImpl service;
 
 	private User user;
