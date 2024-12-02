@@ -2,7 +2,9 @@ package com.back_LimpPlast.PedidoServiceTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.doNothing;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -94,8 +96,33 @@ public class PedidoServiceTest {
 	assertEquals(userResult.getId() , pedidoResult.getCliente().getId());
     
 	}	
-
-}
+	
+	@DisplayName("FindByID")
+	@Test
+	
+	void returnSucessPedidoID() {
+		
+		
+   
+		 given(repository.findById(10)).willReturn(Optional.of(pedido));
+		 
+		 Pedidos pedidoResult = service.buscarPorId(10);
+		 
+		 assertNotNull(pedidoResult);
+		
+		
+	}
+	
+	@DisplayName("Delete Pedido")
+	@Test
+	
+	void deletePedidoSucess() {
+		
+		doNothing().when(repository).deleteById(pedido.getId());
+		
+		service.deletarPedido(10);
+	}
+	}
 
 
 
