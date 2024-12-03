@@ -10,7 +10,7 @@ import com.back_LimpPlast.dao.UserDao;
 import com.back_LimpPlast.model.User;
 
 
-@Component
+@Service
 public class ServiceUserImpl implements UserService {
 	
 

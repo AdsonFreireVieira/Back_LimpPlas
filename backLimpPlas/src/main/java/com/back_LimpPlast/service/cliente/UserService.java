@@ -2,7 +2,10 @@ package com.back_LimpPlast.service.cliente;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.back_LimpPlast.model.User;
+
 
 public interface UserService {
 	
