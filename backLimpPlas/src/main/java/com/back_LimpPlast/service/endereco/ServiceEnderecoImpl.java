@@ -3,13 +3,14 @@ package com.back_LimpPlast.service.endereco;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.back_LimpPlast.dao.EnderecoDao;
 import com.back_LimpPlast.model.Endereco;
 
 
-@Service
+@Component
 public class ServiceEnderecoImpl implements IServiceEndereco {
 
 	@Autowired

@@ -26,8 +26,8 @@ public class ClienteController {
 
 	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public  ResponseEntity<User>  cadastrarNovo(@RequestBody User cl) {
-
-		return   ResponseEntity.ok(service.cadastrarNovo(cl));
+  
+		return   ResponseEntity.ok().body(service.cadastrarNovo(cl));
 	}
 
 	@PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
