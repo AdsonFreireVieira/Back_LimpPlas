@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import com.back_LimpPlast.Exceptions.ResourceNotFoundException;
 import com.back_LimpPlast.dao.UserDao;
 import com.back_LimpPlast.model.User;
 

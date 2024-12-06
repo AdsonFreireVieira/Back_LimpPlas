@@ -18,12 +18,16 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
+import com.back_LimpPlast.Exception.ResourceNotFoundException;
+import com.back_LimpPlast.Exceptions.ResourceNotFoundException;
+import com.back_LimpPlast.Exceptions.Exceptions;
 import com.back_LimpPlast.model.User;
 import com.back_LimpPlast.service.cliente.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -80,7 +84,38 @@ class ClienteControllerTest {
 
 		ResultActions response = mockMvc.perform(get("/cliente"));
 
-		response.andExpect(jsonPath("$.size()", is(users.size())));
+		response.andExpect(jsonPath("$.size()", is(users.size())));	
+
+	}
+
+	@DisplayName("FindByIdTestController")
+	@Test
+	public void findByidUserControllerSucess() throws JsonProcessingException, Exception {
+      
+		given(service.buscarPorId(user.getId())).willReturn(user);
+
+		ResultActions response = mockMvc.perform(get("/cliente/{id}", user.getId()));
+
+		response.andExpect(status().isOk()).andDo(print())
+		.andExpect(jsonPath("$.nome", is(user.getNome())))
+				.andExpect(jsonPath("$.email", is(user.getEmail())));
+
+	}
+	@DisplayName("InvalidFindByIdTestController")
+	@Test
+	public void findByidInvalidControllerreturnNotFound() {
+      
+		given(service.buscarPorId(user.getId())).willThrow(ResourceNotFoundException.class);
+
+		ResultActions response;
+		try {
+			response = mockMvc.perform(get("/cliente/{id}", user.getId()));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		response.andExpect(status(). isNotFound()).andDo(print());
 
 	}
 }

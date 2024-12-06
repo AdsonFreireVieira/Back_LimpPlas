@@ -25,9 +25,9 @@ public class ClienteController {
 	private UserService service;
 
 	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	public  ResponseEntity<User>  cadastrarNovo(@RequestBody User cl) {
-  
-		return   ResponseEntity.ok().body(service.cadastrarNovo(cl));
+	public ResponseEntity<User> cadastrarNovo(@RequestBody User cl) {
+
+		return ResponseEntity.ok().body(service.cadastrarNovo(cl));
 	}
 
 	@PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -42,21 +42,22 @@ public class ClienteController {
 
 	public ResponseEntity<List<User>> listarTodos() {
 
-;
+		;
 		return ResponseEntity.ok(service.ListarTodos());
 	}
 
-	@GetMapping(value ="/{id}", 
-			produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 
-	public ResponseEntity<User> buscarPorid(@PathVariable int id) {
+	public ResponseEntity<User> buscarPorid(@PathVariable(value = "id") int id) {
 
-		
-		return ResponseEntity.ok(service.buscarPorId(id));
+		try {
+			return ResponseEntity.ok(service.buscarPorId(id));
+		} catch (Exception e) {
+			return ResponseEntity.notFound().build();
+		}
 	}
 
-	@DeleteMapping( value ="/{id}",
-			produces = MediaType.APPLICATION_JSON_VALUE)
+	@DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 
 	public ResponseEntity<?> deletar(@PathVariable Integer id) {
 
@@ -65,12 +66,10 @@ public class ClienteController {
 
 	}
 
-	@GetMapping(value ="/nome/{txt}",
-			produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/nome/{txt}", produces = MediaType.APPLICATION_JSON_VALUE)
 
 	public ResponseEntity<User> buscarNome(@PathVariable String txt) {
 
-		
 		return ResponseEntity.ok(service.buscarporNome(txt));
 	}
 
