@@ -30,12 +30,14 @@ public class ClienteController {
 		return ResponseEntity.ok().body(service.cadastrarNovo(cl));
 	}
 
-	@PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<User> alterar(@RequestBody User cli, @PathVariable int id) {
+	@PutMapping( produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<User> alterar(@RequestBody User cli) {
 
-		cli.setId(id);
-
-		return ResponseEntity.ok().body(service.alterarDados(cli));
+		try {
+			return ResponseEntity.ok(service.alterarDados(cli));
+		} catch (Exception e) {
+			return ResponseEntity.notFound().build();
+		}
 	}
 
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)

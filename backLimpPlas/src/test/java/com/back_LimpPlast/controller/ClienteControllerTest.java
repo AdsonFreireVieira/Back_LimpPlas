@@ -5,6 +5,8 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -12,22 +14,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.net.ssl.SSLEngineResult.Status;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
-import com.back_LimpPlast.Exception.ResourceNotFoundException;
-import com.back_LimpPlast.Exceptions.ResourceNotFoundException;
-import com.back_LimpPlast.Exceptions.Exceptions;
+import com.back_LimpPlast.Exceptions.ResourceException;
 import com.back_LimpPlast.model.User;
 import com.back_LimpPlast.service.cliente.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -103,19 +100,52 @@ class ClienteControllerTest {
 	}
 	@DisplayName("InvalidFindByIdTestController")
 	@Test
-	public void findByidInvalidControllerreturnNotFound() {
+	public void findByidInvalidControllerreturnNotFound() throws Exception {
       
-		given(service.buscarPorId(user.getId())).willThrow(ResourceNotFoundException.class);
+		given(service.buscarPorId(user.getId())).willThrow(ResourceException.class);
 
 		ResultActions response;
-		try {
+
 			response = mockMvc.perform(get("/cliente/{id}", user.getId()));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
-		response.andExpect(status(). isNotFound()).andDo(print());
-
+			
+	        response .andExpect(status().isNotFound()).andDo(print());
+            
 	}
-}
+	@DisplayName("UpdateUSerController")
+	@Test
+
+	public void UpdateUserTestControllerSucess() throws JsonProcessingException, Exception{
+     
+		 Integer idUpdate =1;
+		 given(service.buscarPorId(idUpdate)).willReturn(user);
+		given(service.alterarDados(any(User.class))).willAnswer(invocation -> invocation.getArgument(0));
+
+	     User updateUser = new User ("joao", "Joao@gmail.com", 998733, 8890);
+
+		ResultActions response = mockMvc.perform(put("/cliente").contentType(MediaType.APPLICATION_JSON).
+				content(mapper.writeValueAsString(updateUser)));
+
+		response.andDo(print()).andExpect(status().isOk()).andExpect(jsonPath("$.nome", is(updateUser.getNome())))
+				.andExpect(jsonPath("$.email", is(updateUser.getEmail())));
+		 
+	} 
+	@Test
+	@DisplayName("InvalidUpdateUSer")
+	public void InvalidUpdateUserTestControllerSucess() throws JsonProcessingException, Exception{
+	     
+		 Integer idUpdate =1;
+		 given(service.buscarPorId(idUpdate)).willThrow(ResourceException.class);
+		given(service.alterarDados(any(User.class))).willAnswer(invocation -> invocation.getArgument(1));
+
+	     User updateUser = new User ("joao", "Joao@gmail.com", 998733, 8890);
+
+		ResultActions response = mockMvc.perform(put("/cliente").contentType(MediaType.APPLICATION_JSON).
+				content(mapper.writeValueAsString(updateUser)));
+
+		response.andDo(print()).andExpect(status().isNotFound()).andDo(print());
+		 
+	} 
+
+}  
+ 	

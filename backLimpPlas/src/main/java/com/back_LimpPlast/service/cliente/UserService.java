@@ -1,6 +1,7 @@
 package com.back_LimpPlast.service.cliente;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ public interface UserService {
 	
 	public  User cadastrarNovo(User user);
 	
-	public User alterarDados(User user);
+	public  User alterarDados(User user);
 	
 	public List<User> ListarTodos();
 	

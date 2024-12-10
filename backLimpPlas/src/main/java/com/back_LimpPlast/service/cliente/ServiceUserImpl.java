@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import com.back_LimpPlast.Exceptions.ResourceNotFoundException;
+import com.back_LimpPlast.Exceptions.ResourceException;
 import com.back_LimpPlast.dao.UserDao;
 import com.back_LimpPlast.model.User;
 
@@ -53,9 +53,8 @@ public class ServiceUserImpl implements UserService {
 	@Override
 	public User buscarPorId(int id) {
 		// TODO Auto-generated method stub
-		return dao.findById(id).orElse(null);
-	} 
+	return dao.findById(id).orElseThrow(()-> new ResourceException("ID NOT FOUNd"));
 	
 	
-
+	}
 }
