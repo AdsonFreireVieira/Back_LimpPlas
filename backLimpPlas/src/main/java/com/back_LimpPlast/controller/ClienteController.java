@@ -61,10 +61,10 @@ public class ClienteController {
 
 	@DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 
-	public ResponseEntity<?> deletar(@PathVariable Integer id) {
+	public ResponseEntity<?> deletar(@PathVariable (value= "id") int id) {
 
 		service.deletarPorId(id);
-		return ResponseEntity.ok("Removed");
+		return ResponseEntity.noContent().build();
 
 	}
 

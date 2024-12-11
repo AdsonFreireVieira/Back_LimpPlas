@@ -2,11 +2,11 @@ package com.back_LimpPlast.controller;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -81,71 +81,83 @@ class ClienteControllerTest {
 
 		ResultActions response = mockMvc.perform(get("/cliente"));
 
-		response.andExpect(jsonPath("$.size()", is(users.size())));	
+		response.andExpect(jsonPath("$.size()", is(users.size())));
 
 	}
 
 	@DisplayName("FindByIdTestController")
 	@Test
 	public void findByidUserControllerSucess() throws JsonProcessingException, Exception {
-      
+
 		given(service.buscarPorId(user.getId())).willReturn(user);
 
 		ResultActions response = mockMvc.perform(get("/cliente/{id}", user.getId()));
 
-		response.andExpect(status().isOk()).andDo(print())
-		.andExpect(jsonPath("$.nome", is(user.getNome())))
+		response.andExpect(status().isOk()).andDo(print()).andExpect(jsonPath("$.nome", is(user.getNome())))
 				.andExpect(jsonPath("$.email", is(user.getEmail())));
 
 	}
+
 	@DisplayName("InvalidFindByIdTestController")
 	@Test
 	public void findByidInvalidControllerreturnNotFound() throws Exception {
-      
+
 		given(service.buscarPorId(user.getId())).willThrow(ResourceException.class);
 
 		ResultActions response;
 
-			response = mockMvc.perform(get("/cliente/{id}", user.getId()));
+		response = mockMvc.perform(get("/cliente/{id}", user.getId()));
 
-			
-	        response .andExpect(status().isNotFound()).andDo(print());
-            
+		response.andExpect(status().isNotFound()).andDo(print());
+
 	}
+
 	@DisplayName("UpdateUSerController")
 	@Test
 
-	public void UpdateUserTestControllerSucess() throws JsonProcessingException, Exception{
-     
-		 Integer idUpdate =1;
-		 given(service.buscarPorId(idUpdate)).willReturn(user);
+	public void UpdateUserTestControllerSucess() throws JsonProcessingException, Exception {
+
+		Integer idUpdate = 1;
+		given(service.buscarPorId(idUpdate)).willReturn(user);
 		given(service.alterarDados(any(User.class))).willAnswer(invocation -> invocation.getArgument(0));
 
-	     User updateUser = new User ("joao", "Joao@gmail.com", 998733, 8890);
+		User updateUser = new User("joao", "Joao@gmail.com", 998733, 8890);
 
-		ResultActions response = mockMvc.perform(put("/cliente").contentType(MediaType.APPLICATION_JSON).
-				content(mapper.writeValueAsString(updateUser)));
+		ResultActions response = mockMvc.perform(
+				put("/cliente").contentType(MediaType.APPLICATION_JSON).content(mapper.writeValueAsString(updateUser)));
 
 		response.andDo(print()).andExpect(status().isOk()).andExpect(jsonPath("$.nome", is(updateUser.getNome())))
 				.andExpect(jsonPath("$.email", is(updateUser.getEmail())));
-		 
-	} 
+
+	}
+
 	@Test
 	@DisplayName("InvalidUpdateUSer")
-	public void InvalidUpdateUserTestControllerSucess() throws JsonProcessingException, Exception{
-	     
-		 Integer idUpdate =1;
-		 given(service.buscarPorId(idUpdate)).willThrow(ResourceException.class);
+	public void InvalidUpdateUserTestControllerSucess() throws JsonProcessingException, Exception {
+
+		Integer idUpdate = 1;
+		given(service.buscarPorId(idUpdate)).willThrow(ResourceException.class);
 		given(service.alterarDados(any(User.class))).willAnswer(invocation -> invocation.getArgument(1));
 
-	     User updateUser = new User ("joao", "Joao@gmail.com", 998733, 8890);
+		User updateUser = new User("joao", "Joao@gmail.com", 998733, 8890);
 
-		ResultActions response = mockMvc.perform(put("/cliente").contentType(MediaType.APPLICATION_JSON).
-				content(mapper.writeValueAsString(updateUser)));
+		ResultActions response = mockMvc.perform(
+				put("/cliente").contentType(MediaType.APPLICATION_JSON).content(mapper.writeValueAsString(updateUser)));
 
 		response.andDo(print()).andExpect(status().isNotFound()).andDo(print());
-		 
-	} 
 
-}  
- 	
+	}
+
+	@Test
+	@DisplayName("DeleteUSer")
+	public void DeleteeUserTestControllerSucess() throws JsonProcessingException, Exception {
+
+		Integer idDelete = 1;
+		willDoNothing().given(service).deletarPorId(idDelete);
+
+		ResultActions response = mockMvc.perform(delete("/cliente/{id}", idDelete));
+
+		response.andDo(print()).andExpect(status().isNoContent()).andDo(print());
+
+	}
+}
