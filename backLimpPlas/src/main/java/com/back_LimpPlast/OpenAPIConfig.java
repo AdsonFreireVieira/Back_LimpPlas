@@ -19,7 +19,7 @@ public class OpenAPIConfig {
 		 .version("v1")
 		 .description("Docs ")
 		 .termsOfService(null)
-		 .license(new License().name("Apache 2")
+		 .license(new License().name("Apache 2.0")
 	  .url("NAO TEM "))
 		
 			  )
